@@ -81,7 +81,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .section-card.open .section-toggle{transform:rotate(180deg);background:var(--navy);color:var(--gold)}
 
 .section-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94)}
-.section-card.open .section-body{max-height:2400px}
+.section-card.open .section-body{max-height:3000px}
 .section-body-inner{padding:0 18px 20px;border-top:1px solid var(--cream-dark)}
 
 /* TRANSFER TOGGLE */
@@ -198,19 +198,20 @@ a.link-item span strong { color: var(--gold-light); }
       
       <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="lin">Linate (LIN)</span></div>
       <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#0072CE"></div><div class="step-connector"></div></div>
+        <div class="step-line"><div class="step-dot" style="background:#0072CE"></div></div>
         <div class="step-content">
-          <div class="step-title"><span class="badge badge-m4">M4 Blu</span> <span data-i18n="lin_a1_t">1. Metro M4 (Linea Blu)</span></div>
-          <div class="step-desc" data-i18n="lin_a1_d">Dall'aeroporto, prendi la nuova metro M4 fino a <strong>San Babila</strong> (12 min).</div>
+          <div class="step-title" data-i18n="lin_a1_t"><span class="badge badge-m4">M4</span> + <span class="badge badge-m1">M1</span> — Metro (Veloce)</div>
+          <div class="step-desc" data-i18n="lin_a1_d">Prendi la M4 fino a San Babila, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong> (12+10 min).</div>
         </div>
       </div>
-      <div class="transport-step" style="margin-bottom:24px;">
-        <div class="step-line"><div class="step-dot" style="background:#D93025"></div></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
         <div class="step-content">
-          <div class="step-title"><span class="badge badge-m1">M1 Rossa</span> <span data-i18n="lin_a2_t">2. Cambio in M1 fino a Loreto</span></div>
-          <div class="step-desc" data-i18n="lin_a2_d">A San Babila, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong> (4 fermate). L'appartamento è a 2 min a piedi.</div>
+          <div class="step-title" data-i18n="lin_a2_t"><i class="fas fa-bus"></i> Bus Shuttle — Alternativa</div>
+          <div class="step-desc" data-i18n="lin_a2_d">Linate Shuttle fino a Stazione Centrale (25 min). Da lì cammina 10 min o prendi M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
         </div>
       </div>
+      <a href="https://www.google.com/maps/dir/Linate+Airport/Via+Giovanni+Battista+Pergolesi,+3,+Milano/" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
       <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
       <div class="transport-step">
@@ -220,13 +221,14 @@ a.link-item span strong { color: var(--gold-light); }
           <div class="step-desc" data-i18n="mxp_a1_d">All'uscita Arrivi trovi bus come Terravision o Malpensa Shuttle. Biglietti a bordo/online (~10€, durata 50').</div>
         </div>
       </div>
-      <div class="transport-step" style="margin-bottom:24px;">
+      <div class="transport-step">
         <div class="step-line"><div class="step-dot" style="background:#00A651"></div></div>
         <div class="step-content">
           <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="mxp_a2_t">2. Da Centrale all'Appartamento</span></div>
           <div class="step-desc" data-i18n="mxp_a2_d">Da P.za Luigi di Savoia (arrivo bus), cammina 10 min fino a Via Pergolesi 3, o prendi M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
         </div>
       </div>
+      <a href="https://www.google.com/maps/dir/Malpensa+Airport/Via+Giovanni+Battista+Pergolesi,+3,+Milano/" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
       <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
       <div class="transport-step">
@@ -243,25 +245,27 @@ a.link-item span strong { color: var(--gold-light); }
           <div class="step-desc" data-i18n="bgy_a2_d">Come per Malpensa: 10 min a piedi o M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
         </div>
       </div>
+      <a href="https://www.google.com/maps/dir/Orio+al+Serio+International+Airport/Via+Giovanni+Battista+Pergolesi,+3,+Milano/" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
     </div>
 
     <div id="content-departure" style="display:none;">
       
       <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="lin">Linate (LIN)</span></div>
       <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#D93025"></div><div class="step-connector"></div></div>
+        <div class="step-line"><div class="step-dot" style="background:#D93025"></div></div>
         <div class="step-content">
-          <div class="step-title"><span class="badge badge-m1">M1 Rossa</span> <span data-i18n="lin_d1_t">1. Da Loreto a San Babila</span></div>
-          <div class="step-desc" data-i18n="lin_d1_d">Prendi la M1 (Rossa) dir. Rho/Bisceglie fino a <strong>San Babila</strong>.</div>
+          <div class="step-title" data-i18n="lin_d1_t"><span class="badge badge-m1">M1</span> + <span class="badge badge-m4">M4</span> — Metro (Veloce)</div>
+          <div class="step-desc" data-i18n="lin_d1_d">M1 (Rossa) da Loreto a San Babila, poi cambia con M4 (Blu) direzione Linate fino al capolinea.</div>
         </div>
       </div>
-      <div class="transport-step" style="margin-bottom:24px;">
-        <div class="step-line"><div class="step-dot" style="background:#0072CE"></div></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
         <div class="step-content">
-          <div class="step-title"><span class="badge badge-m4">M4 Blu</span> <span data-i18n="lin_d2_t">2. Metro M4 per l'Aeroporto</span></div>
-          <div class="step-desc" data-i18n="lin_d2_d">Cambia con la M4 (Blu) direzione Linate e scendi al capolinea (12 min).</div>
+          <div class="step-title" data-i18n="lin_d2_t"><i class="fas fa-bus"></i> Bus Shuttle — Alternativa</div>
+          <div class="step-desc" data-i18n="lin_d2_d">Bus per Linate in partenza dal lato est di Stazione Centrale (Piazza Luigi di Savoia). Biglietti a bordo.</div>
         </div>
       </div>
+      <a href="https://www.google.com/maps/dir/Via+Giovanni+Battista+Pergolesi,+3,+Milano/Linate+Airport/" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
       <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
       <div class="transport-step">
@@ -271,13 +275,14 @@ a.link-item span strong { color: var(--gold-light); }
           <div class="step-desc" data-i18n="mxp_d1_d">Cammina 10 min fino a Centrale o prendi M2 (Verde) da Loreto a Centrale (2 fermate).</div>
         </div>
       </div>
-      <div class="transport-step" style="margin-bottom:24px;">
+      <div class="transport-step">
         <div class="step-line"><div class="step-dot"></div></div>
         <div class="step-content">
           <div class="step-title"><i class="fas fa-bus"></i> <span data-i18n="mxp_d2_t">2. Bus per Malpensa</span></div>
           <div class="step-desc" data-i18n="mxp_d2_d">I bus partono dal lato est della Stazione (Piazza Luigi di Savoia). Biglietti a bordo.</div>
         </div>
       </div>
+      <a href="https://www.google.com/maps/dir/Via+Giovanni+Battista+Pergolesi,+3,+Milano/Malpensa+Airport/" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
       <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
       <div class="transport-step">
@@ -294,6 +299,7 @@ a.link-item span strong { color: var(--gold-light); }
           <div class="step-desc" data-i18n="bgy_d2_d">Partono da P.za Luigi di Savoia (lato est). Si consiglia arrivo con 15 min d'anticipo.</div>
         </div>
       </div>
+      <a href="https://www.google.com/maps/dir/Via+Giovanni+Battista+Pergolesi,+3,+Milano/Orio+al+Serio+International+Airport/" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
     </div>
 
   </div></div>
@@ -615,10 +621,11 @@ var T = {
     bgy_d1_t:"1. Fino a Stazione Centrale", bgy_d1_d:"A piedi o M2 (Verde) da Loreto a Centrale.",
     bgy_d2_t:"2. Bus per Bergamo", bgy_d2_d:"Partono da P.za Luigi di Savoia (lato est). Si consiglia arrivo con 15 min d'anticipo.",
     lin:"Linate (LIN)",
-    lin_a1_t:"1. Metro M4 (Linea Blu)", lin_a1_d:"Dall'aeroporto, prendi la nuova metro M4 fino a <strong>San Babila</strong> (12 min).",
-    lin_a2_t:"2. Cambio in M1 fino a Loreto", lin_a2_d:"A San Babila, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong> (4 fermate). L'appartamento è a 2 min a piedi.",
-    lin_d1_t:"1. Da Loreto a San Babila", lin_d1_d:"Prendi la M1 (Rossa) dir. Rho/Bisceglie fino a <strong>San Babila</strong>.",
-    lin_d2_t:"2. Metro M4 per l'Aeroporto", lin_d2_d:"Cambia con la M4 (Blu) direzione Linate e scendi al capolinea (12 min).",
+    lin_a1_t:"<span class='badge badge-m4'>M4</span> + <span class='badge badge-m1'>M1</span> — Metro (Veloce)", lin_a1_d:"Prendi la M4 fino a San Babila, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong> (12+10 min).",
+    lin_a2_t:"<i class='fas fa-bus'></i> Bus Shuttle — Alternativa", lin_a2_d:"Linate Shuttle fino a Stazione Centrale (25 min). Da lì cammina 10 min o prendi M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.",
+    lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> — Metro (Veloce)", lin_d1_d:"M1 (Rossa) da Loreto a San Babila, poi cambia con M4 (Blu) direzione Linate fino al capolinea.",
+    lin_d2_t:"<i class='fas fa-bus'></i> Bus Shuttle — Alternativa", lin_d2_d:"Bus per Linate in partenza dal lato est di Stazione Centrale (Piazza Luigi di Savoia). Biglietti a bordo.",
+    btn_nav_apt: "Naviga verso l'Appartamento", btn_nav_air: "Naviga verso l'Aeroporto",
 
     d_title:"Duomo & Centro Storico", d_sub:"Piazza Duomo · Castello Sforzesco · Teatro alla Scala",
     d_m1_label:"— Opzione consigliata",
@@ -714,10 +721,11 @@ var T = {
     bgy_d1_t:"1. To Central Station", bgy_d1_d:"Walk or take M2 (Green) from Loreto to Centrale.",
     bgy_d2_t:"2. Bus to Bergamo", bgy_d2_d:"Buses depart from P.za Luigi di Savoia (east side). Arrive 15 mins early.",
     lin:"Linate (LIN)",
-    lin_a1_t:"1. M4 Metro (Blue Line)", lin_a1_d:"From the airport, take the new M4 metro to <strong>San Babila</strong> (12 mins).",
-    lin_a2_t:"2. Change to M1 to Loreto", lin_a2_d:"At San Babila, switch to M1 (Red) towards Sesto FS and exit at <strong>Loreto</strong> (4 stops). Apartment is a 2 min walk.",
-    lin_d1_t:"1. Loreto to San Babila", lin_d1_d:"Take M1 (Red) towards Rho/Bisceglie to <strong>San Babila</strong>.",
-    lin_d2_t:"2. M4 Metro to Airport", lin_d2_d:"Switch to M4 (Blue) towards Linate and ride to the terminus (12 mins).",
+    lin_a1_t:"<span class='badge badge-m4'>M4</span> + <span class='badge badge-m1'>M1</span> — Metro (Fast)", lin_a1_d:"Take M4 to San Babila, switch to M1 (Red) towards Sesto FS and exit at <strong>Loreto</strong> (12+10 mins).",
+    lin_a2_t:"<i class='fas fa-bus'></i> Shuttle Bus — Alternative", lin_a2_d:"Linate Shuttle to Central Station (25 mins). From there, 10 min walk or M2 (Green) 2 stops to <strong>Loreto</strong>.",
+    lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> — Metro (Fast)", lin_d1_d:"Take M1 (Red) from Loreto to San Babila, switch to M4 (Blue) to Linate terminus.",
+    lin_d2_t:"<i class='fas fa-bus'></i> Shuttle Bus — Alternative", lin_d2_d:"Buses to Linate depart from the east side of Central Station (Piazza Luigi di Savoia). Tickets onboard.",
+    btn_nav_apt: "Navigate to Apartment", btn_nav_air: "Navigate to Airport",
 
     d_title:"Duomo & Historic Centre", d_sub:"Piazza Duomo · Sforza Castle · La Scala Theatre",
     d_m1_label:"— Recommended option",
@@ -813,10 +821,11 @@ var T = {
     bgy_d1_t:"1. 前往中央车站", bgy_d1_d:"步行或乘M2绿线从Loreto至中央车站。",
     bgy_d2_t:"2. 机场大巴至贝加莫", bgy_d2_d:"大巴从车站东侧(P.za Luigi di Savoia)发车。建议提前15分钟到达。",
     lin:"利纳特 (LIN)",
-    lin_a1_t:"1. M4地铁 (蓝线)", lin_a1_d:"从机场直接乘坐新的M4地铁至<strong>San Babila</strong>(12分钟)。",
-    lin_a2_t:"2. 换乘M1至Loreto", lin_a2_d:"在San Babila换乘M1红线(往Sesto FS方向)，在<strong>Loreto</strong>下车(4站)。公寓步行只需2分钟。",
-    lin_d1_t:"1. 从Loreto至San Babila", lin_d1_d:"乘坐M1红线(往Rho/Bisceglie方向)至<strong>San Babila</strong>。",
-    lin_d2_t:"2. 换乘M4至机场", lin_d2_d:"换乘M4蓝线(往Linate方向)直达终点站(12分钟)。",
+    lin_a1_t:"<span class='badge badge-m4'>M4</span> + <span class='badge badge-m1'>M1</span> — 地铁 (快捷)", lin_a1_d:"乘M4至San Babila，换乘M1红线（往Sesto FS方向），在<strong>Loreto</strong>下车（12+10分钟）。",
+    lin_a2_t:"<i class='fas fa-bus'></i> 机场大巴 — 备选", lin_a2_d:"乘Linate Shuttle至中央车站（25分钟）。然后步行10分钟或乘M2绿线2站至<strong>Loreto</strong>。",
+    lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> — 地铁 (快捷)", lin_d1_d:"从Loreto乘M1红线至San Babila，换乘M4蓝线直达Linate终点站。",
+    lin_d2_t:"<i class='fas fa-bus'></i> 机场大巴 — 备选", lin_d2_d:"前往Linate的大巴从中央车站东侧（Piazza Luigi di Savoia）发车。可上车买票。",
+    btn_nav_apt: "导航至公寓", btn_nav_air: "导航至机场",
 
     d_title:"米兰大教堂与历史中心", d_sub:"大教堂广场 · 斯福尔扎城堡 · 斯卡拉歌剧院",
     d_m1_label:"— 推荐线路",
@@ -912,10 +921,11 @@ var T = {
     bgy_d1_t:"1. A la Estación Central", bgy_d1_d:"Camina o toma M2 (Verde) desde Loreto a Centrale.",
     bgy_d2_t:"2. Autobús a Bergamo", bgy_d2_d:"Salen de P.za Luigi di Savoia (lado este). Llega con 15 min de antelación.",
     lin:"Linate (LIN)",
-    lin_a1_t:"1. Metro M4 (Línea Azul)", lin_a1_d:"Desde el aeropuerto, toma el nuevo metro M4 hasta <strong>San Babila</strong> (12 min).",
-    lin_a2_t:"2. Cambio a M1 hasta Loreto", lin_a2_d:"En San Babila, cambia a M1 (Roja) dir. Sesto FS y baja en <strong>Loreto</strong> (4 paradas).",
-    lin_d1_t:"1. Loreto a San Babila", lin_d1_d:"Toma M1 (Roja) dir. Rho/Bisceglie hasta <strong>San Babila</strong>.",
-    lin_d2_t:"2. Metro M4 al Aeropuerto", lin_d2_d:"Cambia a M4 (Azul) hacia Linate hasta el final del trayecto (12 min).",
+    lin_a1_t:"<span class='badge badge-m4'>M4</span> + <span class='badge badge-m1'>M1</span> — Metro (Rápido)", lin_a1_d:"Toma la M4 hasta San Babila, cambia a la M1 (Roja) dir. Sesto FS y baja en <strong>Loreto</strong> (12+10 min).",
+    lin_a2_t:"<i class='fas fa-bus'></i> Autobús Shuttle — Alternativa", lin_a2_d:"Linate Shuttle hasta Estación Central (25 min). Desde allí, 10 min a pie o M2 (Verde) 2 paradas hasta <strong>Loreto</strong>.",
+    lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> — Metro (Rápido)", lin_d1_d:"Toma la M1 (Roja) de Loreto a San Babila, luego cambia a la M4 (Azul) hasta Linate.",
+    lin_d2_t:"<i class='fas fa-bus'></i> Autobús Shuttle — Alternativa", lin_d2_d:"Los autobuses a Linate salen del lado este de la Estación Central (Piazza Luigi di Savoia). Billetes a bordo.",
+    btn_nav_apt: "Navegar al Apartamento", btn_nav_air: "Navegar al Aeropuerto",
 
     d_title:"Duomo & Centro Histórico", d_sub:"Plaza del Duomo · Castillo Sforzesco · Teatro alla Scala",
     d_m1_label:"— Opción recomendada",

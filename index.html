@@ -23,10 +23,10 @@
 }
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
-/* LANG FAB */
-.lang-fab{position:fixed;bottom:20px;right:18px;width:48px;height:48px;border-radius:50%;background:var(--navy);border:1.5px solid var(--gold-dim);color:var(--gold);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:background .2s,border-color .2s}
-.lang-fab:hover{background:var(--navy-mid);border-color:var(--gold)}
-.lang-drawer{position:fixed;bottom:136px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+/* LANG FAB (In alto a destra con icona traduttore) */
+.lang-fab{position:absolute;top:24px;right:18px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:background .2s,transform .2s}
+.lang-fab:hover{background:var(--navy);transform:scale(1.05)}
+.lang-drawer{position:absolute;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
 .lang-drawer.open{opacity:1;transform:none;pointer-events:all}
 .lang-btn{background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.7);padding:7px 16px;border-radius:20px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap}
 .lang-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
@@ -42,14 +42,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .header-address{font-size:.8rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:.06em}
 .gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0}
 
-/* HOST FAB */
-.host-fab{position:fixed;bottom:78px;right:18px;width:48px;height:48px;border-radius:50%;background:#25D366;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,0.5);transition:background .2s,transform .2s}
+/* HOST FAB (In basso a destra) */
+.host-fab{position:fixed;bottom:20px;right:18px;width:48px;height:48px;border-radius:50%;background:#25D366;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,0.5);transition:background .2s,transform .2s}
 .host-fab:hover{background:#1eae57;transform:scale(1.08)}
-.host-drawer{position:fixed;bottom:136px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:160px}
+.host-drawer{position:fixed;bottom:78px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:160px}
 .host-drawer.open{opacity:1;transform:none;pointer-events:all}
 .host-drawer-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dim);padding:2px 10px 4px;border-bottom:1px solid rgba(201,168,76,0.15);margin-bottom:2px}
 
-/* EMERG FAB */
+/* EMERG FAB (NUMERI UTILI - In basso a sinistra) */
 .emerg-fab{position:fixed;bottom:20px;left:18px;width:48px;height:48px;border-radius:50%;background:var(--navy);border:1.5px solid #D93025;color:#D93025;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:background .2s,transform .2s}
 .emerg-fab:hover{background:var(--navy-mid);transform:scale(1.08)}
 .emerg-drawer{position:fixed;bottom:78px;left:18px;background:var(--navy);border:1px solid #D93025;border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:180px}
@@ -149,7 +149,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 </head>
 <body>
 
-<button class="lang-fab" id="lang-fab" onclick="toggleLangDrawer()" title="Change language"><i class="fas fa-globe"></i></button>
+<button class="lang-fab" id="lang-fab" onclick="toggleLangDrawer()" title="Change language">
+  <i class="fas fa-language"></i>
+</button>
 <div class="lang-drawer" id="lang-drawer">
   <button class="lang-btn active" data-lang="it">🇮🇹 Italiano</button>
   <button class="lang-btn" data-lang="en">🇬🇧 English</button>
@@ -157,7 +159,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
 </div>
 
-<button class="host-fab" id="host-fab" onclick="toggleHostDrawer()" title="Contatta l'Host"><i class="fab fa-whatsapp"></i></button>
+<button class="host-fab" id="host-fab" onclick="toggleHostDrawer()" title="Contatta l'Host">
+  <i class="fab fa-whatsapp"></i>
+</button>
 <div class="host-drawer" id="host-drawer">
   <div class="host-drawer-label" data-i18n="hostLabel">Il tuo Host</div>
   <a href="https://wa.me/393480004094" target="_blank" class="host-action-btn wa">
@@ -168,7 +172,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   </a>
 </div>
 
-<button class="emerg-fab" id="emerg-fab" onclick="toggleEmergDrawer()" title="Numeri Utili"><i class="fas fa-life-ring"></i></button>
+<button class="emerg-fab" id="emerg-fab" onclick="toggleEmergDrawer()" title="Numeri Utili">
+  <i class="fas fa-life-ring"></i>
+</button>
 <div class="emerg-drawer" id="emerg-drawer">
   <div class="emerg-drawer-label" data-i18n="phones_title">Numeri Utili</div>
   <a href="tel:028585" class="host-action-btn call">
@@ -388,7 +394,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 
 <div class="section-card" id="card-gae">
   <div class="section-header" onclick="toggleCard('card-gae')">
-    <div class="section-icon" style="background:linear-gradient(135deg,#00A651,#007A3D)"><i class="fas fa-city"></i></div>
+    <div class="section-icon" style="background:linear-gradient(135deg,#F5C400,#D4A000); color: #1a1a1a;"><i class="fas fa-city"></i></div>
     <div class="section-meta">
       <div class="section-title" data-i18n="g_title">Gae Aulenti & Isola</div>
       <div class="section-subtitle" data-i18n="g_sub">Corso Como · Corso Garibaldi · Bosco Verticale</div>

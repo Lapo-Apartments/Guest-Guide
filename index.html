@@ -31,7 +31,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .lang-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
 .lang-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
 
-/* HEADER - Ora richiama l'immagine caricata su GitHub */
+/* HEADER - Richiama l'immagine caricata su GitHub */
 .header{background:var(--navy);padding:32px 20px 28px;text-align:center;position:relative;overflow:hidden;background-image:url('header.jpg');background-size:cover;background-position:center 40%}
 .header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.82) 60%, rgba(30,43,58,0.95) 100%);pointer-events:none}
 .header > * { position: relative; z-index: 1; }
@@ -450,19 +450,14 @@ a.link-item span strong { color: var(--gold-light); }
     <span data-i18n="phone_taxi">Taxi (Milano) · <strong>02 8585</strong></span>
   </a>
   
-  <a href="tel:022542899" class="tip-item link-item">
+  <a href="tel:0229400513" class="tip-item link-item">
     <div class="tip-icon"><i class="fas fa-pills"></i></div>
-    <span data-i18n="phone_pharma">Farmacia Marinoni · <strong>02 2542899</strong></span>
+    <span data-i18n="phone_pharma">Farmacia Marinoni · <strong>02 29400 513</strong></span>
   </a>
   
   <a href="tel:112" class="tip-item link-item">
-    <div class="tip-icon emerg-icon"><i class="fas fa-ambulance"></i></div>
-    <span data-i18n="phone_amb">Ambulanza / Soccorso · <strong>112</strong></span>
-  </a>
-  
-  <a href="tel:112" class="tip-item link-item">
-    <div class="tip-icon emerg-icon"><i class="fas fa-shield-alt"></i></div>
-    <span data-i18n="phone_pol">Polizia / Carabinieri · <strong>112</strong></span>
+    <div class="tip-icon emerg-icon"><i class="fas fa-star-of-life"></i></div>
+    <span data-i18n="phone_emerg">Numero unico soccorso · <strong>112</strong></span>
   </a>
 </div>
 
@@ -546,9 +541,8 @@ var T = {
     tip4:"<strong>BikeMi</strong>: bici e e-bike in sharing in tutta la citta. Ideale per Sempione, Navigli e Brera.",
     phones_title:"Numeri Utili",
     phone_taxi:"Taxi (Milano) · <strong>02 8585</strong>",
-    phone_pharma:"Farmacia Marinoni · <strong>02 2542899</strong>",
-    phone_amb:"Ambulanza / Soccorso · <strong>112</strong>",
-    phone_pol:"Polizia / Carabinieri · <strong>112</strong>"
+    phone_pharma:"Farmacia Marinoni · <strong>02 29400 513</strong>",
+    phone_emerg:"Numero unico soccorso · <strong>112</strong>"
   },
   en: {
     eyebrow:"", headline:"Welcome<br>to Milan",
@@ -628,9 +622,8 @@ var T = {
     tip4:"<strong>BikeMi</strong>: bike-sharing throughout the city. Ideal for Sempione, Navigli and Brera.",
     phones_title:"Useful Numbers",
     phone_taxi:"Taxi (Milan) · <strong>02 8585</strong>",
-    phone_pharma:"Marinoni Pharmacy · <strong>02 2542899</strong>",
-    phone_amb:"Ambulance / Medical · <strong>112</strong>",
-    phone_pol:"Police · <strong>112</strong>"
+    phone_pharma:"Marinoni Pharmacy · <strong>02 29400 513</strong>",
+    phone_emerg:"Emergency Number · <strong>112</strong>"
   },
   zh: {
     eyebrow:"", headline:"欢迎来到<br>米兰",
@@ -717,9 +710,8 @@ var T = {
     tip4:"<strong>BikeMi</strong>：共享单车和电动车，遍布全市。特别适合森皮奥内、纳维利和布雷拉。",
     phones_title:"实用电话",
     phone_taxi:"出租车 (米兰) · <strong>02 8585</strong>",
-    phone_pharma:"Marinoni 药房 · <strong>02 2542899</strong>",
-    phone_amb:"救护车 / 急救 · <strong>112</strong>",
-    phone_pol:"警察 · <strong>112</strong>"
+    phone_pharma:"Marinoni 药房 · <strong>02 29400 513</strong>",
+    phone_emerg:"紧急救援电话 · <strong>112</strong>"
   },
   es: {
     eyebrow:"", headline:"Bienvenidos<br>a Milán",
@@ -799,9 +791,8 @@ var T = {
     tip4:"<strong>BikeMi</strong>: bicicletas y e-bikes compartidas por toda la ciudad. Ideal para Sempione, Navigli y Brera.",
     phones_title:"Números Útiles",
     phone_taxi:"Taxi (Milán) · <strong>02 8585</strong>",
-    phone_pharma:"Farmacia Marinoni · <strong>02 2542899</strong>",
-    phone_amb:"Ambulancia / Médico · <strong>112</strong>",
-    phone_pol:"Policía · <strong>112</strong>"
+    phone_pharma:"Farmacia Marinoni · <strong>02 29400 513</strong>",
+    phone_emerg:"Número de emergencia · <strong>112</strong>"
   }
 };
 

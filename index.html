@@ -108,7 +108,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .btn-copy:hover{background:var(--gold);color:var(--navy)}
 .btn-copy.copied{background:#25D366;border-color:#25D366;color:white}
 
-/* CARDS (Transport Page) */
+/* REGOLE DELLA CASA */
+.rules-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+.rules-group { margin-bottom: 20px; }
+.rules-group:last-child { margin-bottom: 0; }
+.rules-group-title { font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.rule-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; font-size: 0.88rem; color: var(--navy-mid); line-height: 1.4; }
+.rule-item i { font-size: 1.1rem; color: var(--gold-dim); width: 22px; text-align: center; margin-top: 2px; }
+
+/* CARDS (Transport Page & General) */
 .section-card{background:var(--white);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);}
 .section-header{display:flex;align-items:center;gap:14px;padding:17px 18px;cursor:pointer;user-select:none;transition:background .2s}
 .section-header:hover{background:var(--cream)}
@@ -241,7 +249,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   <div class="container">
     
     <div class="map-container">
-      <iframe src="https://maps.google.com/maps?q=Via%20Giovanni%20Battista%20Pergolesi,%203,%20Milano&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.7479707567776!2d9.20815197652758!3d45.48496463273181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6cf068d3ddb%3A0xe4a194eb1d0f5080!2sVia%20Giovanni%20Battista%20Pergolesi%2C%203%2C%2020124%20Milano%20MI!5e0!3m2!1sit!2sit!4v1709400000000!5m2!1sit!2sit" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+    </div>
+
+    <div class="desc-block">
+      <div class="desc-text" data-i18n="desc_p1">
+        Elegante appartamento nel cuore di Milano, situato in una posizione strategica a pochi passi da tre linee metropolitane. Si trova a soli 30 metri da Corso Buenos Aires e a 350 metri dalla Stazione Centrale, da cui partono i bus diretti per tutti gli aeroporti. La casa offre due camere da letto, Wi-Fi veloce, ascensore e ogni genere di comfort. Un’oasi di silenzio ed eleganza, perfetta per scoprire la città con comodità e stile. È inoltre disponibile un deposito bagagli con Key Box per il ritiro e il deposito in totale autonomia. Ottimi i collegamenti con stazioni e aeroporti anche tramite il bus 92 e le navette dedicate.
+      </div>
+      
+      <div class="desc-title"><i class="fas fa-door-open"></i> <span data-i18n="desc_t1">Lo spazio</span></div>
+      <div class="desc-text" data-i18n="desc_p2">
+        L'appartamento, super accessoriato e servito da ascensore, si trova al terzo piano e vanta un tranquillo balcone interno. Può ospitare fino a 4 persone, disponendo di due camere con letti matrimoniali.<br><br>Gode di collegamenti rapidi con l'intera città, le principali stazioni, gli aeroporti e l'Arena dei prossimi Giochi Olimpici 2026.
+      </div>
+
+      <div class="desc-title"><i class="fas fa-key"></i> <span data-i18n="desc_t2">Accesso per gli ospiti</span></div>
+      <div class="desc-text" data-i18n="desc_p3">
+        L'appartamento è ad uso esclusivo degli ospiti: uno spazio completamente privato e dotato di tutto il necessario. La scelta ideale per chi desidera unire privacy e relax nel cuore di Milano.
+      </div>
     </div>
 
     <div class="section-card" id="card-wifi">
@@ -274,21 +298,50 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
       </div></div>
     </div>
 
-    <div class="desc-block">
-      <div class="desc-text" data-i18n="desc_p1">
-        Elegante appartamento nel cuore di Milano, in posizione strategica vicino tre linee metropolitane. A soli 30m da Corso Buenos Aires, 350 m dalla Stazione Centrale e bus diretti per gli aeroporti. La casa ha due camere da letto, Wi-Fi veloce, ascensore e ogni comfort. Un’oasi di silenzio ed eleganza perfetta per scoprire Milano con comodità e stile. Deposito bagaglio con key Box per libero deposito e ritiro. Connessione rapida con stazione e tutti gli Aeroporti tramite bus n. 92 e navette.
+    <div class="section-card" id="card-rules">
+      <div class="section-header" onclick="toggleCard('card-rules')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#FF5A5F,#D93025)"><i class="fas fa-book-open"></i></div>
+        <div class="section-meta">
+          <div class="section-title" data-i18n="rules_title">Regole della Casa</div>
+          <div class="section-subtitle" data-i18n="rules_sub">Informazioni per un soggiorno perfetto</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
       </div>
-      
-      <div class="desc-title"><i class="fas fa-door-open"></i> <span data-i18n="desc_t1">Lo spazio</span></div>
-      <div class="desc-text" data-i18n="desc_p2">
-        Appartamento super accessoriato al terzo piano con ascensore e balcone interno. Ospita fino a 4 persone. L’appartamento ha due camere con letti matrimoniali.<br>
-        Collegato a tutta la città, stazioni, aeroporti e all’Arena dei Giochi Olimpici 2026.
-      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        
+        <div class="rules-intro" data-i18n="rules_intro">
+          Soggiornerai nell'alloggio di un'altra persona, quindi ti preghiamo di trattarlo con cura e rispetto.
+        </div>
+        
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g1">Check-in e check-out</div>
+          <div class="rule-item"><i class="far fa-clock"></i> <span data-i18n="rule_checkin">Check-in: 14:00 - 01:00</span></div>
+          <div class="rule-item"><i class="fas fa-sign-out-alt"></i> <span data-i18n="rule_checkout">Check-out entro le ore 10:00</span></div>
+          <div class="rule-item"><i class="fas fa-key"></i> <span data-i18n="rule_selfin">Self check-in con cassetta delle chiavi</span></div>
+        </div>
 
-      <div class="desc-title"><i class="fas fa-key"></i> <span data-i18n="desc_t2">Accesso per gli ospiti</span></div>
-      <div class="desc-text" data-i18n="desc_p3">
-        Appartamento ad uso esclusivo degli ospiti, completamente privato e dotato di ogni comfort. Ideale per chi desidera privacy e relax nel cuore di Milano.
-      </div>
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g2">Durante il soggiorno</div>
+          <div class="rule-item"><i class="fas fa-user-friends"></i> <span data-i18n="rule_guests">Massimo 5 ospiti</span></div>
+          <div class="rule-item"><i class="fas fa-paw"></i> <span data-i18n="rule_pets">Nessun animale domestico</span></div>
+          <div class="rule-item"><i class="fas fa-glass-cheers"></i> <span data-i18n="rule_parties">Vietato organizzare feste/eventi</span></div>
+          <div class="rule-item"><i class="fas fa-smoking-ban"></i> <span data-i18n="rule_smoke">Non è consentito fumare</span></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g3">Regole aggiuntive</div>
+          <div class="rule-item"><i class="fas fa-elevator"></i> <span data-i18n="rule_elev">É importante chiudere sempre le porte interne dell'ascensore per evitare il blocco del suo funzionamento. Grazie per la collaborazione.</span></div>
+          <div class="rule-item"><i class="fas fa-couch"></i> <span data-i18n="rule_5th">Su richiesta anticipata è possibile ospitare una quinta persona con un supplemento di 25 euro a notte, da versare tramite il centro risoluzioni Airbnb. In questo caso sarà disponibile il divano letto nel soggiorno.</span></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g4">Prima della partenza</div>
+          <div class="rule-item"><i class="fas fa-shower"></i> <span data-i18n="rule_towels">Raccogliere gli asciugamani usati</span></div>
+          <div class="rule-item"><i class="fas fa-trash-alt"></i> <span data-i18n="rule_trash">Buttare la spazzatura</span></div>
+          <div class="rule-item"><i class="fas fa-power-off"></i> <span data-i18n="rule_power">Spegnere tutto</span></div>
+        </div>
+
+      </div></div>
     </div>
 
   </div>
@@ -344,7 +397,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_a3_d">Linate Shuttle fino a <strong>Stazione Centrale</strong>. Da lì cammina 10 min o prendi la M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Linate&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://goo.gl/maps/QG3E3o8k1a2r1jLUA" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -361,7 +414,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_a2_d">Bus (Malpensa Shuttle/Terravision) fino a <strong>Stazione Centrale</strong>. Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Malpensa&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://goo.gl/maps/bH2r7R6t2z8b3kMV9" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -371,7 +424,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_a1_d">Orio Shuttle o Terravision fino a <strong>Stazione Centrale</strong> (60 min). Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Bergamo-Orio+al+Serio&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://goo.gl/maps/5a1r8R7t3z9c4kNW1" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
       </div>
 
       <div id="content-departure" style="display:none;">
@@ -398,7 +451,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_d3_d">Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Linate" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://goo.gl/maps/1a2r1jLUAQG3E3o8k" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -415,7 +468,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_d2_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Biglietti a bordo.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Malpensa" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://goo.gl/maps/2z8b3kMV9bH2r7R6t" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -425,7 +478,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_d1_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi o con la M2 da <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Bergamo-Orio+al+Serio" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://goo.gl/maps/3z9c4kNW15a1r8R7t" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
       </div>
 
     </div></div>
@@ -489,7 +542,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="d_h3_label">Galleria V.E. II</strong><span data-i18n="d_h3">Aperta 24h, caffe storici</span></div>
         <div class="highlight-item"><strong data-i18n="d_h4_label">Cenacolo Vinciano</strong><span data-i18n="d_h4">Prenotare con mesi di anticipo!</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Piazza+del+Duomo,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
+      <a href="https://goo.gl/maps/DUOMO_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
     </div></div>
   </div>
 
@@ -551,7 +604,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="g_h3_l">Corso Como</strong><span data-i18n="g_h3">Shopping alternativo e design</span></div>
         <div class="highlight-item"><strong data-i18n="g_h4_l">Brera</strong><span data-i18n="g_h4">Pinacoteca di Brera, arte rinascimentale</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Piazza+Gae+Aulenti,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
+      <a href="https://goo.gl/maps/GAE_AULENTI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
     </div></div>
   </div>
 
@@ -620,7 +673,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="c_h3_l">Parco Sempione</strong><span data-i18n="c_h3">Picnic e relax, aperto sempre</span></div>
         <div class="highlight-item"><strong data-i18n="c_h4_l">Arco della Pace</strong><span data-i18n="c_h4">Foto migliori all'alba o tramonto</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Paolo+Sarpi,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
+      <a href="https://goo.gl/maps/PAOLO_SARPI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
     </div></div>
   </div>
 
@@ -682,7 +735,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="n_h3_l">Mercatino</strong><span data-i18n="n_h3">Ultima domenica del mese: antiquariato</span></div>
         <div class="highlight-item"><strong data-i18n="n_h4_l">Notte tardi</strong><span data-i18n="n_h4">Tram notturno per il rientro</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Ripa+di+Porta+Ticinese,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
+      <a href="https://goo.gl/maps/NAVIGLI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
     </div></div>
   </div>
 
@@ -720,9 +773,28 @@ var T = {
     
     wifi_title:"Wi-Fi & Internet", wifi_sub:"Connessione rapida gratuita", btn_copy:"Copia", btn_copied:"Copiata!",
     desc_t1:"Lo spazio", desc_t2:"Accesso per gli ospiti",
-    desc_p1:"Elegante appartamento nel cuore di Milano, in posizione strategica vicino tre linee metropolitane. A soli 30m da Corso Buenos Aires, 350 m dalla Stazione Centrale e bus diretti per gli aeroporti. La casa ha due camere da letto, Wi-Fi veloce, ascensore e ogni comfort. Un’oasi di silenzio ed eleganza perfetta per scoprire Milano con comodità e stile. Deposito bagaglio con key Box per libero deposito e ritiro. Connessione rapida con stazione e tutti gli Aeroporti tramite bus n. 92 e navette.",
-    desc_p2:"Appartamento super accessoriato al terzo piano con ascensore e balcone interno. Ospita fino a 4 persone. L’appartamento ha due camere con letti matrimoniali.<br><br>Collegato a tutta la città, stazioni, aeroporti e all’Arena dei Giochi Olimpici 2026.",
-    desc_p3:"Appartamento ad uso esclusivo degli ospiti, completamente privato e dotato di ogni comfort. Ideale per chi desidera privacy e relax nel cuore di Milano.",
+    desc_p1:"Elegante appartamento nel cuore di Milano, situato in una posizione strategica a pochi passi da tre linee metropolitane. Si trova a soli 30 metri da Corso Buenos Aires e a 350 metri dalla Stazione Centrale, da cui partono i bus diretti per tutti gli aeroporti. La casa offre due camere da letto, Wi-Fi veloce, ascensore e ogni genere di comfort. Un’oasi di silenzio ed eleganza, perfetta per scoprire la città con comodità e stile. È inoltre disponibile un deposito bagagli con Key Box per il ritiro e il deposito in totale autonomia. Ottimi i collegamenti con stazioni e aeroporti anche tramite il bus 92 e le navette dedicate.",
+    desc_p2:"L'appartamento, super accessoriato e servito da ascensore, si trova al terzo piano e vanta un tranquillo balcone interno. Può ospitare fino a 4 persone, disponendo di due camere con letti matrimoniali.<br><br>Gode di collegamenti rapidi con l'intera città, le principali stazioni, gli aeroporti e l'Arena dei prossimi Giochi Olimpici 2026.",
+    desc_p3:"L'appartamento è ad uso esclusivo degli ospiti: uno spazio completamente privato e dotato di tutto il necessario. La scelta ideale per chi desidera unire privacy e relax nel cuore di Milano.",
+
+    rules_title: "Regole della Casa", rules_sub: "Informazioni per un soggiorno perfetto",
+    rules_intro: "Soggiornerai nell'alloggio di un'altra persona, quindi ti preghiamo di trattarlo con cura e rispetto.",
+    rules_g1: "Check-in e check-out",
+    rule_checkin: "Check-in: 14:00 - 01:00",
+    rule_checkout: "Check-out entro le ore 10:00",
+    rule_selfin: "Self check-in con cassetta delle chiavi",
+    rules_g2: "Durante il soggiorno",
+    rule_guests: "Massimo 5 ospiti",
+    rule_pets: "Nessun animale domestico",
+    rule_parties: "Vietato organizzare feste/eventi",
+    rule_smoke: "Non è consentito fumare",
+    rules_g3: "Regole aggiuntive",
+    rule_elev: "É importante chiudere sempre le porte interne dell'ascensore per evitare il blocco del suo funzionamento. Grazie per la collaborazione.",
+    rule_5th: "Su richiesta anticipata è possibile ospitare una quinta persona con un supplemento di 25 euro a notte, da versare tramite il centro risoluzioni Airbnb. In questo caso sarà disponibile il divano letto nel soggiorno.",
+    rules_g4: "Prima della partenza",
+    rule_towels: "Raccogliere gli asciugamani usati",
+    rule_trash: "Buttare la spazzatura",
+    rule_power: "Spegnere tutto",
 
     phones_title:"Numeri Utili",
     phone_taxi_short:"Taxi: 02 8585",
@@ -828,9 +900,28 @@ var T = {
     
     wifi_title:"Wi-Fi & Internet", wifi_sub:"Free fast connection", btn_copy:"Copy", btn_copied:"Copied!",
     desc_t1:"The Space", desc_t2:"Guest Access",
-    desc_p1:"Elegant apartment in the heart of Milan, strategically located near three metro lines. Just 30m from Corso Buenos Aires, 350m from Central Station and direct airport buses. The house features two bedrooms, fast Wi-Fi, an elevator, and every comfort. An oasis of silence and elegance perfect for discovering Milan with comfort and style. Luggage storage with Key Box for self drop-off and pick-up. Quick connection to the station and all airports via bus 92 and airport shuttles.",
-    desc_p2:"Fully equipped third-floor apartment with an elevator and internal balcony. Accommodates up to 4 people. The apartment has two bedrooms with double beds.<br><br>Connected to the whole city, stations, airports, and the 2026 Olympic Games Arena.",
-    desc_p3:"Apartment for the exclusive use of guests, completely private and equipped with every comfort. Ideal for those seeking privacy and relaxation in the heart of Milan.",
+    desc_p1:"Elegant apartment in the heart of Milan, strategically located just steps away from three metro lines. It is only 30 meters from Corso Buenos Aires and 350 meters from Central Station, where direct buses to all airports depart. The house offers two bedrooms, fast Wi-Fi, an elevator, and every comfort. An oasis of silence and elegance, perfect for discovering the city with comfort and style. Luggage storage with a Key Box is available for independent drop-off and pick-up. Excellent connections to stations and airports via bus 92 and dedicated shuttles.",
+    desc_p2:"The fully equipped apartment, served by an elevator, is located on the third floor and features a quiet internal balcony. It can accommodate up to 4 people, offering two bedrooms with double beds.<br><br>It boasts fast connections to the entire city, main stations, airports, and the Arena for the upcoming 2026 Winter Olympic Games.",
+    desc_p3:"The apartment is for the exclusive use of guests: a completely private space equipped with everything you need. The ideal choice for those who want to combine privacy and relaxation in the heart of Milan.",
+
+    rules_title: "House Rules", rules_sub: "Guidelines for a perfect stay",
+    rules_intro: "You'll be staying in someone's home, so please treat it with care and respect.",
+    rules_g1: "Check-in and check-out",
+    rule_checkin: "Check-in: 2:00 PM - 1:00 AM",
+    rule_checkout: "Check-out before 10:00 AM",
+    rule_selfin: "Self check-in with lockbox",
+    rules_g2: "During your stay",
+    rule_guests: "Maximum 5 guests",
+    rule_pets: "No pets allowed",
+    rule_parties: "No parties or events",
+    rule_smoke: "Smoking is not allowed",
+    rules_g3: "Additional rules",
+    rule_elev: "It is important to always close the internal elevator doors to prevent it from getting stuck. Thank you for your cooperation.",
+    rule_5th: "Upon prior request, a fifth guest can be accommodated for an extra €25 per night, payable via the Airbnb resolution center. The sofa bed in the living room will be prepared.",
+    rules_g4: "Before you leave",
+    rule_towels: "Gather used towels",
+    rule_trash: "Take out the trash",
+    rule_power: "Turn everything off",
 
     phones_title:"Useful Numbers",
     phone_taxi_short:"Taxi: 02 8585",
@@ -936,9 +1027,28 @@ var T = {
 
     wifi_title:"Wi-Fi 与网络", wifi_sub:"免费高速网络", btn_copy:"复制", btn_copied:"已复制！",
     desc_t1:"房源介绍", desc_t2:"房客使用权限",
-    desc_p1:"位于米兰市中心的优雅公寓，地理位置优越，靠近三条地铁线。距布宜诺斯艾利斯大街仅30米，距中央车站和直达机场巴士350米。房屋设有两间卧室、高速Wi-Fi、电梯和各种舒适设施。这是一个宁静优雅的绿洲，是舒适而有格调地探索米兰的完美之选。提供带密码盒的行李寄存处，方便自助存取。通过92路公交车和机场班车快速连接车站和所有机场。",
-    desc_p2:"位于三楼的设备齐全的公寓，配有电梯和内部阳台。最多可容纳4人。公寓有两间配有双人床的卧室。<br><br>连接整个城市、车站、机场和2026年奥运会场馆。",
-    desc_p3:"公寓供房客独享，完全私密，设施齐全。非常适合那些希望在米兰市中心享受隐私和放松的人。",
+    desc_p1:"位于米兰市中心的优雅公寓，地理位置优越，几步之遥即可到达三条地铁线。距离布宜诺斯艾利斯大街（Corso Buenos Aires）仅30米，距离可乘坐直达机场大巴的中央车站仅350米。房屋设有两间卧室、高速Wi-Fi、电梯和各种舒适设施。这是一个宁静优雅的绿洲，是舒适而有格调地探索这座城市的完美之选。提供带密码盒的行李寄存处，方便自助存取。通过92路公交车和专用班车可快速连接车站和所有机场。",
+    desc_p2:"这套设备齐全的公寓位于三楼，配有电梯和一个安静的内部阳台。最多可容纳4人，设有两间配备双人床的卧室。<br><br>可快速前往整个城市、主要车站、机场以及即将举行的2026年冬奥会场馆。",
+    desc_p3:"公寓供房客独享：一个完全私密的绝佳空间，配备了您所需的一切。是那些希望在米兰市中心享受隐私和放松的人的理想选择。",
+
+    rules_title: "房屋守则", rules_sub: "完美住宿指南",
+    rules_intro: "您将住在别人的家里，请爱护并尊重这里的一切。",
+    rules_g1: "入住与退房",
+    rule_checkin: "入住时间: 14:00 - 01:00",
+    rule_checkout: "退房时间: 10:00之前",
+    rule_selfin: "密码盒自助入住",
+    rules_g2: "住宿期间",
+    rule_guests: "最多可住5名房客",
+    rule_pets: "禁止携带宠物",
+    rule_parties: "禁止举办派对/活动",
+    rule_smoke: "禁止吸烟",
+    rules_g3: "附加规则",
+    rule_elev: "请务必始终关闭电梯内门，以免电梯卡住。感谢您的配合。",
+    rule_5th: "提前申请可容纳第五位客人，每晚需额外支付25欧元（通过Airbnb调解中心支付）。我们将为您准备客厅的沙发床。",
+    rules_g4: "离开前",
+    rule_towels: "收集用过的毛巾",
+    rule_trash: "扔掉垃圾",
+    rule_power: "关闭所有电源",
 
     phones_title:"实用电话",
     phone_taxi_short:"出租车: 02 8585",
@@ -1044,9 +1154,28 @@ var T = {
 
     wifi_title:"Wi-Fi y Red", wifi_sub:"Conexión rápida gratuita", btn_copy:"Copiar", btn_copied:"¡Copiada!",
     desc_t1:"El Espacio", desc_t2:"Acceso para huéspedes",
-    desc_p1:"Elegante apartamento en el corazón de Milán, estratégicamente ubicado cerca de tres líneas de metro. A solo 30m de Corso Buenos Aires, a 350m de la Estación Central y autobuses directos al aeropuerto. La casa cuenta con dos dormitorios, Wi-Fi rápido, ascensor y todas las comodidades. Un oasis de silencio y elegancia perfecto para descubrir Milán con comodidad y estilo. Guardaequipajes con Key Box para depósito y recogida libre. Conexión rápida con la estación y todos los aeropuertos a través del autobús 92 y lanzaderas.",
-    desc_p2:"Apartamento súper equipado en la tercera planta con ascensor y balcón interior. Acomoda hasta 4 personas. El apartamento tiene dos dormitorios con camas dobles.<br><br>Conectado a toda la ciudad, estaciones, aeropuertos y al estadio de los Juegos Olímpicos 2026.",
-    desc_p3:"Apartamento de uso exclusivo para los huéspedes, completamente privado y equipado con todas las comodidades. Ideal para quienes buscan privacidad y relax en el corazón de Milán.",
+    desc_p1:"Elegante apartamento en el corazón de Milán, en una ubicación estratégica a pocos pasos de tres líneas de metro. Se encuentra a solo 30 metros de Corso Buenos Aires y a 350 metros de la Estación Central, desde donde salen los autobuses directos a todos los aeropuertos. La casa ofrece dos dormitorios, Wi-Fi rápido, ascensor y todas las comodidades. Un oasis de silencio y elegancia, perfecto para descubrir la ciudad con comodidad y estilo. También dispone de consigna de equipaje con Key Box para depositar y recoger maletas con total autonomía. Excelentes conexiones con estaciones y aeropuertos a través del autobús 92 y lanzaderas.",
+    desc_p2:"El apartamento, totalmente equipado y con ascensor, está en un tercer piso y cuenta con un tranquilo balcón interior. Puede alojar hasta 4 personas, ofreciendo dos habitaciones con camas dobles.<br><br>Goza de conexiones rápidas con toda la ciudad, las principales estaciones, los aeropuertos y el Arena de los próximos Juegos Olímpicos de Invierno 2026.",
+    desc_p3:"El apartamento es de uso exclusivo para los huéspedes: un espacio completamente privado y equipado con todo lo necesario. La elección ideal para quienes desean combinar privacidad y relax en el corazón de Milán.",
+
+    rules_title: "Reglas de la Casa", rules_sub: "Información para una estancia perfecta",
+    rules_intro: "Te alojarás en la casa de otra persona, así que trátala con cuidado y respeto.",
+    rules_g1: "Llegada y salida",
+    rule_checkin: "Llegada: 14:00 - 01:00",
+    rule_checkout: "Salida antes de las 10:00",
+    rule_selfin: "Llegada autónoma con caja de seguridad",
+    rules_g2: "Durante tu estancia",
+    rule_guests: "Máximo 5 huéspedes",
+    rule_pets: "No se admiten mascotas",
+    rule_parties: "Prohibido organizar fiestas o eventos",
+    rule_smoke: "No está permitido fumar",
+    rules_g3: "Reglas adicionales",
+    rule_elev: "Es importante cerrar siempre las puertas interiores del ascensor para evitar que se bloquee. Gracias por su colaboración.",
+    rule_5th: "Bajo petición previa, es posible alojar a una quinta persona con un suplemento de 25 euros por noche, a pagar a través del centro de resoluciones de Airbnb. Se preparará el sofá cama del salón.",
+    rules_g4: "Antes de irte",
+    rule_towels: "Recoger las toallas usadas",
+    rule_trash: "Tirar la basura",
+    rule_power: "Apagar todo",
 
     phones_title:"Números Útiles",
     phone_taxi_short:"Taxi: 02 8585",
@@ -1240,11 +1369,21 @@ function toggleEmergDrawer() {
 
 // Chiudi drawer cliccando fuori
 document.addEventListener('click', function(e) {
-  if (!document.getElementById('lang-drawer').contains(e.target) && !document.getElementById('lang-fab').contains(e.target) &&
-      !document.getElementById('host-drawer').contains(e.target) && !document.getElementById('host-fab').contains(e.target) &&
-      !document.getElementById('emerg-drawer').contains(e.target) && !document.getElementById('emerg-fab').contains(e.target) &&
-      !e.target.closest('.menu-btn')) {
-    closeAllDrawers();
+  var langDrawer = document.getElementById('lang-drawer');
+  var langFab = document.getElementById('lang-fab');
+  var hostDrawer = document.getElementById('host-drawer');
+  var hostFab = document.getElementById('host-fab');
+  var emergDrawer = document.getElementById('emerg-drawer');
+  var emergFab = document.getElementById('emerg-fab');
+
+  if (!langDrawer.contains(e.target) && !langFab.contains(e.target)) {
+    langDrawer.classList.remove('open');
+  }
+  if (!hostDrawer.contains(e.target) && !hostFab.contains(e.target)) {
+    hostDrawer.classList.remove('open');
+  }
+  if (!emergDrawer.contains(e.target) && !emergFab.contains(e.target)) {
+    emergDrawer.classList.remove('open');
   }
 });
 

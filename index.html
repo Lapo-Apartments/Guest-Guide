@@ -19,6 +19,7 @@
   --white:#FFFFFF;--muted:#8A8070;
   --border:rgba(201,168,76,0.18);--radius:18px;
   --shadow:0 4px 24px rgba(30,43,58,0.13);
+  --green-pharma: #28a745;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
@@ -31,7 +32,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .lang-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
 .lang-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
 
-/* HEADER - Richiama l'immagine caricata su GitHub */
+/* HEADER */
 .header{background:var(--navy);padding:32px 20px 28px;text-align:center;position:relative;overflow:hidden;background-image:url('header.jpg');background-size:cover;background-position:center 40%}
 .header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.82) 60%, rgba(30,43,58,0.95) 100%);pointer-events:none}
 .header > * { position: relative; z-index: 1; }
@@ -67,6 +68,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .section-card:nth-child(2){animation-delay:.16s}
 .section-card:nth-child(3){animation-delay:.24s}
 .section-card:nth-child(4){animation-delay:.32s}
+.section-card:nth-child(5){animation-delay:.40s}
 @keyframes fadeUp{to{opacity:1;transform:none}}
 
 .section-header{display:flex;align-items:center;gap:14px;padding:17px 18px;cursor:pointer;user-select:none;transition:background .2s}
@@ -81,6 +83,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .section-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94)}
 .section-card.open .section-body{max-height:2400px}
 .section-body-inner{padding:0 18px 20px;border-top:1px solid var(--cream-dark)}
+
+/* TRANSFER TOGGLE */
+.direction-toggle { display: flex; background: var(--cream); padding: 4px; border-radius: 12px; margin: 16px 0; border: 1px solid var(--border); }
+.dir-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+.dir-btn.active { background: var(--white); color: var(--navy); box-shadow: 0 2px 8px rgba(30,43,58,0.1); }
+.airport-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+.airport-title i { color: var(--gold); }
 
 /* TRANSPORT */
 .transport-block{margin-top:16px}
@@ -97,7 +106,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 
 /* BADGES */
 .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.02em;color:white}
-.badge-m1{background:#D93025}.badge-m2{background:#00A651}.badge-m3{background:#F5C400;color:#1a1a1a}.badge-m5{background:#9B8EC4}.badge-tram{background:var(--navy-mid)}
+.badge-m1{background:#D93025}.badge-m2{background:#00A651}.badge-m3{background:#F5C400;color:#1a1a1a}.badge-m4{background:#0072CE}.badge-m5{background:#9B8EC4}.badge-tram{background:var(--navy-mid)}
 
 /* HIGHLIGHTS */
 .highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
@@ -129,6 +138,8 @@ a.link-item span { color: rgba(255,255,255,0.78); display: block; }
 a.link-item span strong { color: var(--gold-light); }
 .emerg-icon { background: rgba(217,48,37,0.12); border-color: rgba(217,48,37,0.25); }
 .emerg-icon i { color: #D93025; }
+.pharma-icon { background: rgba(40, 167, 69, 0.12); border-color: rgba(40, 167, 69, 0.25); }
+.pharma-icon i { color: var(--green-pharma); }
 </style>
 </head>
 <body>
@@ -166,6 +177,127 @@ a.link-item span strong { color: var(--gold-light); }
 </div>
 
 <div class="container">
+
+<div class="section-card" id="card-airports">
+  <div class="section-header" onclick="toggleCard('card-airports')">
+    <div class="section-icon" style="background:linear-gradient(135deg,#0052cc,#003380)"><i class="fas fa-plane"></i></div>
+    <div class="section-meta">
+      <div class="section-title" data-i18n="air_title">Aeroporti & Trasferimenti</div>
+      <div class="section-subtitle" data-i18n="air_sub">Malpensa · Bergamo Orio · Linate</div>
+    </div>
+    <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+  </div>
+  <div class="section-body"><div class="section-body-inner">
+    
+    <div class="direction-toggle">
+      <button class="dir-btn active" id="btn-arr" onclick="setDirection('arrival')" data-i18n="dir_arr">Arrivo (Verso l'appartamento)</button>
+      <button class="dir-btn" id="btn-dep" onclick="setDirection('departure')" data-i18n="dir_dep">Partenza (Verso l'aeroporto)</button>
+    </div>
+
+    <div id="content-arrival" style="display:block;">
+      
+      <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="lin">Linate (LIN)</span></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot" style="background:#0072CE"></div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m4">M4 Blu</span> <span data-i18n="lin_a1_t">1. Metro M4 (Linea Blu)</span></div>
+          <div class="step-desc" data-i18n="lin_a1_d">Dall'aeroporto, prendi la nuova metro M4 fino a <strong>San Babila</strong> (12 min).</div>
+        </div>
+      </div>
+      <div class="transport-step" style="margin-bottom:24px;">
+        <div class="step-line"><div class="step-dot" style="background:#D93025"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m1">M1 Rossa</span> <span data-i18n="lin_a2_t">2. Cambio in M1 fino a Loreto</span></div>
+          <div class="step-desc" data-i18n="lin_a2_d">A San Babila, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong> (4 fermate). L'appartamento è a 2 min a piedi.</div>
+        </div>
+      </div>
+
+      <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <div class="step-title"><i class="fas fa-bus"></i> <span data-i18n="mxp_a1_t">1. Bus Shuttle per Centrale</span></div>
+          <div class="step-desc" data-i18n="mxp_a1_d">All'uscita Arrivi trovi bus come Terravision o Malpensa Shuttle. Biglietti a bordo/online (~10€, durata 50').</div>
+        </div>
+      </div>
+      <div class="transport-step" style="margin-bottom:24px;">
+        <div class="step-line"><div class="step-dot" style="background:#00A651"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="mxp_a2_t">2. Da Centrale all'Appartamento</span></div>
+          <div class="step-desc" data-i18n="mxp_a2_d">Da P.za Luigi di Savoia (arrivo bus), cammina 10 min fino a Via Pergolesi 3, o prendi M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
+        </div>
+      </div>
+
+      <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <div class="step-title"><i class="fas fa-bus"></i> <span data-i18n="bgy_a1_t">1. Bus per Stazione Centrale</span></div>
+          <div class="step-desc" data-i18n="bgy_a1_d">Fuori dagli Arrivi trovi Terravision o Orio Shuttle. Biglietti online/a bordo (~10-12€, durata 60').</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot" style="background:#00A651"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="bgy_a2_t">2. Da Centrale all'Appartamento</span></div>
+          <div class="step-desc" data-i18n="bgy_a2_d">Come per Malpensa: 10 min a piedi o M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="content-departure" style="display:none;">
+      
+      <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="lin">Linate (LIN)</span></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot" style="background:#D93025"></div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m1">M1 Rossa</span> <span data-i18n="lin_d1_t">1. Da Loreto a San Babila</span></div>
+          <div class="step-desc" data-i18n="lin_d1_d">Prendi la M1 (Rossa) dir. Rho/Bisceglie fino a <strong>San Babila</strong>.</div>
+        </div>
+      </div>
+      <div class="transport-step" style="margin-bottom:24px;">
+        <div class="step-line"><div class="step-dot" style="background:#0072CE"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m4">M4 Blu</span> <span data-i18n="lin_d2_t">2. Metro M4 per l'Aeroporto</span></div>
+          <div class="step-desc" data-i18n="lin_d2_d">Cambia con la M4 (Blu) direzione Linate e scendi al capolinea (12 min).</div>
+        </div>
+      </div>
+
+      <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="mxp_d1_t">1. Fino a Stazione Centrale</span></div>
+          <div class="step-desc" data-i18n="mxp_d1_d">Cammina 10 min fino a Centrale o prendi M2 (Verde) da Loreto a Centrale (2 fermate).</div>
+        </div>
+      </div>
+      <div class="transport-step" style="margin-bottom:24px;">
+        <div class="step-line"><div class="step-dot"></div></div>
+        <div class="step-content">
+          <div class="step-title"><i class="fas fa-bus"></i> <span data-i18n="mxp_d2_t">2. Bus per Malpensa</span></div>
+          <div class="step-desc" data-i18n="mxp_d2_d">I bus partono dal lato est della Stazione (Piazza Luigi di Savoia). Biglietti a bordo.</div>
+        </div>
+      </div>
+
+      <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="bgy_d1_t">1. Fino a Stazione Centrale</span></div>
+          <div class="step-desc" data-i18n="bgy_d1_d">A piedi o M2 (Verde) da Loreto a Centrale.</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-line"><div class="step-dot"></div></div>
+        <div class="step-content">
+          <div class="step-title"><i class="fas fa-bus"></i> <span data-i18n="bgy_d2_t">2. Bus per Bergamo</span></div>
+          <div class="step-desc" data-i18n="bgy_d2_d">Partono da P.za Luigi di Savoia (lato est). Si consiglia arrivo con 15 min d'anticipo.</div>
+        </div>
+      </div>
+    </div>
+
+  </div></div>
+</div>
 
 <div class="section-card" id="card-duomo">
   <div class="section-header" onclick="toggleCard('card-duomo')">
@@ -451,7 +583,7 @@ a.link-item span strong { color: var(--gold-light); }
   </a>
   
   <a href="tel:0229400513" class="tip-item link-item">
-    <div class="tip-icon"><i class="fas fa-pills"></i></div>
+    <div class="tip-icon pharma-icon"><i class="fas fa-pills"></i></div>
     <span data-i18n="phone_pharma">Farmacia Marinoni · <strong>02 29400 513</strong></span>
   </a>
   
@@ -469,6 +601,25 @@ var T = {
     intro:"Top attrazioni e come raggiungerle con i mezzi pubblici. Tocca una sezione per espanderla.",
     how_arrive:"Come arrivare", how_move:"Come spostarsi nella zona",
     tip:"Da non perdere", advice:"Consiglio", tips_title:"Consigli pratici",
+    
+    air_title:"Aeroporti & Trasferimenti", air_sub:"Malpensa · Bergamo Orio · Linate",
+    dir_arr:"Arrivo (Verso l'appartamento)", dir_dep:"Partenza (Verso l'aeroporto)",
+    mxp:"Malpensa (MXP)",
+    mxp_a1_t:"1. Bus Shuttle per Centrale", mxp_a1_d:"All'uscita Arrivi trovi bus come Terravision o Malpensa Shuttle. Biglietti a bordo/online (~10€, durata 50').",
+    mxp_a2_t:"2. Da Centrale all'Appartamento", mxp_a2_d:"Da P.za Luigi di Savoia (arrivo bus), cammina 10 min fino a Via Pergolesi 3, o prendi M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.",
+    mxp_d1_t:"1. Fino a Stazione Centrale", mxp_d1_d:"Cammina 10 min fino a Centrale o prendi M2 (Verde) da Loreto a Centrale (2 fermate).",
+    mxp_d2_t:"2. Bus per Malpensa", mxp_d2_d:"I bus partono dal lato est della Stazione (Piazza Luigi di Savoia). Biglietti a bordo.",
+    bgy:"Bergamo Orio al Serio (BGY)",
+    bgy_a1_t:"1. Bus per Stazione Centrale", bgy_a1_d:"Fuori dagli Arrivi trovi Terravision o Orio Shuttle. Biglietti online/a bordo (~10-12€, durata 60').",
+    bgy_a2_t:"2. Da Centrale all'Appartamento", bgy_a2_d:"Come per Malpensa: 10 min a piedi o M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.",
+    bgy_d1_t:"1. Fino a Stazione Centrale", bgy_d1_d:"A piedi o M2 (Verde) da Loreto a Centrale.",
+    bgy_d2_t:"2. Bus per Bergamo", bgy_d2_d:"Partono da P.za Luigi di Savoia (lato est). Si consiglia arrivo con 15 min d'anticipo.",
+    lin:"Linate (LIN)",
+    lin_a1_t:"1. Metro M4 (Linea Blu)", lin_a1_d:"Dall'aeroporto, prendi la nuova metro M4 fino a <strong>San Babila</strong> (12 min).",
+    lin_a2_t:"2. Cambio in M1 fino a Loreto", lin_a2_d:"A San Babila, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong> (4 fermate). L'appartamento è a 2 min a piedi.",
+    lin_d1_t:"1. Da Loreto a San Babila", lin_d1_d:"Prendi la M1 (Rossa) dir. Rho/Bisceglie fino a <strong>San Babila</strong>.",
+    lin_d2_t:"2. Metro M4 per l'Aeroporto", lin_d2_d:"Cambia con la M4 (Blu) direzione Linate e scendi al capolinea (12 min).",
+
     d_title:"Duomo & Centro Storico", d_sub:"Piazza Duomo · Castello Sforzesco · Teatro alla Scala",
     d_m1_label:"— Opzione consigliata",
     d_m1_desc:"Fermata <strong>Loreto M1+M2</strong> a 2 min a piedi → <strong>M1 Rossa</strong> dir. <strong>Bisceglie/Rho Fiera</strong> → scendi a <strong>Duomo</strong> (5 fermate, ~10 min). Uscita diretta su Piazza Duomo.",
@@ -534,7 +685,6 @@ var T = {
     n_h3_l:"Mercatino", n_h3:"Ultima domenica del mese: antiquariato",
     n_h4_l:"Notte tardi", n_h4:"Tram notturno per il rientro",
     n_btn:"Portami ai Navigli",
-    tips_title:"Consigli pratici",
     tip1:"Biglietto singolo ATM: <strong>€2,20</strong> · valido 90 min. App ufficiale ATM o carta contactless ai tornelli.",
     tip2:"Fermata piu vicina: <strong>Loreto M1+M2</strong> a 2 min a piedi (uscita Piazza Loreto). Sia M1 Rossa che M2 Verde.",
     tip3:"Metro chiude ~<strong>1:30</strong> (ven-sab alle 2:30). Dopo: tram notturni o app di taxi.",
@@ -550,6 +700,25 @@ var T = {
     intro:"Top attractions and how to reach them by public transport. Tap a section to expand.",
     how_arrive:"How to get there", how_move:"Getting around the area",
     tip:"Don't miss", advice:"Tip", tips_title:"Practical tips",
+
+    air_title:"Airports & Transfers", air_sub:"Malpensa · Bergamo Orio · Linate",
+    dir_arr:"Arrival (To the apartment)", dir_dep:"Departure (To the airport)",
+    mxp:"Malpensa (MXP)",
+    mxp_a1_t:"1. Shuttle Bus to Centrale", mxp_a1_d:"Outside Arrivals, find Terravision or Malpensa Shuttle. Tickets onboard/online (~€10, 50 mins).",
+    mxp_a2_t:"2. Centrale to Apartment", mxp_a2_d:"From P.za Luigi di Savoia (bus stop), walk 10 mins to Via Pergolesi 3, or take M2 (Green) 2 stops to <strong>Loreto</strong>.",
+    mxp_d1_t:"1. To Central Station", mxp_d1_d:"Walk 10 mins or take M2 (Green) from Loreto to Centrale (2 stops).",
+    mxp_d2_t:"2. Bus to Malpensa", mxp_d2_d:"Buses leave from the east side of the station (Piazza Luigi di Savoia). Tickets onboard.",
+    bgy:"Bergamo Orio al Serio (BGY)",
+    bgy_a1_t:"1. Bus to Central Station", bgy_a1_d:"Outside Arrivals, find Terravision or Orio Shuttle. Tickets online/onboard (~€10-12, 60 mins).",
+    bgy_a2_t:"2. Centrale to Apartment", bgy_a2_d:"Same as Malpensa: 10 min walk or M2 (Green) 2 stops to <strong>Loreto</strong>.",
+    bgy_d1_t:"1. To Central Station", bgy_d1_d:"Walk or take M2 (Green) from Loreto to Centrale.",
+    bgy_d2_t:"2. Bus to Bergamo", bgy_d2_d:"Buses depart from P.za Luigi di Savoia (east side). Arrive 15 mins early.",
+    lin:"Linate (LIN)",
+    lin_a1_t:"1. M4 Metro (Blue Line)", lin_a1_d:"From the airport, take the new M4 metro to <strong>San Babila</strong> (12 mins).",
+    lin_a2_t:"2. Change to M1 to Loreto", lin_a2_d:"At San Babila, switch to M1 (Red) towards Sesto FS and exit at <strong>Loreto</strong> (4 stops). Apartment is a 2 min walk.",
+    lin_d1_t:"1. Loreto to San Babila", lin_d1_d:"Take M1 (Red) towards Rho/Bisceglie to <strong>San Babila</strong>.",
+    lin_d2_t:"2. M4 Metro to Airport", lin_d2_d:"Switch to M4 (Blue) towards Linate and ride to the terminus (12 mins).",
+
     d_title:"Duomo & Historic Centre", d_sub:"Piazza Duomo · Sforza Castle · La Scala Theatre",
     d_m1_label:"— Recommended option",
     d_m1_desc:"Walk 2 min to <strong>Loreto M1+M2</strong> → <strong>M1 Red</strong> towards <strong>Bisceglie/Rho Fiera</strong> → exit at <strong>Duomo</strong> (5 stops, ~10 min). Exit directly onto Piazza Duomo.",
@@ -615,7 +784,6 @@ var T = {
     n_h3_l:"Market", n_h3:"Last Sunday of month: antiques",
     n_h4_l:"Late night", n_h4:"Night tram for the return trip",
     n_btn:"Take me to the Navigli",
-    tips_title:"Practical tips",
     tip1:"Single ATM ticket: <strong>€2.20</strong> · valid 90 min. Official ATM app or contactless card at the turnstiles.",
     tip2:"Nearest stop: <strong>Loreto M1+M2</strong>, 2 min walk (Piazza Loreto exit). Both M1 Red and M2 Green.",
     tip3:"Metro closes ~<strong>1:30am</strong> (Fri-Sat 2:30am). After: night trams or taxi apps.",
@@ -631,8 +799,26 @@ var T = {
     intro:"主要景点及从这里出发的公共交通路线。点击各区域展开详情。",
     how_arrive:"如何到达", how_move:"在该区域内游览",
     tip:"必看", advice:"小贴士", tips_title:"实用建议",
-    d_title:"米兰大教堂与历史中心",
-    d_sub:"大教堂广场 · 斯福尔扎城堡 · 斯卡拉歌剧院",
+
+    air_title:"机场与接送", air_sub:"马尔彭萨 · 贝加莫 · 利纳特",
+    dir_arr:"抵达 (前往公寓)", dir_dep:"出发 (前往机场)",
+    mxp:"马尔彭萨 (MXP)",
+    mxp_a1_t:"1. 机场大巴至中央车站", mxp_a1_d:"在到达大厅外乘坐Terravision或Malpensa Shuttle。可上车买票或网购(~10欧元，50分钟)。",
+    mxp_a2_t:"2. 中央车站至公寓", mxp_a2_d:"从下车点(P.za Luigi di Savoia)步行10分钟至Via Pergolesi 3，或乘M2绿线2站至<strong>Loreto</strong>。",
+    mxp_d1_t:"1. 前往中央车站", mxp_d1_d:"步行10分钟或从Loreto乘M2绿线至中央车站(2站)。",
+    mxp_d2_t:"2. 机场大巴至马尔彭萨", mxp_d2_d:"大巴从车站东侧(Piazza Luigi di Savoia)发车。可上车买票。",
+    bgy:"贝加莫 (BGY)",
+    bgy_a1_t:"1. 机场大巴至中央车站", bgy_a1_d:"在到达大厅外乘坐Terravision或Orio Shuttle。可上车买票或网购(~10-12欧元，60分钟)。",
+    bgy_a2_t:"2. 中央车站至公寓", bgy_a2_d:"同马尔彭萨：步行10分钟或乘M2绿线2站至<strong>Loreto</strong>。",
+    bgy_d1_t:"1. 前往中央车站", bgy_d1_d:"步行或乘M2绿线从Loreto至中央车站。",
+    bgy_d2_t:"2. 机场大巴至贝加莫", bgy_d2_d:"大巴从车站东侧(P.za Luigi di Savoia)发车。建议提前15分钟到达。",
+    lin:"利纳特 (LIN)",
+    lin_a1_t:"1. M4地铁 (蓝线)", lin_a1_d:"从机场直接乘坐新的M4地铁至<strong>San Babila</strong>(12分钟)。",
+    lin_a2_t:"2. 换乘M1至Loreto", lin_a2_d:"在San Babila换乘M1红线(往Sesto FS方向)，在<strong>Loreto</strong>下车(4站)。公寓步行只需2分钟。",
+    lin_d1_t:"1. 从Loreto至San Babila", lin_d1_d:"乘坐M1红线(往Rho/Bisceglie方向)至<strong>San Babila</strong>。",
+    lin_d2_t:"2. 换乘M4至机场", lin_d2_d:"换乘M4蓝线(往Linate方向)直达终点站(12分钟)。",
+
+    d_title:"米兰大教堂与历史中心", d_sub:"大教堂广场 · 斯福尔扎城堡 · 斯卡拉歌剧院",
     d_m1_label:"— 推荐线路",
     d_m1_desc:"步行2分钟至 <strong>Loreto M1+M2</strong> 站 → 乘坐 <strong>M1红线</strong> 方向 <strong>Bisceglie/Rho Fiera</strong> → 在 <strong>Duomo</strong> 下车（5站，约10分钟）。",
     d_m3_label:"— 经中央车站的备选路线",
@@ -643,15 +829,11 @@ var T = {
     d_s2_desc:"穿过 <strong>埃马努埃莱二世长廊</strong> 步行5分钟。米兰传统：用脚跟旋转马赛克地砖的公牛图案祈求好运。斯卡拉歌剧院博物馆每日开放。",
     d_s3_title:"购物：时装四角区",
     d_s3_desc:"乘 <span class='badge badge-m3'>M3</span> 至 <strong>Montenapoleone</strong> 站。蒙特拿破仑大街与斯比加大街：全球顶级时装品牌云集。",
-    d_h1:"大教堂屋顶日落时分",
-    d_h2:"建议提前网上预订",
-    d_h3_label:"埃马努埃莱二世长廊",
-    d_h3:"全天开放，历史咖啡馆",
-    d_h4_label:"最后的晚餐",
-    d_h4:"需提前数月预订！",
+    d_h1:"大教堂屋顶日落时分", d_h2:"建议提前网上预订",
+    d_h3_label:"埃马努埃莱二世长廊", d_h3:"全天开放，历史咖啡馆",
+    d_h4_label:"最后的晚餐", d_h4:"需提前数月预订！",
     d_btn:"带我去大教堂",
-    g_title:"盖·奥伦提广场与伊索拉区",
-    g_sub:"科莫大街 · 加里波第大街 · 垂直森林",
+    g_title:"盖·奥伦提广场与伊索拉区", g_sub:"科莫大街 · 加里波第大街 · 垂直森林",
     g_m2_label:"— 主要线路",
     g_m2_desc:"步行2分钟至 <strong>Loreto M2</strong> 站 → 方向 <strong>Abbiategrasso</strong> → 在 <strong>Garibaldi FS</strong> 下车（2站，约5分钟）。全程约10分钟。",
     g_tram_label:"— 风景备选路线",
@@ -667,8 +849,7 @@ var T = {
     g_h3_l:"科莫大街", g_h3:"时尚概念与设计购物",
     g_h4_l:"布雷拉", g_h4:"布雷拉画廊，文艺复兴艺术",
     g_btn:"带我去盖·奥伦提广场",
-    c_title:"切尼西奥、萨尔皮与森皮奥内公园",
-    c_sub:"唐人街 · 纪念公墓 · 和平拱门",
+    c_title:"切尼西奥、萨尔皮与森皮奥内公园", c_sub:"唐人街 · 纪念公墓 · 和平拱门",
     c_m2_label:"在Garibaldi换乘M5紫线",
     c_m2_desc:"步行2分钟至 <strong>Loreto M2</strong> → 方向 <strong>Abbiategrasso</strong> → 在 <strong>Garibaldi FS</strong> 下车（2站）。换乘 <span class='badge badge-m5'>M5紫线</span>。",
     c_m5_label:"— 前往公墓和切尼西奥",
@@ -686,8 +867,7 @@ var T = {
     c_h3_l:"森皮奥内公园", c_h3:"野餐休闲，全年开放",
     c_h4_l:"和平拱门", c_h4:"日出或日落时拍摄最美",
     c_btn:"带我去萨尔皮区",
-    n_title:"纳维利运河区",
-    n_sub:"达尔塞纳 · 夜生活 · 运河边酒吧",
+    n_title:"纳维利运河区", n_sub:"达尔塞纳 · 夜生活 · 运河边酒吧",
     n_m2_label:"— 单一直达地铁线路",
     n_m2_desc:"步行2分钟至 <strong>Loreto M2</strong> → 方向 <strong>Abbiategrasso/Assago</strong> → 在 <strong>Porta Genova FS</strong> 下车（8站，约17分钟）。全程约22分钟。",
     n_tram_label:"— 深夜返程",
@@ -703,7 +883,6 @@ var T = {
     n_h3_l:"集市", n_h3:"每月最后一个周日：古玩集市",
     n_h4_l:"深夜返程", n_h4:"乘夜间电车回家",
     n_btn:"带我去纳维利运河区",
-    tips_title:"实用建议",
     tip1:"单程票：<strong>€2.20</strong> · 有效期90分钟。官方ATM应用或在地铁闸机使用非接触式银行卡。",
     tip2:"最近的站：<strong>Loreto M1+M2</strong>，步行仅2分钟。M1红线和M2绿线均可乘坐。",
     tip3:"地铁约<strong>1:30</strong>关闭（周五、六在2:30）。之后可乘夜间电车或使用出租车应用。",
@@ -719,6 +898,25 @@ var T = {
     intro:"Principales atracciones y cómo llegar en transporte público. Toca una sección para expandirla.",
     how_arrive:"Cómo llegar", how_move:"Cómo moverse por la zona",
     tip:"No te pierdas", advice:"Consejo", tips_title:"Consejos prácticos",
+
+    air_title:"Aeropuertos y Traslados", air_sub:"Malpensa · Bergamo Orio · Linate",
+    dir_arr:"Llegada (Al apartamento)", dir_dep:"Salida (Al aeropuerto)",
+    mxp:"Malpensa (MXP)",
+    mxp_a1_t:"1. Autobús a Centrale", mxp_a1_d:"Fuera de Llegadas, toma Terravision o Malpensa Shuttle. Billetes a bordo/online (~10€, 50 min).",
+    mxp_a2_t:"2. De Centrale al Apartamento", mxp_a2_d:"Desde P.za Luigi di Savoia (parada de bus), camina 10 min hasta Via Pergolesi 3, o toma M2 (Verde) 2 paradas hasta <strong>Loreto</strong>.",
+    mxp_d1_t:"1. A la Estación Central", mxp_d1_d:"Camina 10 min o toma M2 (Verde) de Loreto a Centrale (2 paradas).",
+    mxp_d2_t:"2. Autobús a Malpensa", mxp_d2_d:"Los autobuses salen del lado este de la estación (Piazza Luigi di Savoia). Billetes a bordo.",
+    bgy:"Bergamo Orio al Serio (BGY)",
+    bgy_a1_t:"1. Autobús a Centrale", bgy_a1_d:"Fuera de Llegadas, toma Terravision o Orio Shuttle. Billetes a bordo/online (~10-12€, 60 min).",
+    bgy_a2_t:"2. De Centrale al Apartamento", bgy_a2_d:"Igual que Malpensa: 10 min a pie o M2 (Verde) 2 paradas hasta <strong>Loreto</strong>.",
+    bgy_d1_t:"1. A la Estación Central", bgy_d1_d:"Camina o toma M2 (Verde) desde Loreto a Centrale.",
+    bgy_d2_t:"2. Autobús a Bergamo", bgy_d2_d:"Salen de P.za Luigi di Savoia (lado este). Llega con 15 min de antelación.",
+    lin:"Linate (LIN)",
+    lin_a1_t:"1. Metro M4 (Línea Azul)", lin_a1_d:"Desde el aeropuerto, toma el nuevo metro M4 hasta <strong>San Babila</strong> (12 min).",
+    lin_a2_t:"2. Cambio a M1 hasta Loreto", lin_a2_d:"En San Babila, cambia a M1 (Roja) dir. Sesto FS y baja en <strong>Loreto</strong> (4 paradas).",
+    lin_d1_t:"1. Loreto a San Babila", lin_d1_d:"Toma M1 (Roja) dir. Rho/Bisceglie hasta <strong>San Babila</strong>.",
+    lin_d2_t:"2. Metro M4 al Aeropuerto", lin_d2_d:"Cambia a M4 (Azul) hacia Linate hasta el final del trayecto (12 min).",
+
     d_title:"Duomo & Centro Histórico", d_sub:"Plaza del Duomo · Castillo Sforzesco · Teatro alla Scala",
     d_m1_label:"— Opción recomendada",
     d_m1_desc:"Camina 2 min hasta <strong>Loreto M1+M2</strong> → <strong>M1 Roja</strong> dir. <strong>Bisceglie/Rho Fiera</strong> → baja en <strong>Duomo</strong> (5 paradas, ~10 min). Salida directa a la Plaza del Duomo.",
@@ -784,7 +982,6 @@ var T = {
     n_h3_l:"Mercadillo", n_h3:"Último domingo del mes: antigüedades",
     n_h4_l:"Noche tardía", n_h4:"Tranvía nocturno para volver",
     n_btn:"Llévame a los Navigli",
-    tips_title:"Consejos prácticos",
     tip1:"Billete individual ATM: <strong>€2,20</strong> · válido 90 min. App oficial ATM o tarjeta contactless en los torniquetes.",
     tip2:"Parada más cercana: <strong>Loreto M1+M2</strong>, a solo 2 min a pie (salida Plaza Loreto). Líneas M1 Roja y M2 Verde.",
     tip3:"El metro cierra ~<strong>1:30</strong> (vier-sáb a las 2:30). Después: tranvías nocturnos o apps de taxi.",
@@ -802,6 +999,24 @@ function toggleCard(id) {
   var cards = document.querySelectorAll('.section-card');
   for (var i = 0; i < cards.length; i++) { cards[i].classList.remove('open'); }
   if (!isOpen) { card.classList.add('open'); }
+}
+
+function setDirection(dir) {
+  // Rimuove l'active dai bottoni
+  document.getElementById('btn-arr').classList.remove('active');
+  document.getElementById('btn-dep').classList.remove('active');
+  // Nasconde entrambi i contenuti
+  document.getElementById('content-arrival').style.display = 'none';
+  document.getElementById('content-departure').style.display = 'none';
+
+  // Mostra quello selezionato
+  if (dir === 'arrival') {
+    document.getElementById('btn-arr').classList.add('active');
+    document.getElementById('content-arrival').style.display = 'block';
+  } else {
+    document.getElementById('btn-dep').classList.add('active');
+    document.getElementById('content-departure').style.display = 'block';
+  }
 }
 
 function toggleLangDrawer() {

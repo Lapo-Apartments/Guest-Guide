@@ -23,14 +23,29 @@
 }
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
-/* LANG FAB (In alto a destra con icona traduttore) */
-.lang-fab{position:absolute;top:24px;right:18px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:background .2s,transform .2s}
-.lang-fab:hover{background:var(--navy);transform:scale(1.05)}
+/* FABS TOP (Menu & Lang) */
+.top-fab{position:absolute;top:24px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:background .2s,transform .2s}
+.top-fab:hover{background:var(--navy);transform:scale(1.05)}
+.fab-left{left:18px;}
+.fab-right{right:18px;}
+
+/* LANG DRAWER */
 .lang-drawer{position:absolute;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
 .lang-drawer.open{opacity:1;transform:none;pointer-events:all}
 .lang-btn{background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.7);padding:7px 16px;border-radius:20px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap}
 .lang-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
 .lang-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+
+/* SIDEBAR MENU */
+.sidebar-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:299;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.sidebar-overlay.open{opacity:1;pointer-events:all}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);box-shadow:4px 0 24px rgba(0,0,0,0.3);padding:30px 20px;display:flex;flex-direction:column}
+.sidebar.open{transform:translateX(0)}
+.sidebar-logo{width:120px;margin-bottom:30px}
+.menu-link{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.7);text-decoration:none;padding:14px 12px;border-radius:12px;font-size:1.05rem;font-weight:500;margin-bottom:8px;transition:all 0.2s;cursor:pointer}
+.menu-link i{font-size:1.2rem;color:var(--gold-dim);width:24px;text-align:center}
+.menu-link:hover, .menu-link.active{background:rgba(201,168,76,0.1);color:var(--white)}
+.menu-link.active i{color:var(--gold)}
 
 /* HEADER */
 .header{background:var(--navy);padding:32px 20px 28px;text-align:center;position:relative;overflow:hidden;background-image:url('header.jpg');background-size:cover;background-position:center 40%}
@@ -42,21 +57,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .header-address{font-size:.8rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:.06em}
 .gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0}
 
-/* HOST FAB (In basso a destra) */
+/* FABS BOTTOM (Host & Emerg) */
 .host-fab{position:fixed;bottom:20px;right:18px;width:48px;height:48px;border-radius:50%;background:#25D366;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,0.5);transition:background .2s,transform .2s}
 .host-fab:hover{background:#1eae57;transform:scale(1.08)}
 .host-drawer{position:fixed;bottom:78px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:160px}
 .host-drawer.open{opacity:1;transform:none;pointer-events:all}
 .host-drawer-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dim);padding:2px 10px 4px;border-bottom:1px solid rgba(201,168,76,0.15);margin-bottom:2px}
 
-/* EMERG FAB (NUMERI UTILI - In basso a sinistra) */
 .emerg-fab{position:fixed;bottom:20px;left:18px;width:48px;height:48px;border-radius:50%;background:var(--navy);border:1.5px solid #D93025;color:#D93025;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:background .2s,transform .2s}
 .emerg-fab:hover{background:var(--navy-mid);transform:scale(1.08)}
 .emerg-drawer{position:fixed;bottom:78px;left:18px;background:var(--navy);border:1px solid #D93025;border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:180px}
 .emerg-drawer.open{opacity:1;transform:none;pointer-events:all}
 .emerg-drawer-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#D93025;padding:2px 10px 4px;border-bottom:1px solid rgba(217,48,37,0.15);margin-bottom:2px}
 
-/* GENERAL BUTTONS */
 .host-action-btn{display:flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.8);padding:9px 14px;border-radius:10px;font-size:.83rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap;text-decoration:none;width:100%}
 .host-action-btn i{font-size:1rem;width:16px;text-align:center}
 .host-action-btn.wa{border-color:rgba(37,211,102,0.4);color:#4ee58a}
@@ -72,18 +85,31 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .intro-strip{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;gap:10px;font-size:.83rem;color:rgba(255,255,255,0.55)}
 .intro-strip i{color:var(--gold);font-size:.9rem;flex-shrink:0}
 
-/* CONTAINER */
+/* PAGES */
+.page-section{display:none; animation:fadeIn 0.4s ease}
+.page-section.active{display:block}
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 .container{max-width:680px;margin:0 auto;padding:20px 14px 80px}
 
-/* CARDS */
-.section-card{background:var(--white);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);opacity:0;transform:translateY(16px);animation:fadeUp .5s forwards}
-.section-card:nth-child(1){animation-delay:.08s}
-.section-card:nth-child(2){animation-delay:.16s}
-.section-card:nth-child(3){animation-delay:.24s}
-.section-card:nth-child(4){animation-delay:.32s}
-.section-card:nth-child(5){animation-delay:.40s}
-@keyframes fadeUp{to{opacity:1;transform:none}}
+/* TEXT CONTENT (Info Page) */
+.desc-block{background:var(--white);border-radius:var(--radius);padding:22px;margin-bottom:20px;box-shadow:var(--shadow);border:1px solid var(--border);}
+.desc-text{font-size:.9rem;color:var(--navy-mid);line-height:1.6;margin-bottom:16px}
+.desc-title{font-size:1.05rem;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--navy);margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+.desc-title i {color:var(--gold-dim); font-size:0.9rem;}
+.map-container{width:100%;height:250px;border-radius:12px;overflow:hidden;margin-bottom:20px;border:1px solid var(--cream-dark);box-shadow:var(--shadow)}
 
+/* WIFI BOX */
+.wifi-box{background:var(--navy);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:18px;margin-top:14px;color:white}
+.wifi-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(201,168,76,0.15)}
+.wifi-row:last-child{border-bottom:none;padding-bottom:0}
+.wifi-label{font-size:.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.wifi-value{font-size:1.1rem;font-weight:600;color:var(--gold-light);letter-spacing:0.03em}
+.btn-copy{background:rgba(201,168,76,0.15);border:1px solid var(--gold-dim);color:var(--gold-light);padding:8px 14px;border-radius:8px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.btn-copy:hover{background:var(--gold);color:var(--navy)}
+.btn-copy.copied{background:#25D366;border-color:#25D366;color:white}
+
+/* CARDS (Transport Page) */
+.section-card{background:var(--white);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);}
 .section-header{display:flex;align-items:center;gap:14px;padding:17px 18px;cursor:pointer;user-select:none;transition:background .2s}
 .section-header:hover{background:var(--cream)}
 .section-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;color:white}
@@ -92,7 +118,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .section-subtitle{font-size:.75rem;color:var(--muted);margin-top:2px;font-weight:400}
 .section-toggle{width:30px;height:30px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);transition:transform .35s ease,background .2s,color .2s;flex-shrink:0}
 .section-card.open .section-toggle{transform:rotate(180deg);background:var(--navy);color:var(--gold)}
-
 .section-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94)}
 .section-card.open .section-body{max-height:3000px}
 .section-body-inner{padding:0 18px 20px;border-top:1px solid var(--cream-dark)}
@@ -132,8 +157,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 /* MAP BTN */
 .btn-map{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--navy);text-decoration:none;padding:13px 20px;border-radius:11px;font-weight:700;font-size:.87rem;margin-top:14px;transition:opacity .2s,transform .2s;letter-spacing:.03em;background:linear-gradient(135deg,var(--gold-light),var(--gold))}
 .btn-map:active{opacity:.85;transform:scale(0.98)}
-
-/* DIVIDER */
 .divider{height:1px;background:var(--cream-dark);margin:14px 0}
 
 /* TIP BOX */
@@ -149,7 +172,24 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 </head>
 <body>
 
-<button class="lang-fab" id="lang-fab" onclick="toggleLangDrawer()" title="Change language">
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+  <img src="logo.png" alt="Logo" class="sidebar-logo">
+  
+  <a class="menu-link active" id="nav-info" onclick="switchPage('info')">
+    <i class="fas fa-home"></i> <span data-i18n="nav_info">Info Appartamento</span>
+  </a>
+  <a class="menu-link" id="nav-transport" onclick="switchPage('transport')">
+    <i class="fas fa-subway"></i> <span data-i18n="nav_transport">Trasporti & Attrazioni</span>
+  </a>
+</div>
+
+<button class="top-fab fab-left" onclick="openMenu()" title="Menu">
+  <i class="fas fa-bars"></i>
+</button>
+
+<button class="top-fab fab-right" id="lang-fab" onclick="toggleLangDrawer()" title="Change language">
   <i class="fas fa-language"></i>
 </button>
 <div class="lang-drawer" id="lang-drawer">
@@ -191,429 +231,499 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 <header class="header">
   <div class="logo-wrap"><img class="logo-img" src="logo.png" alt="LAPO Apartments"></div>
   <div class="header-eyebrow" data-i18n="eyebrow"> </div>
-  <h1 data-i18n="headline">Benvenuti<br>a Milano</h1>
+  <h1 id="main-title" data-i18n="headline_info">Informazioni<br>Appartamento</h1>
   <div class="header-address">Via G.B. Pergolesi, 3 · Milano</div>
   <div class="gold-line"></div>
 </header>
 
-<div class="intro-strip">
-  <i class="fas fa-map-signs"></i>
-  <span data-i18n="intro">Top attrazioni e come raggiungerle con i mezzi pubblici. Tocca una sezione per espanderla.</span>
-</div>
 
-<div class="container">
-
-<div class="section-card" id="card-airports">
-  <div class="section-header" onclick="toggleCard('card-airports')">
-    <div class="section-icon" style="background:linear-gradient(135deg,#0052cc,#003380)"><i class="fas fa-plane"></i></div>
-    <div class="section-meta">
-      <div class="section-title" data-i18n="air_title">Aeroporti & Trasferimenti</div>
-      <div class="section-subtitle" data-i18n="air_sub">Malpensa · Bergamo Orio · Linate</div>
-    </div>
-    <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-  </div>
-  <div class="section-body"><div class="section-body-inner">
+<div id="page-info" class="page-section active">
+  <div class="container">
     
-    <div class="direction-toggle">
-      <button class="dir-btn active" id="btn-arr" onclick="setDirection('arrival')" data-i18n="dir_arr">Arrivo (Verso l'appartamento)</button>
-      <button class="dir-btn" id="btn-dep" onclick="setDirection('departure')" data-i18n="dir_dep">Partenza (Verso l'aeroporto)</button>
+    <div class="map-container">
+      <iframe src="https://maps.google.com/maps?q=Via%20Giovanni%20Battista%20Pergolesi,%203,%20Milano&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
     </div>
 
-    <div id="content-arrival" style="display:block;">
+    <div class="section-card" id="card-wifi">
+      <div class="section-header" onclick="toggleCard('card-wifi')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#2196F3,#0d47a1)"><i class="fas fa-wifi"></i></div>
+        <div class="section-meta">
+          <div class="section-title" data-i18n="wifi_title">Wi-Fi & Internet</div>
+          <div class="section-subtitle" data-i18n="wifi_sub">Connessione rapida gratuita</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:10px;">
+        <div class="wifi-box">
+          <div class="wifi-row">
+            <div>
+              <div class="wifi-label">Rete (SSID)</div>
+              <div class="wifi-value">NOME_WIFI_QUI</div>
+            </div>
+          </div>
+          <div class="wifi-row">
+            <div>
+              <div class="wifi-label">Password</div>
+              <div class="wifi-value" id="wifi-pass">PASSWORD_QUI</div>
+            </div>
+            <button class="btn-copy" id="btn-copy-wifi" onclick="copyWifi()">
+              <i class="fas fa-copy"></i> <span data-i18n="btn_copy">Copia</span>
+            </button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="desc-block">
+      <div class="desc-text" data-i18n="desc_p1">
+        Elegante appartamento nel cuore di Milano, in posizione strategica vicino tre linee metropolitane. A soli 30m da Corso Buenos Aires, 350 m dalla Stazione Centrale e bus diretti per gli aeroporti. La casa ha due camere da letto, Wi-Fi veloce, ascensore e ogni comfort. Un’oasi di silenzio ed eleganza perfetta per scoprire Milano con comodità e stile. Deposito bagaglio con key Box per libero deposito e ritiro. Connessione rapida con stazione e tutti gli Aeroporti tramite bus n. 92 e navette.
+      </div>
       
-      <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="lin">Linate (LIN)</span></div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#0072CE"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="lin_a1_t"><span class="badge badge-m4">M4</span> + <span class="badge badge-m1">M1</span> (Consigliata)</div>
-          <div class="step-desc" data-i18n="lin_a1_d">Prendi la M4 fino a <strong>San Babila</strong>, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong>. A piedi 2 min. (~25 min)</div>
-        </div>
+      <div class="desc-title"><i class="fas fa-door-open"></i> <span data-i18n="desc_t1">Lo spazio</span></div>
+      <div class="desc-text" data-i18n="desc_p2">
+        Appartamento super accessoriato al terzo piano con ascensore e balcone interno. Ospita fino a 4 persone. L’appartamento ha due camere con letti matrimoniali.<br>
+        Collegato a tutta la città, stazioni, aeroporti e all’Arena dei Giochi Olimpici 2026.
       </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#E47128"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="lin_a2_t"><span class="badge badge-m4">M4</span> + <span class="badge badge-bus">Bus 92</span> (Alternativa)</div>
-          <div class="step-desc" data-i18n="lin_a2_d">Prendi la M4 fino a <strong>Dateo</strong>, cambia con il Bus 92 (dir. Bovisa) e scendi a <strong>Piazza Caiazzo</strong>. A piedi 3 min. (~30 min)</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="lin_a3_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Centrale)</div>
-          <div class="step-desc" data-i18n="lin_a3_d">Linate Shuttle fino a <strong>Stazione Centrale</strong>. Da lì cammina 10 min o prendi la M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
-        </div>
-      </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Linate&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
-      <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#5A5A5A"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="mxp_a1_t"><span class="badge badge-train"><i class="fas fa-train"></i> Malpensa Express</span> (Treno)</div>
-          <div class="step-desc" data-i18n="mxp_a1_d">Treno diretto per <strong>Milano Centrale</strong> (50 min). Da lì 10 min a piedi o M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
-        </div>
+      <div class="desc-title"><i class="fas fa-key"></i> <span data-i18n="desc_t2">Accesso per gli ospiti</span></div>
+      <div class="desc-text" data-i18n="desc_p3">
+        Appartamento ad uso esclusivo degli ospiti, completamente privato e dotato di ogni comfort. Ideale per chi desidera privacy e relax nel cuore di Milano.
       </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="mxp_a2_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Autostrada)</div>
-          <div class="step-desc" data-i18n="mxp_a2_d">Bus (Malpensa Shuttle/Terravision) fino a <strong>Stazione Centrale</strong>. Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
-        </div>
-      </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Malpensa&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
-
-      <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="bgy_a1_t"><i class="fas fa-bus"></i> Bus Shuttle (Diretto)</div>
-          <div class="step-desc" data-i18n="bgy_a1_d">Orio Shuttle o Terravision fino a <strong>Stazione Centrale</strong> (60 min). Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
-        </div>
-      </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Bergamo-Orio+al+Serio&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
     </div>
 
-    <div id="content-departure" style="display:none;">
+  </div>
+</div>
+
+
+<div id="page-transport" class="page-section">
+  
+  <div class="intro-strip">
+    <i class="fas fa-map-signs"></i>
+    <span data-i18n="intro">Top attrazioni e come raggiungerle con i mezzi pubblici. Tocca una sezione per espanderla.</span>
+  </div>
+
+  <div class="container">
+
+  <div class="section-card" id="card-airports">
+    <div class="section-header" onclick="toggleCard('card-airports')">
+      <div class="section-icon" style="background:linear-gradient(135deg,#0052cc,#003380)"><i class="fas fa-plane"></i></div>
+      <div class="section-meta">
+        <div class="section-title" data-i18n="air_title">Aeroporti & Trasferimenti</div>
+        <div class="section-subtitle" data-i18n="air_sub">Malpensa · Bergamo Orio · Linate</div>
+      </div>
+      <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="section-body"><div class="section-body-inner">
       
-      <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="lin">Linate (LIN)</span></div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#D93025"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="lin_d1_t"><span class="badge badge-m1">M1</span> + <span class="badge badge-m4">M4</span> (Consigliata)</div>
-          <div class="step-desc" data-i18n="lin_d1_d">Da <strong>Loreto</strong> prendi la M1 (Rossa) fino a <strong>San Babila</strong>, cambia con M4 (Blu) direzione <strong>Linate</strong> fino al capolinea.</div>
-        </div>
+      <div class="direction-toggle">
+        <button class="dir-btn active" id="btn-arr" onclick="setDirection('arrival')" data-i18n="dir_arr">Arrivo (Verso l'appartamento)</button>
+        <button class="dir-btn" id="btn-dep" onclick="setDirection('departure')" data-i18n="dir_dep">Partenza (Verso l'aeroporto)</button>
       </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#E47128"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="lin_d2_t"><span class="badge badge-bus">Bus 92</span> + <span class="badge badge-m4">M4</span> (Alternativa)</div>
-          <div class="step-desc" data-i18n="lin_d2_d">Da <strong>Piazza Caiazzo</strong> prendi il Bus 92 fino a <strong>Dateo</strong>, cambia con la M4 (Blu) fino a <strong>Linate</strong>.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="lin_d3_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Centrale)</div>
-          <div class="step-desc" data-i18n="lin_d3_d">Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.</div>
-        </div>
-      </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Linate" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
-      <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#5A5A5A"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="mxp_d1_t"><span class="badge badge-train"><i class="fas fa-train"></i> Malpensa Express</span> (Treno)</div>
-          <div class="step-desc" data-i18n="mxp_d1_d">Treno in partenza da <strong>Milano Centrale</strong>. Raggiungibile a piedi (10 min) o con la M2 (Verde) da <strong>Loreto</strong> (2 fermate).</div>
+      <div id="content-arrival" style="display:block;">
+        
+        <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="lin">Linate (LIN)</span></div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#0072CE"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="lin_a1_t"><span class="badge badge-m4">M4</span> + <span class="badge badge-m1">M1</span> (Consigliata)</div>
+            <div class="step-desc" data-i18n="lin_a1_d">Prendi la M4 fino a <strong>San Babila</strong>, cambia con la M1 (Rossa) dir. Sesto FS e scendi a <strong>Loreto</strong>. A piedi 2 min. (~25 min)</div>
+          </div>
         </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="mxp_d2_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Autostrada)</div>
-          <div class="step-desc" data-i18n="mxp_d2_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Biglietti a bordo.</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#E47128"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="lin_a2_t"><span class="badge badge-m4">M4</span> + <span class="badge badge-bus">Bus 92</span> (Alternativa)</div>
+            <div class="step-desc" data-i18n="lin_a2_d">Prendi la M4 fino a <strong>Dateo</strong>, cambia con il Bus 92 (dir. Bovisa) e scendi a <strong>Piazza Caiazzo</strong>. A piedi 3 min. (~30 min)</div>
+          </div>
         </div>
-      </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Malpensa" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="lin_a3_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Centrale)</div>
+            <div class="step-desc" data-i18n="lin_a3_d">Linate Shuttle fino a <strong>Stazione Centrale</strong>. Da lì cammina 10 min o prendi la M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Linate&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
-      <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="bgy_d1_t"><i class="fas fa-bus"></i> Bus Shuttle (Diretto)</div>
-          <div class="step-desc" data-i18n="bgy_d1_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi o con la M2 da <strong>Loreto</strong>.</div>
+        <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#5A5A5A"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="mxp_a1_t"><span class="badge badge-train"><i class="fas fa-train"></i> Malpensa Express</span> (Treno)</div>
+            <div class="step-desc" data-i18n="mxp_a1_d">Treno diretto per <strong>Milano Centrale</strong> (50 min). Da lì 10 min a piedi o M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
+          </div>
         </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="mxp_a2_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Autostrada)</div>
+            <div class="step-desc" data-i18n="mxp_a2_d">Bus (Malpensa Shuttle/Terravision) fino a <strong>Stazione Centrale</strong>. Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Malpensa&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+
+        <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="bgy_a1_t"><i class="fas fa-bus"></i> Bus Shuttle (Diretto)</div>
+            <div class="step-desc" data-i18n="bgy_a1_d">Orio Shuttle o Terravision fino a <strong>Stazione Centrale</strong> (60 min). Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Bergamo-Orio+al+Serio&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Bergamo-Orio+al+Serio" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+
+      <div id="content-departure" style="display:none;">
+        
+        <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="lin">Linate (LIN)</span></div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#D93025"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="lin_d1_t"><span class="badge badge-m1">M1</span> + <span class="badge badge-m4">M4</span> (Consigliata)</div>
+            <div class="step-desc" data-i18n="lin_d1_d">Da <strong>Loreto</strong> prendi la M1 (Rossa) fino a <strong>San Babila</strong>, cambia con M4 (Blu) direzione <strong>Linate</strong> fino al capolinea.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#E47128"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="lin_d2_t"><span class="badge badge-bus">Bus 92</span> + <span class="badge badge-m4">M4</span> (Alternativa)</div>
+            <div class="step-desc" data-i18n="lin_d2_d">Da <strong>Piazza Caiazzo</strong> prendi il Bus 92 fino a <strong>Dateo</strong>, cambia con la M4 (Blu) fino a <strong>Linate</strong>.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="lin_d3_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Centrale)</div>
+            <div class="step-desc" data-i18n="lin_d3_d">Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Linate" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+
+        <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#5A5A5A"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="mxp_d1_t"><span class="badge badge-train"><i class="fas fa-train"></i> Malpensa Express</span> (Treno)</div>
+            <div class="step-desc" data-i18n="mxp_d1_d">Treno in partenza da <strong>Milano Centrale</strong>. Raggiungibile a piedi (10 min) o con la M2 (Verde) da <strong>Loreto</strong> (2 fermate).</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="mxp_d2_t"><i class="fas fa-bus"></i> Bus Shuttle (Via Autostrada)</div>
+            <div class="step-desc" data-i18n="mxp_d2_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Biglietti a bordo.</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Malpensa" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+
+        <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#8A8070"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="bgy_d1_t"><i class="fas fa-bus"></i> Bus Shuttle (Diretto)</div>
+            <div class="step-desc" data-i18n="bgy_d1_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi o con la M2 da <strong>Loreto</strong>.</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Bergamo-Orio+al+Serio" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+      </div>
+
+    </div></div>
+  </div>
+
+  <div class="section-card" id="card-duomo">
+    <div class="section-header" onclick="toggleCard('card-duomo')">
+      <div class="section-icon" style="background:linear-gradient(135deg,#D93025,#9B1515)"><i class="fas fa-place-of-worship"></i></div>
+      <div class="section-meta">
+        <div class="section-title" data-i18n="d_title">Duomo & Centro Storico</div>
+        <div class="section-subtitle" data-i18n="d_sub">Piazza Duomo · Castello Sforzesco · Teatro alla Scala</div>
+      </div>
+      <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
     </div>
+    <div class="section-body"><div class="section-body-inner">
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#D93025"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-m1">M1 Rossa</span> <span data-i18n="d_m1_label">— Opzione consigliata</span></div>
+            <div class="step-desc" data-i18n="d_m1_desc">Dalla fermata <strong>Loreto</strong>, prendi la M1 (Rossa) dir. <strong>Bisceglie/Rho Fiera</strong> e scendi a <strong>Duomo</strong> (5 fermate, ~10 min). Uscita diretta su Piazza Duomo.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#F5C400"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-m3">M3 Gialla</span> <span data-i18n="d_m3_label">— Alternativa via Centrale</span></div>
+            <div class="step-desc" data-i18n="d_m3_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) per 2 fermate fino a <strong>Centrale FS</strong>, cambia con la M3 (Gialla) dir. <strong>San Donato</strong> e scendi a <strong>Duomo</strong>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="d_s1_title">Duomo → Castello Sforzesco</div>
+            <div class="step-desc" data-i18n="d_s1_desc">A piedi lungo Via Dante (15 min) oppure <span class="badge badge-m1">M1</span> per una fermata fino a <strong>Cairoli</strong>. Parco ad accesso libero, musei a pagamento.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="d_s2_title">Duomo → Piazza della Scala</div>
+            <div class="step-desc" data-i18n="d_s2_desc">5 minuti a piedi attraversando la <strong>Galleria Vittorio Emanuele II</strong>. Tradizione milanese: ruotare il tacco sul mosaico del toro per portare fortuna.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="d_s3_title">Shopping: Quadrilatero della Moda</div>
+            <div class="step-desc" data-i18n="d_s3_desc"><span class="badge badge-m3">M3</span> fermata <strong>Montenapoleone</strong> (1 fermata da Duomo). Via Montenapoleone, Via della Spiga: le griffe internazionali.</div>
+          </div>
+        </div>
+      </div>
+      <div class="highlights-grid">
+        <div class="highlight-item"><strong data-i18n="tip">Da non perdere</strong><span data-i18n="d_h1">Terrazza del Duomo al tramonto</span></div>
+        <div class="highlight-item"><strong data-i18n="advice">Consiglio</strong><span data-i18n="d_h2">Prenotazione online consigliata</span></div>
+        <div class="highlight-item"><strong data-i18n="d_h3_label">Galleria V.E. II</strong><span data-i18n="d_h3">Aperta 24h, caffe storici</span></div>
+        <div class="highlight-item"><strong data-i18n="d_h4_label">Cenacolo Vinciano</strong><span data-i18n="d_h4">Prenotare con mesi di anticipo!</span></div>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Piazza+del+Duomo,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
+    </div></div>
+  </div>
+
+  <div class="section-card" id="card-gae">
+    <div class="section-header" onclick="toggleCard('card-gae')">
+      <div class="section-icon" style="background:linear-gradient(135deg,#F5C400,#D4A000); color: #1a1a1a;"><i class="fas fa-city"></i></div>
+      <div class="section-meta">
+        <div class="section-title" data-i18n="g_title">Gae Aulenti & Isola</div>
+        <div class="section-subtitle" data-i18n="g_sub">Corso Como · Corso Garibaldi · Bosco Verticale</div>
+      </div>
+      <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="section-body"><div class="section-body-inner">
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="g_m2_label">— Opzione principale</span></div>
+            <div class="step-desc" data-i18n="g_m2_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) dir. <strong>Abbiategrasso/Assago</strong> e scendi a <strong>Garibaldi FS</strong> (2 fermate, ~5 min). Uscita su Piazza Gae Aulenti.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-tram">Tram 9</span> <span data-i18n="g_tram_label">— Alternativa panoramica</span></div>
+            <div class="step-desc" data-i18n="g_tram_desc">Il Tram 9 da <strong>Loreto</strong> percorre Viale Monza verso Centrale poi <strong>Garibaldi</strong>. Più lento ma ti fa scoprire il quartiere in superficie.</div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="g_s1_title">Gae Aulenti → Corso Como</div>
+            <div class="step-desc" data-i18n="g_s1_desc">3 minuti a piedi. Un concept store iconico con ristorante e galleria d'arte nel cortile — l'indirizzo più trendy di Milano.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="g_s2_title">Garibaldi → Corso Garibaldi</div>
+            <div class="step-desc" data-i18n="g_s2_desc">A piedi 5 min verso sud. Street food, negozi indipendenti, specialty coffee. La strada arriva fino a <strong>Brera</strong>, il quartiere degli artisti.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="g_s3_title">Quartiere Isola</div>
+            <div class="step-desc" data-i18n="g_s3_desc">Dal portale di Gae Aulenti, prendi la passerella pedonale verso nord (10 min). Murales, mercatini vintage, aperitivi nei locali locali.</div>
+          </div>
+        </div>
+      </div>
+      <div class="highlights-grid">
+        <div class="highlight-item"><strong data-i18n="g_h1_l">Bosco Verticale</strong><span data-i18n="g_h1">Foto migliori dalla piazza, sera illuminata</span></div>
+        <div class="highlight-item"><strong data-i18n="g_h2_l">Aperitivo</strong><span data-i18n="g_h2">Isola: numerosi locali per l'happy hour</span></div>
+        <div class="highlight-item"><strong data-i18n="g_h3_l">Corso Como</strong><span data-i18n="g_h3">Shopping alternativo e design</span></div>
+        <div class="highlight-item"><strong data-i18n="g_h4_l">Brera</strong><span data-i18n="g_h4">Pinacoteca di Brera, arte rinascimentale</span></div>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Piazza+Gae+Aulenti,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
+    </div></div>
+  </div>
+
+  <div class="section-card" id="card-cenisio">
+    <div class="section-header" onclick="toggleCard('card-cenisio')">
+      <div class="section-icon" style="background:linear-gradient(135deg,#9B8EC4,#6A5BA0)"><i class="fas fa-torii-gate"></i></div>
+      <div class="section-meta">
+        <div class="section-title" data-i18n="c_title">Cenisio, Sarpi & Sempione</div>
+        <div class="section-subtitle" data-i18n="c_sub">Chinatown · Cimitero Monumentale · Arco della Pace</div>
+      </div>
+      <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="section-body"><div class="section-body-inner">
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="c_m2_label">cambio M5 a Garibaldi</span></div>
+            <div class="step-desc" data-i18n="c_m2_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) dir. <strong>Abbiategrasso</strong> e scendi a <strong>Garibaldi FS</strong>. Da lì cambia con la <span class="badge badge-m5">M5 Lilla</span>.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#9B8EC4"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-m5">M5 Lilla</span> <span data-i18n="c_m5_label">— Per Monumentale e Cenisio</span></div>
+            <div class="step-desc" data-i18n="c_m5_desc">Prendi la M5 (Lilla) dir. <strong>San Siro Stadio</strong> e scendi a <strong>Monumentale</strong> (per il cimitero) o <strong>Cenisio</strong> (per Chinatown).</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-tram">Tram 1</span> <span data-i18n="c_tram_label">— Per il Parco Sempione</span></div>
+            <div class="step-desc" data-i18n="c_tram_desc">Da <strong>Loreto</strong> il Tram 1 percorre Corso Sempione fino all'<strong>Arco della Pace</strong>. Più lento ma senza cambi.</div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="c_s1_title">Cenisio → Via Paolo Sarpi (Chinatown)</div>
+            <div class="step-desc" data-i18n="c_s1_desc">5 minuti a piedi verso est. Ristoranti con cucina asiatica autentica, street food, mercato storico il sabato mattina.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="c_s2_title">M5 Monumentale → Cimitero Monumentale</div>
+            <div class="step-desc" data-i18n="c_s2_desc">3 minuti a piedi dall'uscita. Uno dei cimiteri più belli d'Europa con sculture liberty. Ingresso gratuito (chiuso il lunedì).</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="c_s3_title">Arco della Pace → Parco Sempione</div>
+            <div class="step-desc" data-i18n="c_s3_desc">Da <strong>Cenisio</strong> M5, a piedi 15 min. Il grande parco di Milano: lago, jogging, di fronte al Castello Sforzesco.</div>
+          </div>
+        </div>
+      </div>
+      <div class="highlights-grid">
+        <div class="highlight-item"><strong data-i18n="c_h1_l">Chinatown</strong><span data-i18n="c_h1">Ottima cucina asiatica autentica</span></div>
+        <div class="highlight-item"><strong data-i18n="c_h2_l">Cimitero</strong><span data-i18n="c_h2">Ingresso gratuito, arte liberty</span></div>
+        <div class="highlight-item"><strong data-i18n="c_h3_l">Parco Sempione</strong><span data-i18n="c_h3">Picnic e relax, aperto sempre</span></div>
+        <div class="highlight-item"><strong data-i18n="c_h4_l">Arco della Pace</strong><span data-i18n="c_h4">Foto migliori all'alba o tramonto</span></div>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Paolo+Sarpi,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
+    </div></div>
+  </div>
+
+  <div class="section-card" id="card-navigli">
+    <div class="section-header" onclick="toggleCard('card-navigli')">
+      <div class="section-icon" style="background:linear-gradient(135deg,#00A651,#007A3D)"><i class="fas fa-water"></i></div>
+      <div class="section-meta">
+        <div class="section-title" data-i18n="n_title">Navigli</div>
+        <div class="section-subtitle" data-i18n="n_sub">Darsena · Vita notturna · Locali sul canale</div>
+      </div>
+      <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="section-body"><div class="section-body-inner">
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="n_m2_label">— Opzione diretta</span></div>
+            <div class="step-desc" data-i18n="n_m2_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) dir. <strong>Abbiategrasso/Assago</strong> e scendi a <strong>Porta Genova FS</strong> (8 fermate, ~17 min). Uscita diretta sui Navigli.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div></div>
+          <div class="step-content">
+            <div class="step-title"><span class="badge badge-tram">Tram 3</span> <span data-i18n="n_tram_label">— Ritorno serale</span></div>
+            <div class="step-desc" data-i18n="n_tram_desc">Quando la metro chiude (~1:30), il Tram 3 notturno da <strong>Porta Genova</strong> va verso Centrale. Ottimo per rientrare dopo la serata.</div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="transport-block">
+        <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="n_s1_title">Porta Genova → Naviglio Grande</div>
+            <div class="step-desc" data-i18n="n_s1_desc">3 minuti a piedi. Osterie storiche, numerosi locali per l'aperitivo, gallerie d'arte sul lungocanale. Peak giovedì e sabato dalle 19:00.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="n_s2_title">Naviglio Grande → Darsena</div>
+            <div class="step-desc" data-i18n="n_s2_desc">10 minuti a piedi verso nord lungo il canale. Porto riqualificato, mercato del giovedì mattina, noleggio bici e kayak in estate.</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-line"><div class="step-dot"></div></div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="n_s3_title">Vicolo dei Lavandai & Naviglio Pavese</div>
+            <div class="step-desc" data-i18n="n_s3_desc">Il Vicolo dei Lavandai è il lavatoio medievale più fotografato di Milano, a 5 min da Porta Genova. Il Naviglio Pavese verso sud offre locali più tranquilli.</div>
+          </div>
+        </div>
+      </div>
+      <div class="highlights-grid">
+        <div class="highlight-item"><strong data-i18n="n_h1_l">Orario top</strong><span data-i18n="n_h1">Giovedì e sabato, dalle 19:00</span></div>
+        <div class="highlight-item"><strong data-i18n="n_h2_l">Aperitivo</strong><span data-i18n="n_h2">Molti locali storici sul lungocanale</span></div>
+        <div class="highlight-item"><strong data-i18n="n_h3_l">Mercatino</strong><span data-i18n="n_h3">Ultima domenica del mese: antiquariato</span></div>
+        <div class="highlight-item"><strong data-i18n="n_h4_l">Notte tardi</strong><span data-i18n="n_h4">Tram notturno per il rientro</span></div>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Ripa+di+Porta+Ticinese,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
+    </div></div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-box-title" data-i18n="tips_title">Consigli pratici</div>
+    <div class="tip-item">
+      <div class="tip-icon"><i class="fas fa-ticket-alt"></i></div>
+      <span data-i18n="tip1">Biglietto singolo ATM: <strong>€2,20</strong> · valido 90 min. App ufficiale ATM o carta contactless ai tornelli.</span>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <span data-i18n="tip2">Fermata più vicina: <strong>Loreto M1+M2</strong> a 2 min a piedi (uscita Piazza Loreto). Sia M1 Rossa che M2 Verde.</span>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon"><i class="fas fa-moon"></i></div>
+      <span data-i18n="tip3">Metro chiude ~<strong>1:30</strong> (ven-sab alle 2:30). Dopo: tram notturni o app di taxi.</span>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon"><i class="fas fa-bicycle"></i></div>
+      <span data-i18n="tip4"><strong>BikeMi</strong>: bici e e-bike in sharing in tutta la città. Ideale per Sempione, Navigli e Brera.</span>
+    </div>
+  </div>
 
   </div></div>
-</div>
 
-<div class="section-card" id="card-duomo">
-  <div class="section-header" onclick="toggleCard('card-duomo')">
-    <div class="section-icon" style="background:linear-gradient(135deg,#D93025,#9B1515)"><i class="fas fa-place-of-worship"></i></div>
-    <div class="section-meta">
-      <div class="section-title" data-i18n="d_title">Duomo & Centro Storico</div>
-      <div class="section-subtitle" data-i18n="d_sub">Piazza Duomo · Castello Sforzesco · Teatro alla Scala</div>
-    </div>
-    <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-  </div>
-  <div class="section-body"><div class="section-body-inner">
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#D93025"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-m1">M1 Rossa</span> <span data-i18n="d_m1_label">— Opzione consigliata</span></div>
-          <div class="step-desc" data-i18n="d_m1_desc">Dalla fermata <strong>Loreto</strong>, prendi la M1 (Rossa) dir. <strong>Bisceglie/Rho Fiera</strong> e scendi a <strong>Duomo</strong> (5 fermate, ~10 min). Uscita diretta su Piazza Duomo.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#F5C400"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-m3">M3 Gialla</span> <span data-i18n="d_m3_label">— Alternativa via Centrale</span></div>
-          <div class="step-desc" data-i18n="d_m3_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) per 2 fermate fino a <strong>Centrale FS</strong>, cambia con la M3 (Gialla) dir. <strong>San Donato</strong> e scendi a <strong>Duomo</strong>.</div>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="d_s1_title">Duomo → Castello Sforzesco</div>
-          <div class="step-desc" data-i18n="d_s1_desc">A piedi lungo Via Dante (15 min) oppure <span class="badge badge-m1">M1</span> per una fermata fino a <strong>Cairoli</strong>. Parco ad accesso libero, musei a pagamento.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="d_s2_title">Duomo → Piazza della Scala</div>
-          <div class="step-desc" data-i18n="d_s2_desc">5 minuti a piedi attraversando la <strong>Galleria Vittorio Emanuele II</strong>. Tradizione milanese: ruotare il tacco sul mosaico del toro per portare fortuna.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="d_s3_title">Shopping: Quadrilatero della Moda</div>
-          <div class="step-desc" data-i18n="d_s3_desc"><span class="badge badge-m3">M3</span> fermata <strong>Montenapoleone</strong> (1 fermata da Duomo). Via Montenapoleone, Via della Spiga: le griffe internazionali.</div>
-        </div>
-      </div>
-    </div>
-    <div class="highlights-grid">
-      <div class="highlight-item"><strong data-i18n="tip">Da non perdere</strong><span data-i18n="d_h1">Terrazza del Duomo al tramonto</span></div>
-      <div class="highlight-item"><strong data-i18n="advice">Consiglio</strong><span data-i18n="d_h2">Prenotazione online consigliata</span></div>
-      <div class="highlight-item"><strong data-i18n="d_h3_label">Galleria V.E. II</strong><span data-i18n="d_h3">Aperta 24h, caffe storici</span></div>
-      <div class="highlight-item"><strong data-i18n="d_h4_label">Cenacolo Vinciano</strong><span data-i18n="d_h4">Prenotare con mesi di anticipo!</span></div>
-    </div>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Piazza+del+Duomo,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
-  </div></div>
-</div>
-
-<div class="section-card" id="card-gae">
-  <div class="section-header" onclick="toggleCard('card-gae')">
-    <div class="section-icon" style="background:linear-gradient(135deg,#F5C400,#D4A000); color: #1a1a1a;"><i class="fas fa-city"></i></div>
-    <div class="section-meta">
-      <div class="section-title" data-i18n="g_title">Gae Aulenti & Isola</div>
-      <div class="section-subtitle" data-i18n="g_sub">Corso Como · Corso Garibaldi · Bosco Verticale</div>
-    </div>
-    <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-  </div>
-  <div class="section-body"><div class="section-body-inner">
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="g_m2_label">— Opzione principale</span></div>
-          <div class="step-desc" data-i18n="g_m2_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) dir. <strong>Abbiategrasso/Assago</strong> e scendi a <strong>Garibaldi FS</strong> (2 fermate, ~5 min). Uscita su Piazza Gae Aulenti.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-tram">Tram 9</span> <span data-i18n="g_tram_label">— Alternativa panoramica</span></div>
-          <div class="step-desc" data-i18n="g_tram_desc">Il Tram 9 da <strong>Loreto</strong> percorre Viale Monza verso Centrale poi <strong>Garibaldi</strong>. Più lento ma ti fa scoprire il quartiere in superficie.</div>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="g_s1_title">Gae Aulenti → Corso Como</div>
-          <div class="step-desc" data-i18n="g_s1_desc">3 minuti a piedi. Un concept store iconico con ristorante e galleria d'arte nel cortile — l'indirizzo più trendy di Milano.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="g_s2_title">Garibaldi → Corso Garibaldi</div>
-          <div class="step-desc" data-i18n="g_s2_desc">A piedi 5 min verso sud. Street food, negozi indipendenti, specialty coffee. La strada arriva fino a <strong>Brera</strong>, il quartiere degli artisti.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="g_s3_title">Quartiere Isola</div>
-          <div class="step-desc" data-i18n="g_s3_desc">Dal portale di Gae Aulenti, prendi la passerella pedonale verso nord (10 min). Murales, mercatini vintage, aperitivi nei locali locali.</div>
-        </div>
-      </div>
-    </div>
-    <div class="highlights-grid">
-      <div class="highlight-item"><strong data-i18n="g_h1_l">Bosco Verticale</strong><span data-i18n="g_h1">Foto migliori dalla piazza, sera illuminata</span></div>
-      <div class="highlight-item"><strong data-i18n="g_h2_l">Aperitivo</strong><span data-i18n="g_h2">Isola: numerosi locali per l'happy hour</span></div>
-      <div class="highlight-item"><strong data-i18n="g_h3_l">Corso Como</strong><span data-i18n="g_h3">Shopping alternativo e design</span></div>
-      <div class="highlight-item"><strong data-i18n="g_h4_l">Brera</strong><span data-i18n="g_h4">Pinacoteca di Brera, arte rinascimentale</span></div>
-    </div>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Piazza+Gae+Aulenti,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
-  </div></div>
-</div>
-
-<div class="section-card" id="card-cenisio">
-  <div class="section-header" onclick="toggleCard('card-cenisio')">
-    <div class="section-icon" style="background:linear-gradient(135deg,#9B8EC4,#6A5BA0)"><i class="fas fa-torii-gate"></i></div>
-    <div class="section-meta">
-      <div class="section-title" data-i18n="c_title">Cenisio, Sarpi & Sempione</div>
-      <div class="section-subtitle" data-i18n="c_sub">Chinatown · Cimitero Monumentale · Arco della Pace</div>
-    </div>
-    <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-  </div>
-  <div class="section-body"><div class="section-body-inner">
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="c_m2_label">cambio M5 a Garibaldi</span></div>
-          <div class="step-desc" data-i18n="c_m2_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) dir. <strong>Abbiategrasso</strong> e scendi a <strong>Garibaldi FS</strong>. Da lì cambia con la <span class="badge badge-m5">M5 Lilla</span>.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#9B8EC4"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-m5">M5 Lilla</span> <span data-i18n="c_m5_label">— Per Monumentale e Cenisio</span></div>
-          <div class="step-desc" data-i18n="c_m5_desc">Prendi la M5 (Lilla) dir. <strong>San Siro Stadio</strong> e scendi a <strong>Monumentale</strong> (per il cimitero) o <strong>Cenisio</strong> (per Chinatown).</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-tram">Tram 1</span> <span data-i18n="c_tram_label">— Per il Parco Sempione</span></div>
-          <div class="step-desc" data-i18n="c_tram_desc">Da <strong>Loreto</strong> il Tram 1 percorre Corso Sempione fino all'<strong>Arco della Pace</strong>. Più lento ma senza cambi.</div>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="c_s1_title">Cenisio → Via Paolo Sarpi (Chinatown)</div>
-          <div class="step-desc" data-i18n="c_s1_desc">5 minuti a piedi verso est. Ristoranti con cucina asiatica autentica, street food, mercato storico il sabato mattina.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="c_s2_title">M5 Monumentale → Cimitero Monumentale</div>
-          <div class="step-desc" data-i18n="c_s2_desc">3 minuti a piedi dall'uscita. Uno dei cimiteri più belli d'Europa con sculture liberty. Ingresso gratuito (chiuso il lunedì).</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="c_s3_title">Arco della Pace → Parco Sempione</div>
-          <div class="step-desc" data-i18n="c_s3_desc">Da <strong>Cenisio</strong> M5, a piedi 15 min. Il grande parco di Milano: lago, jogging, di fronte al Castello Sforzesco.</div>
-        </div>
-      </div>
-    </div>
-    <div class="highlights-grid">
-      <div class="highlight-item"><strong data-i18n="c_h1_l">Chinatown</strong><span data-i18n="c_h1">Ottima cucina asiatica autentica</span></div>
-      <div class="highlight-item"><strong data-i18n="c_h2_l">Cimitero</strong><span data-i18n="c_h2">Ingresso gratuito, arte liberty</span></div>
-      <div class="highlight-item"><strong data-i18n="c_h3_l">Parco Sempione</strong><span data-i18n="c_h3">Picnic e relax, aperto sempre</span></div>
-      <div class="highlight-item"><strong data-i18n="c_h4_l">Arco della Pace</strong><span data-i18n="c_h4">Foto migliori all'alba o tramonto</span></div>
-    </div>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Paolo+Sarpi,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
-  </div></div>
-</div>
-
-<div class="section-card" id="card-navigli">
-  <div class="section-header" onclick="toggleCard('card-navigli')">
-    <div class="section-icon" style="background:linear-gradient(135deg,#00A651,#007A3D)"><i class="fas fa-water"></i></div>
-    <div class="section-meta">
-      <div class="section-title" data-i18n="n_title">Navigli</div>
-      <div class="section-subtitle" data-i18n="n_sub">Darsena · Vita notturna · Locali sul canale</div>
-    </div>
-    <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-  </div>
-  <div class="section-body"><div class="section-body-inner">
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_arrive">Come arrivare</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot" style="background:#00A651"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-m2">M2 Verde</span> <span data-i18n="n_m2_label">— Opzione diretta</span></div>
-          <div class="step-desc" data-i18n="n_m2_desc">Da <strong>Loreto</strong> prendi la M2 (Verde) dir. <strong>Abbiategrasso/Assago</strong> e scendi a <strong>Porta Genova FS</strong> (8 fermate, ~17 min). Uscita diretta sui Navigli.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div></div>
-        <div class="step-content">
-          <div class="step-title"><span class="badge badge-tram">Tram 3</span> <span data-i18n="n_tram_label">— Ritorno serale</span></div>
-          <div class="step-desc" data-i18n="n_tram_desc">Quando la metro chiude (~1:30), il Tram 3 notturno da <strong>Porta Genova</strong> va verso Centrale. Ottimo per rientrare dopo la serata.</div>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="transport-block">
-      <div class="block-label" data-i18n="how_move">Come spostarsi nella zona</div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="n_s1_title">Porta Genova → Naviglio Grande</div>
-          <div class="step-desc" data-i18n="n_s1_desc">3 minuti a piedi. Osterie storiche, numerosi locali per l'aperitivo, gallerie d'arte sul lungocanale. Peak giovedì e sabato dalle 19:00.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="n_s2_title">Naviglio Grande → Darsena</div>
-          <div class="step-desc" data-i18n="n_s2_desc">10 minuti a piedi verso nord lungo il canale. Porto riqualificato, mercato del giovedì mattina, noleggio bici e kayak in estate.</div>
-        </div>
-      </div>
-      <div class="transport-step">
-        <div class="step-line"><div class="step-dot"></div></div>
-        <div class="step-content">
-          <div class="step-title" data-i18n="n_s3_title">Vicolo dei Lavandai & Naviglio Pavese</div>
-          <div class="step-desc" data-i18n="n_s3_desc">Il Vicolo dei Lavandai è il lavatoio medievale più fotografato di Milano, a 5 min da Porta Genova. Il Naviglio Pavese verso sud offre locali più tranquilli.</div>
-        </div>
-      </div>
-    </div>
-    <div class="highlights-grid">
-      <div class="highlight-item"><strong data-i18n="n_h1_l">Orario top</strong><span data-i18n="n_h1">Giovedì e sabato, dalle 19:00</span></div>
-      <div class="highlight-item"><strong data-i18n="n_h2_l">Aperitivo</strong><span data-i18n="n_h2">Molti locali storici sul lungocanale</span></div>
-      <div class="highlight-item"><strong data-i18n="n_h3_l">Mercatino</strong><span data-i18n="n_h3">Ultima domenica del mese: antiquariato</span></div>
-      <div class="highlight-item"><strong data-i18n="n_h4_l">Notte tardi</strong><span data-i18n="n_h4">Tram notturno per il rientro</span></div>
-    </div>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Ripa+di+Porta+Ticinese,+Milano" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
-  </div></div>
-</div>
-
-<div class="tip-box">
-  <div class="tip-box-title" data-i18n="tips_title">Consigli pratici</div>
-  <div class="tip-item">
-    <div class="tip-icon"><i class="fas fa-ticket-alt"></i></div>
-    <span data-i18n="tip1">Biglietto singolo ATM: <strong>€2,20</strong> · valido 90 min. App ufficiale ATM o carta contactless ai tornelli.</span>
-  </div>
-  <div class="tip-item">
-    <div class="tip-icon"><i class="fas fa-map-marker-alt"></i></div>
-    <span data-i18n="tip2">Fermata più vicina: <strong>Loreto M1+M2</strong> a 2 min a piedi (uscita Piazza Loreto). Sia M1 Rossa che M2 Verde.</span>
-  </div>
-  <div class="tip-item">
-    <div class="tip-icon"><i class="fas fa-moon"></i></div>
-    <span data-i18n="tip3">Metro chiude ~<strong>1:30</strong> (ven-sab alle 2:30). Dopo: tram notturni o app di taxi.</span>
-  </div>
-  <div class="tip-item">
-    <div class="tip-icon"><i class="fas fa-bicycle"></i></div>
-    <span data-i18n="tip4"><strong>BikeMi</strong>: bici e e-bike in sharing in tutta la città. Ideale per Sempione, Navigli e Brera.</span>
-  </div>
-</div>
-
-</div><script>
+<script>
 var T = {
   it: {
-    eyebrow:"", headline:"Benvenuti<br>a Milano",
+    eyebrow:"", headline_info:"Informazioni<br>Appartamento", headline_transp:"Benvenuti<br>a Milano",
+    nav_info:"Info Appartamento", nav_transport:"Trasporti & Attrazioni",
     hostLabel:"Il tuo Host", callHost:"Chiama",
     intro:"Top attrazioni e come raggiungerle con i mezzi pubblici. Tocca una sezione per espanderla.",
     how_arrive:"Come arrivare", how_move:"Come spostarsi nella zona",
     tip:"Da non perdere", advice:"Consiglio", tips_title:"Consigli pratici",
     
+    wifi_title:"Wi-Fi & Internet", wifi_sub:"Connessione rapida gratuita", btn_copy:"Copia", btn_copied:"Copiata!",
+    desc_t1:"Lo spazio", desc_t2:"Accesso per gli ospiti",
+    desc_p1:"Elegante appartamento nel cuore di Milano, in posizione strategica vicino tre linee metropolitane. A soli 30m da Corso Buenos Aires, 350 m dalla Stazione Centrale e bus diretti per gli aeroporti. La casa ha due camere da letto, Wi-Fi veloce, ascensore e ogni comfort. Un’oasi di silenzio ed eleganza perfetta per scoprire Milano con comodità e stile. Deposito bagaglio con key Box per libero deposito e ritiro. Connessione rapida con stazione e tutti gli Aeroporti tramite bus n. 92 e navette.",
+    desc_p2:"Appartamento super accessoriato al terzo piano con ascensore e balcone interno. Ospita fino a 4 persone. L’appartamento ha due camere con letti matrimoniali.<br><br>Collegato a tutta la città, stazioni, aeroporti e all’Arena dei Giochi Olimpici 2026.",
+    desc_p3:"Appartamento ad uso esclusivo degli ospiti, completamente privato e dotato di ogni comfort. Ideale per chi desidera privacy e relax nel cuore di Milano.",
+
     phones_title:"Numeri Utili",
     phone_taxi_short:"Taxi: 02 8585",
     phone_pharma_short:"Farmacia: 02 29400 513",
@@ -709,12 +819,19 @@ var T = {
     tip4:"<strong>BikeMi</strong>: bici e e-bike in sharing in tutta la città. Ideale per Sempione, Navigli e Brera."
   },
   en: {
-    eyebrow:"", headline:"Welcome<br>to Milan",
+    eyebrow:"", headline_info:"Apartment<br>Information", headline_transp:"Welcome<br>to Milan",
+    nav_info:"Apartment Info", nav_transport:"Transport & Attractions",
     hostLabel:"Your Host", callHost:"Call",
     intro:"Top attractions and how to reach them by public transport. Tap a section to expand.",
     how_arrive:"How to get there", how_move:"Getting around the area",
     tip:"Don't miss", advice:"Tip", tips_title:"Practical tips",
     
+    wifi_title:"Wi-Fi & Internet", wifi_sub:"Free fast connection", btn_copy:"Copy", btn_copied:"Copied!",
+    desc_t1:"The Space", desc_t2:"Guest Access",
+    desc_p1:"Elegant apartment in the heart of Milan, strategically located near three metro lines. Just 30m from Corso Buenos Aires, 350m from Central Station and direct airport buses. The house features two bedrooms, fast Wi-Fi, an elevator, and every comfort. An oasis of silence and elegance perfect for discovering Milan with comfort and style. Luggage storage with Key Box for self drop-off and pick-up. Quick connection to the station and all airports via bus 92 and airport shuttles.",
+    desc_p2:"Fully equipped third-floor apartment with an elevator and internal balcony. Accommodates up to 4 people. The apartment has two bedrooms with double beds.<br><br>Connected to the whole city, stations, airports, and the 2026 Olympic Games Arena.",
+    desc_p3:"Apartment for the exclusive use of guests, completely private and equipped with every comfort. Ideal for those seeking privacy and relaxation in the heart of Milan.",
+
     phones_title:"Useful Numbers",
     phone_taxi_short:"Taxi: 02 8585",
     phone_pharma_short:"Pharmacy: 02 29400 513",
@@ -810,11 +927,18 @@ var T = {
     tip4:"<strong>BikeMi</strong>: bike-sharing throughout the city. Ideal for Sempione, Navigli and Brera."
   },
   zh: {
-    eyebrow:"", headline:"欢迎来到<br>米兰",
+    eyebrow:"", headline_info:"公寓信息", headline_transp:"欢迎来到<br>米兰",
+    nav_info:"公寓信息", nav_transport:"交通与景点",
     hostLabel:"我的房东", callHost:"打电话",
     intro:"主要景点及从这里出发的公共交通路线。点击各区域展开详情。",
     how_arrive:"如何到达", how_move:"在该区域内游览",
     tip:"必看", advice:"小贴士", tips_title:"实用建议",
+
+    wifi_title:"Wi-Fi 与网络", wifi_sub:"免费高速网络", btn_copy:"复制", btn_copied:"已复制！",
+    desc_t1:"房源介绍", desc_t2:"房客使用权限",
+    desc_p1:"位于米兰市中心的优雅公寓，地理位置优越，靠近三条地铁线。距布宜诺斯艾利斯大街仅30米，距中央车站和直达机场巴士350米。房屋设有两间卧室、高速Wi-Fi、电梯和各种舒适设施。这是一个宁静优雅的绿洲，是舒适而有格调地探索米兰的完美之选。提供带密码盒的行李寄存处，方便自助存取。通过92路公交车和机场班车快速连接车站和所有机场。",
+    desc_p2:"位于三楼的设备齐全的公寓，配有电梯和内部阳台。最多可容纳4人。公寓有两间配有双人床的卧室。<br><br>连接整个城市、车站、机场和2026年奥运会场馆。",
+    desc_p3:"公寓供房客独享，完全私密，设施齐全。非常适合那些希望在米兰市中心享受隐私和放松的人。",
 
     phones_title:"实用电话",
     phone_taxi_short:"出租车: 02 8585",
@@ -911,11 +1035,18 @@ var T = {
     tip4:"<strong>BikeMi</strong>：共享单车和电动车，遍布全市。特别适合森皮奥内、纳维利和布雷拉。"
   },
   es: {
-    eyebrow:"", headline:"Bienvenidos<br>a Milán",
+    eyebrow:"", headline_info:"Información<br>Apartamento", headline_transp:"Bienvenidos<br>a Milán",
+    nav_info:"Info Apartamento", nav_transport:"Transporte y Atracciones",
     hostLabel:"Tu Anfitrión", callHost:"Llamar",
     intro:"Principales atracciones y cómo llegar en transporte público. Toca una sección para expandirla.",
     how_arrive:"Cómo llegar", how_move:"Cómo moverse por la zona",
     tip:"No te pierdas", advice:"Consejo", tips_title:"Consejos prácticos",
+
+    wifi_title:"Wi-Fi y Red", wifi_sub:"Conexión rápida gratuita", btn_copy:"Copiar", btn_copied:"¡Copiada!",
+    desc_t1:"El Espacio", desc_t2:"Acceso para huéspedes",
+    desc_p1:"Elegante apartamento en el corazón de Milán, estratégicamente ubicado cerca de tres líneas de metro. A solo 30m de Corso Buenos Aires, a 350m de la Estación Central y autobuses directos al aeropuerto. La casa cuenta con dos dormitorios, Wi-Fi rápido, ascensor y todas las comodidades. Un oasis de silencio y elegancia perfecto para descubrir Milán con comodidad y estilo. Guardaequipajes con Key Box para depósito y recogida libre. Conexión rápida con la estación y todos los aeropuertos a través del autobús 92 y lanzaderas.",
+    desc_p2:"Apartamento súper equipado en la tercera planta con ascensor y balcón interior. Acomoda hasta 4 personas. El apartamento tiene dos dormitorios con camas dobles.<br><br>Conectado a toda la ciudad, estaciones, aeropuertos y al estadio de los Juegos Olímpicos 2026.",
+    desc_p3:"Apartamento de uso exclusivo para los huéspedes, completamente privado y equipado con todas las comodidades. Ideal para quienes buscan privacidad y relax en el corazón de Milán.",
 
     phones_title:"Números Útiles",
     phone_taxi_short:"Taxi: 02 8585",
@@ -1013,6 +1144,7 @@ var T = {
   }
 };
 
+// UI & Menu Logic
 function toggleCard(id) {
   var card = document.getElementById(id);
   var isOpen = card.classList.contains('open');
@@ -1036,60 +1168,134 @@ function setDirection(dir) {
   }
 }
 
-function toggleLangDrawer() {
-  document.getElementById('lang-drawer').classList.toggle('open');
+// Sidebar logic
+function openMenu() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebar-overlay').classList.add('open');
+  closeAllDrawers();
+}
+
+function closeMenu() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function switchPage(pageId) {
+  // Update nav buttons
+  document.getElementById('nav-info').classList.remove('active');
+  document.getElementById('nav-transport').classList.remove('active');
+  document.getElementById('nav-' + pageId).classList.add('active');
+  
+  // Hide all pages
+  var pages = document.querySelectorAll('.page-section');
+  for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
+  
+  // Show selected page
+  document.getElementById('page-' + pageId).classList.add('active');
+  
+  // Update header title based on page
+  var titleEl = document.getElementById('main-title');
+  if(pageId === 'info') {
+    titleEl.setAttribute('data-i18n', 'headline_info');
+  } else {
+    titleEl.setAttribute('data-i18n', 'headline_transp');
+  }
+  
+  // Re-run translation to update the header
+  var currentLang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
+  applyTranslations(currentLang);
+
+  // Close sidebar
+  closeMenu();
+  window.scrollTo(0,0);
+}
+
+// Floating Action Buttons (Drawers)
+function closeAllDrawers() {
+  document.getElementById('lang-drawer').classList.remove('open');
   document.getElementById('host-drawer').classList.remove('open');
   document.getElementById('emerg-drawer').classList.remove('open');
+}
+
+function toggleLangDrawer() {
+  var d = document.getElementById('lang-drawer');
+  var isOpen = d.classList.contains('open');
+  closeAllDrawers();
+  if(!isOpen) d.classList.add('open');
 }
 
 function toggleHostDrawer() {
-  document.getElementById('host-drawer').classList.toggle('open');
-  document.getElementById('lang-drawer').classList.remove('open');
-  document.getElementById('emerg-drawer').classList.remove('open');
+  var d = document.getElementById('host-drawer');
+  var isOpen = d.classList.contains('open');
+  closeAllDrawers();
+  if(!isOpen) d.classList.add('open');
 }
 
 function toggleEmergDrawer() {
-  document.getElementById('emerg-drawer').classList.toggle('open');
-  document.getElementById('lang-drawer').classList.remove('open');
-  document.getElementById('host-drawer').classList.remove('open');
+  var d = document.getElementById('emerg-drawer');
+  var isOpen = d.classList.contains('open');
+  closeAllDrawers();
+  if(!isOpen) d.classList.add('open');
 }
 
+// Chiudi drawer cliccando fuori
 document.addEventListener('click', function(e) {
-  var langDrawer = document.getElementById('lang-drawer');
-  var langFab = document.getElementById('lang-fab');
-  var hostDrawer = document.getElementById('host-drawer');
-  var hostFab = document.getElementById('host-fab');
-  var emergDrawer = document.getElementById('emerg-drawer');
-  var emergFab = document.getElementById('emerg-fab');
-
-  if (!langDrawer.contains(e.target) && !langFab.contains(e.target)) {
-    langDrawer.classList.remove('open');
-  }
-  if (!hostDrawer.contains(e.target) && !hostFab.contains(e.target)) {
-    hostDrawer.classList.remove('open');
-  }
-  if (!emergDrawer.contains(e.target) && !emergFab.contains(e.target)) {
-    emergDrawer.classList.remove('open');
+  if (!document.getElementById('lang-drawer').contains(e.target) && !document.getElementById('lang-fab').contains(e.target) &&
+      !document.getElementById('host-drawer').contains(e.target) && !document.getElementById('host-fab').contains(e.target) &&
+      !document.getElementById('emerg-drawer').contains(e.target) && !document.getElementById('emerg-fab').contains(e.target) &&
+      !e.target.closest('.menu-btn')) {
+    closeAllDrawers();
   }
 });
 
-document.getElementById('lang-drawer').addEventListener('click', function(e) {
-  var btn = e.target.closest('.lang-btn');
-  if (!btn) return;
-  var lang = btn.getAttribute('data-lang');
-  if (!lang || !T[lang]) return;
-  var btns = document.querySelectorAll('.lang-btn');
-  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('active'); }
-  btn.classList.add('active');
-  document.getElementById('lang-drawer').classList.remove('open');
+// Copy Wifi Password Function
+function copyWifi() {
+  var passwordText = document.getElementById("wifi-pass").innerText;
+  navigator.clipboard.writeText(passwordText).then(function() {
+    var btn = document.getElementById("btn-copy-wifi");
+    var lang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
+    
+    btn.classList.add("copied");
+    btn.innerHTML = '<i class="fas fa-check"></i> <span>' + T[lang].btn_copied + '</span>';
+    
+    setTimeout(function() {
+      btn.classList.remove("copied");
+      btn.innerHTML = '<i class="fas fa-copy"></i> <span>' + T[lang].btn_copy + '</span>';
+    }, 2000);
+  });
+}
+
+// Language Logic
+function applyTranslations(lang) {
   var t = T[lang];
+  if (!t) return;
   var els = document.querySelectorAll('[data-i18n]');
   for (var j = 0; j < els.length; j++) {
     var key = els[j].getAttribute('data-i18n');
     if (t[key] !== undefined) { els[j].innerHTML = t[key]; }
   }
 }
-);
+
+document.getElementById('lang-drawer').addEventListener('click', function(e) {
+  var btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  var lang = btn.getAttribute('data-lang');
+  
+  // Update active state
+  var btns = document.querySelectorAll('.lang-btn');
+  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('active'); }
+  btn.classList.add('active');
+  
+  // Close drawer & apply translation
+  document.getElementById('lang-drawer').classList.remove('open');
+  applyTranslations(lang);
+});
+
+// Applica lingua iniziale al caricamento
+document.addEventListener("DOMContentLoaded", function() {
+  applyTranslations('it');
+});
+
 </script>
 </body>
 </html>

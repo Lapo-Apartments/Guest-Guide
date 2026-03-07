@@ -96,7 +96,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .desc-text{font-size:.9rem;color:var(--navy-mid);line-height:1.6;margin-bottom:16px}
 .desc-title{font-size:1.05rem;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--navy);margin:20px 0 8px;display:flex;align-items:center;gap:8px}
 .desc-title i {color:var(--gold-dim); font-size:0.9rem;}
-.map-container{width:100%;height:200px;border-radius:12px;overflow:hidden;margin-bottom:20px;border:1px solid var(--cream-dark);box-shadow:var(--shadow)}
+.map-container{width:100%;height:250px;border-radius:12px;overflow:hidden;margin-bottom:20px;border:1px solid var(--cream-dark);box-shadow:var(--shadow)}
 
 /* WIFI BOX */
 .wifi-box{background:var(--navy);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:18px;margin-top:14px;color:white}
@@ -114,7 +114,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .rules-group:last-child { margin-bottom: 0; }
 .rules-group-title { font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
 .rule-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; font-size: 0.88rem; color: var(--navy-mid); line-height: 1.4; }
-.rule-item i { font-size: 1.1rem; color: var(--gold-dim); width: 22px; text-align: center; margin-top: 2px; }
+.rule-item i { font-size: 1.1rem; color: var(--gold-dim); width: 22px; text-align: center; margin-top: 2px; flex-shrink: 0; }
+.trash-img { width: 100%; max-width: 400px; border-radius: 8px; margin-top: 10px; display: block; border: 1px solid rgba(201,168,76,0.2); }
 
 /* CARDS (Transport Page & General) */
 .section-card{background:var(--white);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);}
@@ -166,6 +167,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .btn-map{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--navy);text-decoration:none;padding:13px 20px;border-radius:11px;font-weight:700;font-size:.87rem;margin-top:14px;transition:opacity .2s,transform .2s;letter-spacing:.03em;background:linear-gradient(135deg,var(--gold-light),var(--gold))}
 .btn-map:active{opacity:.85;transform:scale(0.98)}
 .divider{height:1px;background:var(--cream-dark);margin:14px 0}
+
+/* GENERIC HOME BUTTON */
+.btn-home-nav { background: var(--navy); color: var(--gold-light); margin: 0 0 20px 0; border: 1px solid var(--gold-dim); box-shadow: var(--shadow); }
+.btn-home-nav:hover { background: var(--navy-mid); }
 
 /* TIP BOX */
 .tip-box{background:var(--navy);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:18px;margin-top:20px}
@@ -249,7 +254,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   <div class="container">
     
     <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.7479707567776!2d9.20815197652758!3d45.48496463273181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6cf068d3ddb%3A0xe4a194eb1d0f5080!2sVia%20Giovanni%20Battista%20Pergolesi%2C%203%2C%2020124%20Milano%20MI!5e0!3m2!1sit!2sit!4v1709400000000!5m2!1sit!2sit" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.747990710645!2d9.21045761555776!3d45.48512107910129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6c5b9f71bfd%3A0x8e84a22b3b72ea9b!2sVia%20Giovanni%20Battista%20Pergolesi%2C%203%2C%2020124%20Milano%20MI!5e0!3m2!1sit!2sit!4v1699999999999!5m2!1sit!2sit" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
     </div>
 
     <div class="desc-block">
@@ -315,30 +320,36 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         
         <div class="rules-group">
           <div class="rules-group-title" data-i18n="rules_g1">Check-in e check-out</div>
-          <div class="rule-item"><i class="far fa-clock"></i> <span data-i18n="rule_checkin">Check-in: 14:00 - 01:00</span></div>
-          <div class="rule-item"><i class="fas fa-sign-out-alt"></i> <span data-i18n="rule_checkout">Check-out entro le ore 10:00</span></div>
-          <div class="rule-item"><i class="fas fa-key"></i> <span data-i18n="rule_selfin">Self check-in con cassetta delle chiavi</span></div>
+          <div class="rule-item"><i class="far fa-clock"></i> <div><span data-i18n="rule_checkin">Check-in: 14:00 - 01:00</span></div></div>
+          <div class="rule-item"><i class="fas fa-sign-out-alt"></i> <div><span data-i18n="rule_checkout">Check-out entro le ore 10:00</span></div></div>
+          <div class="rule-item"><i class="fas fa-key"></i> <div><span data-i18n="rule_selfin">Self check-in con cassetta delle chiavi</span></div></div>
         </div>
 
         <div class="rules-group">
           <div class="rules-group-title" data-i18n="rules_g2">Durante il soggiorno</div>
-          <div class="rule-item"><i class="fas fa-user-friends"></i> <span data-i18n="rule_guests">Massimo 5 ospiti</span></div>
-          <div class="rule-item"><i class="fas fa-paw"></i> <span data-i18n="rule_pets">Nessun animale domestico</span></div>
-          <div class="rule-item"><i class="fas fa-glass-cheers"></i> <span data-i18n="rule_parties">Vietato organizzare feste/eventi</span></div>
-          <div class="rule-item"><i class="fas fa-smoking-ban"></i> <span data-i18n="rule_smoke">Non è consentito fumare</span></div>
+          <div class="rule-item"><i class="fas fa-user-friends"></i> <div><span data-i18n="rule_guests">Massimo 5 ospiti</span></div></div>
+          <div class="rule-item"><i class="fas fa-paw"></i> <div><span data-i18n="rule_pets">Nessun animale domestico</span></div></div>
+          <div class="rule-item"><i class="fas fa-glass-cheers"></i> <div><span data-i18n="rule_parties">Vietato organizzare feste/eventi</span></div></div>
+          <div class="rule-item"><i class="fas fa-smoking-ban"></i> <div><span data-i18n="rule_smoke">Non è consentito fumare</span></div></div>
         </div>
 
         <div class="rules-group">
           <div class="rules-group-title" data-i18n="rules_g3">Regole aggiuntive</div>
-          <div class="rule-item"><i class="fas fa-elevator"></i> <span data-i18n="rule_elev">É importante chiudere sempre le porte interne dell'ascensore per evitare il blocco del suo funzionamento. Grazie per la collaborazione.</span></div>
-          <div class="rule-item"><i class="fas fa-couch"></i> <span data-i18n="rule_5th">Su richiesta anticipata è possibile ospitare una quinta persona con un supplemento di 25 euro a notte, da versare tramite il centro risoluzioni Airbnb. In questo caso sarà disponibile il divano letto nel soggiorno.</span></div>
+          <div class="rule-item"><i class="fas fa-elevator"></i> <div><span data-i18n="rule_elev">È importante chiudere sempre le porte interne dell'ascensore per evitare il blocco del suo funzionamento. Grazie per la collaborazione.</span></div></div>
+          <div class="rule-item"><i class="fas fa-couch"></i> <div><span data-i18n="rule_5th">Su richiesta anticipata è possibile ospitare una quinta persona con un supplemento di 25 euro a notte, da versare tramite il centro risoluzioni Airbnb. In questo caso sarà disponibile il divano letto nel soggiorno.</span></div></div>
         </div>
 
         <div class="rules-group">
           <div class="rules-group-title" data-i18n="rules_g4">Prima della partenza</div>
-          <div class="rule-item"><i class="fas fa-shower"></i> <span data-i18n="rule_towels">Raccogliere gli asciugamani usati</span></div>
-          <div class="rule-item"><i class="fas fa-trash-alt"></i> <span data-i18n="rule_trash">Buttare la spazzatura</span></div>
-          <div class="rule-item"><i class="fas fa-power-off"></i> <span data-i18n="rule_power">Spegnere tutto</span></div>
+          <div class="rule-item"><i class="fas fa-shower"></i> <div><span data-i18n="rule_towels">Raccogliere gli asciugamani usati</span></div></div>
+          <div class="rule-item">
+            <i class="fas fa-trash-alt"></i> 
+            <div>
+              <span data-i18n="rule_trash">Buttare la spazzatura</span>
+              <img src="cestino.jpg" alt="Regole Spazzatura" class="trash-img">
+            </div>
+          </div>
+          <div class="rule-item"><i class="fas fa-power-off"></i> <div><span data-i18n="rule_power">Spegnere tutto</span></div></div>
         </div>
 
       </div></div>
@@ -356,6 +367,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   </div>
 
   <div class="container">
+
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map btn-home-nav" target="_blank">
+    <i class="fas fa-location-arrow"></i> <span data-i18n="btn_take_me_home">Riportami all'Appartamento (da dove sono ora)</span>
+  </a>
 
   <div class="section-card" id="card-airports">
     <div class="section-header" onclick="toggleCard('card-airports')">
@@ -397,7 +412,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_a3_d">Linate Shuttle fino a <strong>Stazione Centrale</strong>. Da lì cammina 10 min o prendi la M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://goo.gl/maps/QG3E3o8k1a2r1jLUA" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Linate&destination=Via+G.B.+Pergolesi,+3,+Milano&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -414,7 +429,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_a2_d">Bus (Malpensa Shuttle/Terravision) fino a <strong>Stazione Centrale</strong>. Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://goo.gl/maps/bH2r7R6t2z8b3kMV9" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+Milano+Malpensa&destination=Via+G.B.+Pergolesi,+3,+Milano&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -424,7 +439,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_a1_d">Orio Shuttle o Terravision fino a <strong>Stazione Centrale</strong> (60 min). Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://goo.gl/maps/5a1r8R7t3z9c4kNW1" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+Bergamo+Orio+al+Serio&destination=Via+G.B.+Pergolesi,+3,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
       </div>
 
       <div id="content-departure" style="display:none;">
@@ -451,7 +466,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_d3_d">Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.</div>
           </div>
         </div>
-        <a href="https://goo.gl/maps/1a2r1jLUAQG3E3o8k" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Linate&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -468,7 +483,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_d2_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Biglietti a bordo.</div>
           </div>
         </div>
-        <a href="https://goo.gl/maps/2z8b3kMV9bH2r7R6t" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+Milano+Malpensa&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -478,7 +493,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_d1_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi o con la M2 da <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://goo.gl/maps/3z9c4kNW15a1r8R7t" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+Bergamo+Orio+al+Serio&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
       </div>
 
     </div></div>
@@ -542,7 +557,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="d_h3_label">Galleria V.E. II</strong><span data-i18n="d_h3">Aperta 24h, caffe storici</span></div>
         <div class="highlight-item"><strong data-i18n="d_h4_label">Cenacolo Vinciano</strong><span data-i18n="d_h4">Prenotare con mesi di anticipo!</span></div>
       </div>
-      <a href="https://goo.gl/maps/DUOMO_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
+      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Piazza+del+Duomo,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
     </div></div>
   </div>
 
@@ -604,7 +619,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="g_h3_l">Corso Como</strong><span data-i18n="g_h3">Shopping alternativo e design</span></div>
         <div class="highlight-item"><strong data-i18n="g_h4_l">Brera</strong><span data-i18n="g_h4">Pinacoteca di Brera, arte rinascimentale</span></div>
       </div>
-      <a href="https://goo.gl/maps/GAE_AULENTI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
+      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Piazza+Gae+Aulenti,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
     </div></div>
   </div>
 
@@ -673,7 +688,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="c_h3_l">Parco Sempione</strong><span data-i18n="c_h3">Picnic e relax, aperto sempre</span></div>
         <div class="highlight-item"><strong data-i18n="c_h4_l">Arco della Pace</strong><span data-i18n="c_h4">Foto migliori all'alba o tramonto</span></div>
       </div>
-      <a href="https://goo.gl/maps/PAOLO_SARPI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
+      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Via+Paolo+Sarpi,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
     </div></div>
   </div>
 
@@ -735,7 +750,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="n_h3_l">Mercatino</strong><span data-i18n="n_h3">Ultima domenica del mese: antiquariato</span></div>
         <div class="highlight-item"><strong data-i18n="n_h4_l">Notte tardi</strong><span data-i18n="n_h4">Tram notturno per il rientro</span></div>
       </div>
-      <a href="https://goo.gl/maps/NAVIGLI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
+      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Naviglio+Grande,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
     </div></div>
   </div>
 
@@ -789,7 +804,7 @@ var T = {
     rule_parties: "Vietato organizzare feste/eventi",
     rule_smoke: "Non è consentito fumare",
     rules_g3: "Regole aggiuntive",
-    rule_elev: "É importante chiudere sempre le porte interne dell'ascensore per evitare il blocco del suo funzionamento. Grazie per la collaborazione.",
+    rule_elev: "È importante chiudere sempre le porte interne dell'ascensore per evitare il blocco del suo funzionamento. Grazie per la collaborazione.",
     rule_5th: "Su richiesta anticipata è possibile ospitare una quinta persona con un supplemento di 25 euro a notte, da versare tramite il centro risoluzioni Airbnb. In questo caso sarà disponibile il divano letto nel soggiorno.",
     rules_g4: "Prima della partenza",
     rule_towels: "Raccogliere gli asciugamani usati",
@@ -818,6 +833,8 @@ var T = {
     lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> (Consigliata)", lin_d1_d:"Da <strong>Loreto</strong> prendi la M1 (Rossa) fino a <strong>San Babila</strong>, cambia con M4 (Blu) direzione <strong>Linate</strong> fino al capolinea.",
     lin_d2_t:"<span class='badge badge-bus'>Bus 92</span> + <span class='badge badge-m4'>M4</span> (Alternativa)", lin_d2_d:"Da <strong>Piazza Caiazzo</strong> prendi il Bus 92 fino a <strong>Dateo</strong>, cambia con la M4 (Blu) fino a <strong>Linate</strong>.",
     lin_d3_t:"<i class='fas fa-bus'></i> Bus Shuttle (Via Centrale)", lin_d3_d:"Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.",
+    
+    btn_take_me_home: "Riportami all'Appartamento (da dove sono ora)",
     btn_nav_apt: "Naviga verso l'Appartamento", btn_nav_air: "Naviga verso l'Aeroporto",
 
     d_title:"Duomo & Centro Storico", d_sub:"Piazza Duomo · Castello Sforzesco · Teatro alla Scala",
@@ -945,6 +962,8 @@ var T = {
     lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> (Recommended)", lin_d1_d:"From <strong>Loreto</strong> take M1 (Red) to <strong>San Babila</strong>, switch to M4 (Blue) towards <strong>Linate</strong> terminus.",
     lin_d2_t:"<span class='badge badge-bus'>Bus 92</span> + <span class='badge badge-m4'>M4</span> (Alternative)", lin_d2_d:"From <strong>Piazza Caiazzo</strong> take Bus 92 to <strong>Dateo</strong>, switch to M4 (Blue) to <strong>Linate</strong>.",
     lin_d3_t:"<i class='fas fa-bus'></i> Shuttle Bus (Via Centrale)", lin_d3_d:"Buses depart from the east side of <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Reach by walking or M2.",
+    
+    btn_take_me_home: "Take me back to the Apartment",
     btn_nav_apt: "Navigate to Apartment", btn_nav_air: "Navigate to Airport",
 
     d_title:"Duomo & Historic Centre", d_sub:"Piazza Duomo · Sforza Castle · La Scala Theatre",
@@ -1072,6 +1091,8 @@ var T = {
     lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> (推荐)", lin_d1_d:"从 <strong>Loreto</strong> 乘M1红线至 <strong>San Babila</strong>，换乘M4蓝线（往Linate方向）直达终点站。",
     lin_d2_t:"<span class='badge badge-bus'>Bus 92</span> + <span class='badge badge-m4'>M4</span> (备选)", lin_d2_d:"从 <strong>Piazza Caiazzo</strong> 乘92路公交至 <strong>Dateo</strong>，换乘M4蓝线至 <strong>Linate</strong>。",
     lin_d3_t:"<i class='fas fa-bus'></i> 机场大巴", lin_d3_d:"前往Linate的大巴从 <strong>Stazione Centrale</strong> 东侧发车。可步行或乘M2到达。",
+    
+    btn_take_me_home: "带我回公寓 (从我当前的位置)",
     btn_nav_apt: "导航至公寓", btn_nav_air: "导航至机场",
 
     d_title:"米兰大教堂与历史中心", d_sub:"大教堂广场 · 斯福尔扎城堡 · 斯卡拉歌剧院",
@@ -1199,6 +1220,8 @@ var T = {
     lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> (Recomendada)", lin_d1_d:"Desde <strong>Loreto</strong> toma la M1 (Roja) a <strong>San Babila</strong>, cambia a la M4 (Azul) hasta <strong>Linate</strong>.",
     lin_d2_t:"<span class='badge badge-bus'>Bus 92</span> + <span class='badge badge-m4'>M4</span> (Alternativa)", lin_d2_d:"Desde <strong>Piazza Caiazzo</strong> toma el Bus 92 a <strong>Dateo</strong>, cambia a la M4 (Azul) hasta <strong>Linate</strong>.",
     lin_d3_t:"<i class='fas fa-bus'></i> Autobús Shuttle (Vía Centrale)", lin_d3_d:"Autobuses desde el lado este de <strong>Stazione Centrale</strong>. Llega caminando o con la M2.",
+    
+    btn_take_me_home: "Llévame de vuelta al Apartamento",
     btn_nav_apt: "Navegar al Apartamento", btn_nav_air: "Navegar al Aeropuerto",
 
     d_title:"Duomo & Centro Histórico", d_sub:"Plaza del Duomo · Castillo Sforzesco · Teatro alla Scala",
@@ -1252,7 +1275,7 @@ var T = {
     c_btn:"Llévame a Sarpi / Cenisio",
     n_title:"Navigli", n_sub:"Darsena · Vida nocturna · Bares junto al canal",
     n_m2_label:"— Opción directa",
-    n_m2_desc:"Desde <strong>Loreto</strong> toma la M2 (Verde) hacia <strong>Abbiategrasso/Assago</strong> y baja en <strong>Porta Genova FS</strong> (8 paradas, ~17 min).",
+    n_m2_desc:"Desde <strong>Loreto</strong> toma la M2 (Verde) hacia <strong>Abbiategrasso/Assago</strong> y baja en <strong>Porta Genova FS</strong> (8 paradas, ~17 mins). Exit onto the Navigli.",
     n_tram_label:"— Regreso nocturno",
     n_tram_desc:"Después de ~1:30, el Tranvía nocturno 3 desde <strong>Porta Genova</strong> va hacia Centrale. Perfecto para volver tras una noche de fiesta.",
     n_s1_title:"Porta Genova → Naviglio Grande",

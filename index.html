@@ -1,465 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="logo.png">
-<title>LAPO Apartments — Guest Guide</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:#9A7A35;
-  --navy:#1E2B3A;--navy-mid:#2C3E52;
-  --cream:#F5F0E8;--cream-dark:#EDE6D6;
-  --white:#FFFFFF;--muted:#8A8070;
-  --border:rgba(201,168,76,0.18);--radius:18px;
-  --shadow:0 4px 24px rgba(30,43,58,0.13);
-  --green-pharma: #28a745;
-}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
-
-/* FABS TOP (Menu & Lang) */
-.top-fab{position:absolute;top:24px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:background .2s,transform .2s}
-.top-fab:hover{background:var(--navy);transform:scale(1.05)}
-.fab-left{left:18px;}
-.fab-right{right:18px;}
-
-/* LANG DRAWER */
-.lang-drawer{position:absolute;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
-.lang-drawer.open{opacity:1;transform:none;pointer-events:all}
-.lang-btn{background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.7);padding:7px 16px;border-radius:20px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap}
-.lang-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
-.lang-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
-
-/* SIDEBAR MENU */
-.sidebar-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:299;opacity:0;pointer-events:none;transition:opacity 0.3s}
-.sidebar-overlay.open{opacity:1;pointer-events:all}
-.sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);box-shadow:4px 0 24px rgba(0,0,0,0.3);padding:30px 20px;display:flex;flex-direction:column}
-.sidebar.open{transform:translateX(0)}
-.sidebar-logo{width:120px;margin-bottom:30px}
-.menu-link{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.7);text-decoration:none;padding:14px 12px;border-radius:12px;font-size:1.05rem;font-weight:500;margin-bottom:8px;transition:all 0.2s;cursor:pointer}
-.menu-link i{font-size:1.2rem;color:var(--gold-dim);width:24px;text-align:center}
-.menu-link:hover, .menu-link.active{background:rgba(201,168,76,0.1);color:var(--white)}
-.menu-link.active i{color:var(--gold)}
-
-/* HEADER */
-.header{background:var(--navy);padding:32px 20px 28px;text-align:center;position:relative;overflow:hidden;background-image:url('header.jpg');background-size:cover;background-position:center 40%}
-.header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.82) 60%, rgba(30,43,58,0.95) 100%);pointer-events:none}
-.header > * { position: relative; z-index: 1; }
-.logo-wrap{display:flex;justify-content:center;margin-bottom:14px}
-.logo-img{width:180px;height:180px;object-fit:contain}
-.header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,6vw,2.6rem);font-weight:700;color:#FFFFFF;line-height:1.1;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.9),0 0 30px rgba(0,0,0,0.8)}
-.header-address{font-size:.8rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:.06em}
-.gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0}
-
-/* FABS BOTTOM (Host & Emerg) */
-.host-fab{position:fixed;bottom:20px;right:18px;width:48px;height:48px;border-radius:50%;background:#25D366;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,0.5);transition:background .2s,transform .2s}
-.host-fab:hover{background:#1eae57;transform:scale(1.08)}
-.host-drawer{position:fixed;bottom:78px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:160px}
-.host-drawer.open{opacity:1;transform:none;pointer-events:all}
-.host-drawer-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dim);padding:2px 10px 4px;border-bottom:1px solid rgba(201,168,76,0.15);margin-bottom:2px}
-
-.emerg-fab{position:fixed;bottom:20px;left:18px;width:48px;height:48px;border-radius:50%;background:var(--navy);border:1.5px solid #D93025;color:#D93025;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:background .2s,transform .2s}
-.emerg-fab:hover{background:var(--navy-mid);transform:scale(1.08)}
-.emerg-drawer{position:fixed;bottom:78px;left:18px;background:var(--navy);border:1px solid #D93025;border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:180px}
-.emerg-drawer.open{opacity:1;transform:none;pointer-events:all}
-.emerg-drawer-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#D93025;padding:2px 10px 4px;border-bottom:1px solid rgba(217,48,37,0.15);margin-bottom:2px}
-
-.host-action-btn{display:flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.8);padding:9px 14px;border-radius:10px;font-size:.83rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap;text-decoration:none;width:100%}
-.host-action-btn i{font-size:1rem;width:16px;text-align:center}
-.host-action-btn.wa{border-color:rgba(37,211,102,0.4);color:#4ee58a}
-.host-action-btn.wa:hover{background:rgba(37,211,102,0.12);border-color:#25D366}
-.host-action-btn.call{border-color:rgba(201,168,76,0.4);color:var(--gold-light)}
-.host-action-btn.call:hover{background:rgba(201,168,76,0.12);border-color:var(--gold)}
-.host-action-btn.pharma{border-color:rgba(40,167,69,0.4);color:var(--green-pharma)}
-.host-action-btn.pharma:hover{background:rgba(40,167,69,0.12);border-color:var(--green-pharma)}
-.host-action-btn.emerg{border-color:rgba(217,48,37,0.4);color:#D93025}
-.host-action-btn.emerg:hover{background:rgba(217,48,37,0.12);border-color:#D93025}
-
-/* INTRO */
-.intro-strip{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;gap:10px;font-size:.83rem;color:rgba(255,255,255,0.55)}
-.intro-strip i{color:var(--gold);font-size:.9rem;flex-shrink:0}
-
-/* PAGES */
-.page-section{display:none; animation:fadeIn 0.4s ease}
-.page-section.active{display:block}
-@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
-.container{max-width:680px;margin:0 auto;padding:20px 14px 80px}
-
-/* TEXT CONTENT (Info Page) */
-.desc-block{background:var(--white);border-radius:var(--radius);padding:22px;margin-bottom:20px;box-shadow:var(--shadow);border:1px solid var(--border);}
-.desc-text{font-size:.9rem;color:var(--navy-mid);line-height:1.6;margin-bottom:16px}
-.desc-title{font-size:1.05rem;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--navy);margin:20px 0 8px;display:flex;align-items:center;gap:8px}
-.desc-title i {color:var(--gold-dim); font-size:0.9rem;}
-.map-container{width:100%;height:250px;border-radius:12px;overflow:hidden;margin-bottom:20px;border:1px solid var(--cream-dark);box-shadow:var(--shadow)}
-
-/* WIFI BOX */
-.wifi-box{background:var(--navy);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:18px;margin-top:14px;color:white}
-.wifi-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(201,168,76,0.15)}
-.wifi-row:last-child{border-bottom:none;padding-bottom:0}
-.wifi-label{font-size:.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
-.wifi-value{font-size:1.1rem;font-weight:600;color:var(--gold-light);letter-spacing:0.03em}
-.btn-copy{background:rgba(201,168,76,0.15);border:1px solid var(--gold-dim);color:var(--gold-light);padding:8px 14px;border-radius:8px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
-.btn-copy:hover{background:var(--gold);color:var(--navy)}
-.btn-copy.copied{background:#25D366;border-color:#25D366;color:white}
-
-/* REGOLE E COSA TROVERAI */
-.rules-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
-.rules-group { margin-bottom: 20px; }
-.rules-group:last-child { margin-bottom: 0; }
-.rules-group-title { font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-.rule-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; font-size: 0.88rem; color: var(--navy-mid); line-height: 1.4; }
-.rule-item i { font-size: 1.1rem; color: var(--gold-dim); width: 22px; text-align: center; margin-top: 2px; flex-shrink: 0; }
-.trash-img { width: 100%; max-width: 400px; border-radius: 8px; margin-top: 10px; display: block; border: 1px solid rgba(201,168,76,0.2); }
-
-/* CARDS (Transport Page & General) */
-.section-card{background:var(--white);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);}
-.section-header{display:flex;align-items:center;gap:14px;padding:17px 18px;cursor:pointer;user-select:none;transition:background .2s}
-.section-header:hover{background:var(--cream)}
-.section-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;color:white}
-.section-meta{flex:1}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;line-height:1.2;color:var(--navy)}
-.section-subtitle{font-size:.75rem;color:var(--muted);margin-top:2px;font-weight:400}
-.section-toggle{width:30px;height:30px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);transition:transform .35s ease,background .2s,color .2s;flex-shrink:0}
-.section-card.open .section-toggle{transform:rotate(180deg);background:var(--navy);color:var(--gold)}
-.section-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94)}
-.section-card.open .section-body{max-height:4000px}
-.section-body-inner{padding:0 18px 20px;border-top:1px solid var(--cream-dark)}
-
-/* TRANSFER TOGGLE */
-.direction-toggle { display: flex; background: var(--cream); padding: 4px; border-radius: 12px; margin: 16px 0; border: 1px solid var(--border); }
-.dir-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-.dir-btn.active { background: var(--white); color: var(--navy); box-shadow: 0 2px 8px rgba(30,43,58,0.1); }
-.airport-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
-.airport-title i { color: var(--gold); }
-
-/* TRANSPORT */
-.transport-block{margin-top:16px}
-.block-label{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.block-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.transport-step{display:flex;gap:12px;margin-bottom:13px;align-items:flex-start}
-.step-line{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding-top:5px}
-.step-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex-shrink:0}
-.step-connector{width:1px;flex:1;background:var(--border);margin:4px 0;min-height:14px}
-.step-content{flex:1}
-.step-title{font-size:.88rem;font-weight:600;margin-bottom:3px;color:var(--navy);display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-.step-desc{font-size:.81rem;color:var(--muted);line-height:1.55}
-.step-desc strong{color:var(--navy);font-weight:600}
-
-/* BADGES */
-.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:6px;font-size:.7rem;font-weight:700;letter-spacing:.02em;color:white}
-.badge-m1{background:#D93025}.badge-m2{background:#00A651}.badge-m3{background:#F5C400;color:#1a1a1a}.badge-m4{background:#0072CE}.badge-m5{background:#9B8EC4}
-.badge-tram{background:var(--navy-mid)}
-.badge-bus{background:#E47128}
-.badge-train{background:#5A5A5A}
-
-/* HIGHLIGHTS */
-.highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
-.highlight-item{background:var(--cream);border-radius:10px;padding:11px 12px;font-size:.8rem;border:1px solid var(--cream-dark);color:var(--navy);line-height:1.4}
-.highlight-item strong{display:block;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-dim);margin-bottom:3px;font-weight:700}
-
-/* MAP BTN */
-.btn-map{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--navy);text-decoration:none;padding:13px 20px;border-radius:11px;font-weight:700;font-size:.87rem;margin-top:14px;transition:opacity .2s,transform .2s;letter-spacing:.03em;background:linear-gradient(135deg,var(--gold-light),var(--gold))}
-.btn-map:active{opacity:.85;transform:scale(0.98)}
-.divider{height:1px;background:var(--cream-dark);margin:14px 0}
-
-/* GENERIC HOME BUTTON */
-.btn-home-nav { background: var(--navy); color: var(--gold-light); margin: 0 0 20px 0; border: 1px solid var(--gold-dim); box-shadow: var(--shadow); }
-.btn-home-nav:hover { background: var(--navy-mid); }
-
-/* TIP BOX */
-.tip-box{background:var(--navy);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:18px;margin-top:20px}
-.tip-box-title{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:700}
-.tip-item{display:flex;gap:12px;margin-bottom:0;font-size:.83rem;line-height:1.55;color:rgba(255,255,255,0.78);padding:10px 0;border-bottom:1px solid rgba(201,168,76,0.1);align-items:flex-start}
-.tip-item:last-child{border-bottom:none;padding-bottom:0}
-.tip-item:first-child{padding-top:0}
-.tip-icon{width:28px;height:28px;border-radius:8px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.tip-icon i{color:var(--gold);font-size:.75rem}
-.tip-item strong{color:var(--gold-light)}
-</style>
-</head>
-<body>
-
-<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMenu()"></div>
-
-<div class="sidebar" id="sidebar">
-  <img src="logo.png" alt="Logo" class="sidebar-logo">
-  
-  <a class="menu-link active" id="nav-info" onclick="switchPage('info')">
-    <i class="fas fa-home"></i> <span data-i18n="nav_info">Info Appartamento</span>
-  </a>
-  <a class="menu-link" id="nav-transport" onclick="switchPage('transport')">
-    <i class="fas fa-subway"></i> <span data-i18n="nav_transport">Trasporti & Attrazioni</span>
-  </a>
-</div>
-
-<button class="top-fab fab-left" onclick="openMenu()" title="Menu">
-  <i class="fas fa-bars"></i>
-</button>
-
-<button class="top-fab fab-right" id="lang-fab" onclick="toggleLangDrawer()" title="Change language">
-  <i class="fas fa-language"></i>
-</button>
-<div class="lang-drawer" id="lang-drawer">
-  <button class="lang-btn active" data-lang="it">🇮🇹 Italiano</button>
-  <button class="lang-btn" data-lang="en">🇬🇧 English</button>
-  <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
-  <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
-</div>
-
-<button class="host-fab" id="host-fab" onclick="toggleHostDrawer()" title="Contatta l'Host">
-  <i class="fab fa-whatsapp"></i>
-</button>
-<div class="host-drawer" id="host-drawer">
-  <div class="host-drawer-label" data-i18n="hostLabel">Il tuo Host</div>
-  <a href="https://wa.me/393480004094" target="_blank" class="host-action-btn wa">
-    <i class="fab fa-whatsapp"></i> WhatsApp
-  </a>
-  <a href="tel:+393480004094" class="host-action-btn call">
-    <i class="fas fa-phone"></i> <span data-i18n="callHost">Chiama</span>
-  </a>
-</div>
-
-<button class="emerg-fab" id="emerg-fab" onclick="toggleEmergDrawer()" title="Numeri Utili">
-  <i class="fas fa-life-ring"></i>
-</button>
-<div class="emerg-drawer" id="emerg-drawer">
-  <div class="emerg-drawer-label" data-i18n="phones_title">Numeri Utili</div>
-  <a href="tel:028585" class="host-action-btn call">
-    <i class="fas fa-taxi"></i> <span data-i18n="phone_taxi_short">Taxi: 02 8585</span>
-  </a>
-  <a href="tel:0229400513" class="host-action-btn pharma">
-    <i class="fas fa-pills"></i> <span data-i18n="phone_pharma_short">Farmacia: 02 29400 513</span>
-  </a>
-  <a href="tel:112" class="host-action-btn emerg">
-    <i class="fas fa-star-of-life"></i> <span data-i18n="phone_emerg_short">Soccorso: 112</span>
-  </a>
-</div>
-
-<header class="header">
-  <div class="logo-wrap"><img class="logo-img" src="logo.png" alt="LAPO Apartments"></div>
-  <div class="header-eyebrow" data-i18n="eyebrow"> </div>
-  <h1 id="main-title" data-i18n="headline_info">Informazioni<br>Appartamento</h1>
-  <div class="header-address">Via G.B. Pergolesi, 3 · Milano</div>
-  <div class="gold-line"></div>
-</header>
-
-
-<div id="page-info" class="page-section active">
-  <div class="container">
-    
-    <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.834460777595!2d9.210452315557713!3d45.48512197910113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6b4d32a4e21%3A0xc3f562450505d9be!2sVia%20Giovanni%20Battista%20Pergolesi%2C%203%2C%2020124%20Milano%20MI!5e0!3m2!1sit!2sit!4v1689714804363!5m2!1sit!2sit" width="100%" height="250px" frameborder="0" style="border:0;" allowfullscreen></iframe>
-    </div>
-
-    <div class="desc-block">
-      <div class="desc-text" data-i18n="desc_p1">
-        Elegante appartamento nel cuore di Milano, situato in una posizione strategica a pochi passi da tre linee metropolitane. Si trova a soli 30 metri da Corso Buenos Aires e a 350 metri dalla Stazione Centrale, da cui partono i bus diretti per tutti gli aeroporti. La casa offre due camere da letto, Wi-Fi veloce, ascensore e ogni genere di comfort. Un’oasi di silenzio ed eleganza, perfetta per scoprire la città con comodità e stile. È inoltre disponibile un deposito bagagli con Key Box per il ritiro e il deposito in totale autonomia. Ottimi i collegamenti con stazioni e aeroporti anche tramite il bus 92 e le navette dedicate.
-      </div>
-      
-      <div class="desc-title"><i class="fas fa-door-open"></i> <span data-i18n="desc_t1">Lo spazio</span></div>
-      <div class="desc-text" data-i18n="desc_p2">
-        L'appartamento, super accessoriato e servito da ascensore, si trova al terzo piano e vanta un tranquillo balcone interno. Può ospitare fino a 4 persone, disponendo di due camere con letti matrimoniali.<br><br>Gode di collegamenti rapidi con l'intera città, le principali stazioni, gli aeroporti e l'Arena dei prossimi Giochi Olimpici 2026.
-      </div>
-
-      <div class="desc-title"><i class="fas fa-key"></i> <span data-i18n="desc_t2">Accesso per gli ospiti</span></div>
-      <div class="desc-text" data-i18n="desc_p3">
-        L'appartamento è ad uso esclusivo degli ospiti: uno spazio completamente privato e dotato di tutto il necessario. La scelta ideale per chi desidera unire privacy e relax nel cuore di Milano.
-      </div>
-    </div>
-
-    <div class="section-card" id="card-wifi">
-      <div class="section-header" onclick="toggleCard('card-wifi')">
-        <div class="section-icon" style="background:linear-gradient(135deg,#2196F3,#0d47a1)"><i class="fas fa-wifi"></i></div>
-        <div class="section-meta">
-          <div class="section-title" data-i18n="wifi_title">Wi-Fi & Internet</div>
-          <div class="section-subtitle" data-i18n="wifi_sub">Connessione rapida gratuita</div>
-        </div>
-        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-      </div>
-      <div class="section-body"><div class="section-body-inner" style="padding-top:10px;">
-        <div class="wifi-box">
-          <div class="wifi-row">
-            <div>
-              <div class="wifi-label">Rete (SSID)</div>
-              <div class="wifi-value">NOME_WIFI_QUI</div>
-            </div>
-          </div>
-          <div class="wifi-row">
-            <div>
-              <div class="wifi-label">Password</div>
-              <div class="wifi-value" id="wifi-pass">PASSWORD_QUI</div>
-            </div>
-            <button class="btn-copy" id="btn-copy-wifi" onclick="copyWifi()">
-              <i class="fas fa-copy"></i> <span data-i18n="btn_copy">Copia</span>
-            </button>
-          </div>
-        </div>
-      </div></div>
-    </div>
-
-    <div class="section-card" id="card-rules">
-      <div class="section-header" onclick="toggleCard('card-rules')">
-        <div class="section-icon" style="background:linear-gradient(135deg,#FF5A5F,#D93025)"><i class="fas fa-book-open"></i></div>
-        <div class="section-meta">
-          <div class="section-title" data-i18n="rules_title">Regole della Casa</div>
-          <div class="section-subtitle" data-i18n="rules_sub">Informazioni per un soggiorno perfetto</div>
-        </div>
-        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-      </div>
-      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
-        
-        <div class="rules-intro" data-i18n="rules_intro">
-          Soggiornerai nell'alloggio di un'altra persona, quindi ti preghiamo di trattarlo con cura e rispetto.
-        </div>
-        
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="rules_g1">Check-in e check-out</div>
-          <div class="rule-item"><i class="far fa-clock"></i> <div><span data-i18n="rule_checkin">Check-in: 14:00 - 01:00</span></div></div>
-          <div class="rule-item"><i class="fas fa-sign-out-alt"></i> <div><span data-i18n="rule_checkout">Check-out entro le ore 10:00</span></div></div>
-          <div class="rule-item"><i class="fas fa-key"></i> <div><span data-i18n="rule_selfin">Self check-in con cassetta delle chiavi</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="rules_g2">Durante il soggiorno</div>
-          <div class="rule-item"><i class="fas fa-user-friends"></i> <div><span data-i18n="rule_guests">Massimo 5 ospiti</span></div></div>
-          <div class="rule-item"><i class="fas fa-paw"></i> <div><span data-i18n="rule_pets">Nessun animale domestico</span></div></div>
-          <div class="rule-item"><i class="fas fa-glass-cheers"></i> <div><span data-i18n="rule_parties">Vietato organizzare feste/eventi</span></div></div>
-          <div class="rule-item"><i class="fas fa-smoking-ban"></i> <div><span data-i18n="rule_smoke">Non è consentito fumare</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="rules_g3">Regole aggiuntive</div>
-          <div class="rule-item"><i class="fas fa-elevator"></i> <div><span data-i18n="rule_elev">È importante chiudere sempre le porte interne dell'ascensore per evitare il blocco del suo funzionamento. Grazie per la collaborazione.</span></div></div>
-          <div class="rule-item"><i class="fas fa-couch"></i> <div><span data-i18n="rule_5th">Su richiesta anticipata è possibile ospitare una quinta persona con un supplemento di 25 euro a notte, da versare tramite il centro risoluzioni Airbnb. In questo caso sarà disponibile il divano letto nel soggiorno.</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="rules_g4">Prima della partenza</div>
-          <div class="rule-item"><i class="fas fa-shower"></i> <div><span data-i18n="rule_towels">Raccogliere gli asciugamani usati</span></div></div>
-          <div class="rule-item">
-            <i class="fas fa-trash-alt"></i> 
-            <div>
-              <span data-i18n="rule_trash">Buttare la spazzatura</span>
-              <img src="cestino.jpeg" alt="Regole Spazzatura" class="trash-img">
-            </div>
-          </div>
-          <div class="rule-item"><i class="fas fa-power-off"></i> <div><span data-i18n="rule_power">Spegnere tutto</span></div></div>
-        </div>
-
-      </div></div>
-    </div>
-
-    <div class="section-card" id="card-amenities">
-      <div class="section-header" onclick="toggleCard('card-amenities')">
-        <div class="section-icon" style="background:linear-gradient(135deg,#9C27B0,#1565C0)"><i class="fas fa-list-ul"></i></div>
-        <div class="section-meta">
-          <div class="section-title" data-i18n="am_title">Cosa troverai</div>
-          <div class="section-subtitle" data-i18n="am_sub">I servizi a tua disposizione</div>
-        </div>
-        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
-      </div>
-      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_views">Viste panoramiche</div>
-          <div class="rule-item"><i class="fas fa-tree"></i> <div><span data-i18n="am_v_yard">Vista sul cortile e sul giardino</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_bath">Bagno</div>
-          <div class="rule-item"><i class="fas fa-wind"></i> <div><span data-i18n="am_b_hair">Asciugacapelli e Acqua calda</span></div></div>
-          <div class="rule-item"><i class="fas fa-spray-can"></i> <div><span data-i18n="am_b_clean">Prodotti per la pulizia</span></div></div>
-          <div class="rule-item"><i class="fas fa-pump-soap"></i> <div><span data-i18n="am_b_soap">Shampoo, balsamo, bagnoschiuma e sapone</span></div></div>
-          <div class="rule-item"><i class="fas fa-toilet"></i> <div><span data-i18n="am_b_bidet">Bidè</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_bed">Camera e Lavanderia</div>
-          <div class="rule-item"><i class="fas fa-tshirt"></i> <div><span data-i18n="am_bed_wash">Lavatrice gratuita (nell'alloggio)</span></div></div>
-          <div class="rule-item"><i class="fas fa-bed"></i> <div><span data-i18n="am_bed_ess">Asciugamani, lenzuola, sapone e carta igienica</span></div></div>
-          <div class="rule-item"><i class="fas fa-blanket"></i> <div><span data-i18n="am_bed_linens">Biancheria in cotone, coperte e cuscini extra</span></div></div>
-          <div class="rule-item"><i class="fas fa-box-open"></i> <div><span data-i18n="am_bed_store">Armadio, grucce, stendibiancheria</span></div></div>
-          <div class="rule-item"><i class="fas fa-bolt"></i> <div><span data-i18n="am_bed_iron">Ferro da stiro</span></div></div>
-          <div class="rule-item"><i class="fas fa-moon"></i> <div><span data-i18n="am_bed_dark">Tende oscuranti</span></div></div>
-          <div class="rule-item"><i class="fas fa-lock"></i> <div><span data-i18n="am_bed_safe">Cassaforte</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_ent">Intrattenimento e Famiglia</div>
-          <div class="rule-item"><i class="fas fa-tv"></i> <div><span data-i18n="am_ent_tv">HDTV 50" (Via cavo, Prime Video, Netflix)</span></div></div>
-          <div class="rule-item"><i class="fas fa-music"></i> <div><span data-i18n="am_ent_audio">Sistema audio Sony AUX</span></div></div>
-          <div class="rule-item"><i class="fas fa-book"></i> <div><span data-i18n="am_ent_books">Libri e materiale di lettura</span></div></div>
-          <div class="rule-item"><i class="fas fa-child"></i> <div><span data-i18n="am_ent_fam">Protezioni angoli tavoli</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_heat">Riscaldamento e Sicurezza</div>
-          <div class="rule-item"><i class="fas fa-snowflake"></i> <div><span data-i18n="am_heat_ac">Aria condizionata e ventilatore</span></div></div>
-          <div class="rule-item"><i class="fas fa-fire"></i> <div><span data-i18n="am_heat_heat">Riscaldamento</span></div></div>
-          <div class="rule-item"><i class="fas fa-smog"></i> <div><span data-i18n="am_heat_safe">Allarme antincendio e monossido</span></div></div>
-          <div class="rule-item"><i class="fas fa-medkit"></i> <div><span data-i18n="am_heat_ext">Estintore e Kit di primo soccorso</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_net">Internet e Ufficio</div>
-          <div class="rule-item"><i class="fas fa-wifi"></i> <div><span data-i18n="am_net_wifi">Wi-Fi veloce (885 Mbps)</span></div></div>
-          <div class="rule-item"><i class="fas fa-laptop-house"></i> <div><span data-i18n="am_net_work">Spazio di lavoro dedicato</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_kitch">Cucina e Zona pranzo</div>
-          <div class="rule-item"><i class="fas fa-utensils"></i> <div><span data-i18n="am_kit_cook">Cucina completa per cucinare</span></div></div>
-          <div class="rule-item"><i class="fas fa-icicles"></i> <div><span data-i18n="am_kit_fridge">Frigorifero Smeg e Congelatore</span></div></div>
-          <div class="rule-item"><i class="fas fa-pizza-slice"></i> <div><span data-i18n="am_kit_oven">Forno e Microonde</span></div></div>
-          <div class="rule-item"><i class="fas fa-fire-burner"></i> <div><span data-i18n="am_kit_stove">Piano cottura a gas e Lavastoviglie</span></div></div>
-          <div class="rule-item"><i class="fas fa-coffee"></i> <div><span data-i18n="am_kit_coffee">Macchina caffè, bollitore, tostapane, frullatore</span></div></div>
-          <div class="rule-item"><i class="fas fa-wine-glass"></i> <div><span data-i18n="am_kit_dish">Piatti, posate, pentole e calici da vino</span></div></div>
-          <div class="rule-item"><i class="fas fa-trash-restore"></i> <div><span data-i18n="am_kit_bbq">Utensili barbecue e compattatore</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_out">Caratteristiche e All'aperto</div>
-          <div class="rule-item"><i class="fas fa-door-open"></i> <div><span data-i18n="am_out_priv">Ingresso privato</span></div></div>
-          <div class="rule-item"><i class="fas fa-sun"></i> <div><span data-i18n="am_out_balc">Patio o balcone privato</span></div></div>
-          <div class="rule-item"><i class="fas fa-leaf"></i> <div><span data-i18n="am_out_gard">Giardino condiviso recintato</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_park">Parcheggio e Strutture</div>
-          <div class="rule-item"><i class="fas fa-elevator"></i> <div><span data-i18n="am_park_elev">Ascensore</span></div></div>
-          <div class="rule-item"><i class="fas fa-charging-station"></i> <div><span data-i18n="am_park_ev">Ricarica per veicoli elettrici</span></div></div>
-          <div class="rule-item"><i class="fas fa-parking"></i> <div><span data-i18n="am_park_gar">Garage a pagamento (1 in loco, e non)</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_serv">Servizi</div>
-          <div class="rule-item"><i class="fas fa-calendar-check"></i> <div><span data-i18n="am_serv_long">Soggiorni a lungo termine permessi</span></div></div>
-          <div class="rule-item"><i class="fas fa-key"></i> <div><span data-i18n="am_serv_check">Self check-in con cassetta chiavi</span></div></div>
-        </div>
-
-        <div class="rules-group">
-          <div class="rules-group-title" data-i18n="am_g_not" style="color: #D93025;">Non incluso</div>
-          <div class="rule-item"><i class="fas fa-video-slash" style="color: #D93025;"></i> <div><span data-i18n="am_not_cam">Non ci sono telecamere di sorveglianza</span></div></div>
-          <div class="rule-item"><i class="fas fa-ban" style="color: #D93025;"></i> <div><span data-i18n="am_not_dry">Asciugatrice non disponibile</span></div></div>
-        </div>
-
-        <a href="https://www.airbnb.it/rooms/40902873?source_impression_id=p3_1772628103_P3NPyZZGw-HYWXFn" target="_blank" class="btn-map" style="background:linear-gradient(135deg, #FF5A5F, #E61E4D); color: white; margin-top: 25px;">
-          <i class="fab fa-airbnb" style="font-size: 1.3rem;"></i> <span data-i18n="btn_airbnb">Vedi l'annuncio su Airbnb</span>
-        </a>
-
-      </div></div>
-    </div>
-
-  </div>
-</div>
-
-
 <div id="page-transport" class="page-section">
   
   <div class="intro-strip">
@@ -469,7 +7,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 
   <div class="container">
 
-  <a href="https://www.google.com/maps/dir/?api=1&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map btn-home-nav" target="_blank">
+  <a href="https://goo.gl/maps/QG3E3o8k1a2r1jLUA" class="btn-map btn-home-nav" target="_blank">
     <i class="fas fa-location-arrow"></i> <span data-i18n="btn_take_me_home">Riportami all'Appartamento (da dove sono ora)</span>
   </a>
 
@@ -513,7 +51,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_a3_d">Linate Shuttle fino a <strong>Stazione Centrale</strong>. Da lì cammina 10 min o prendi la M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Linate+Airport&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://goo.gl/maps/QG3E3o8k1a2r1jLUA" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -530,7 +68,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_a2_d">Bus (Malpensa Shuttle/Terravision) fino a <strong>Stazione Centrale</strong>. Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Malpensa+Airport&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://goo.gl/maps/bH2r7R6t2z8b3kMV9" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -540,7 +78,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_a1_d">Orio Shuttle o Terravision fino a <strong>Stazione Centrale</strong> (60 min). Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Orio+al+Serio+Airport&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://goo.gl/maps/5a1r8R7t3z9c4kNW1" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
       </div>
 
       <div id="content-departure" style="display:none;">
@@ -567,7 +105,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_d3_d">Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Linate+Airport" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://goo.gl/maps/1a2r1jLUAQG3E3o8k" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -584,7 +122,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_d2_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Biglietti a bordo.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Malpensa+Airport" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://goo.gl/maps/2z8b3kMV9bH2r7R6t" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -594,7 +132,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_d1_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi o con la M2 da <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Orio+al+Serio+Airport" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://goo.gl/maps/3z9c4kNW15a1r8R7t" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
       </div>
 
     </div></div>
@@ -875,6 +413,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
     </div>
   </div>
 
+  <a href="https://www.airbnb.it/rooms/40902873?source_impression_id=p3_1772628103_P3NPyZZGw-HYWXFn" target="_blank" class="btn-map" style="background:linear-gradient(135deg, #FF5A5F, #E61E4D); color: white; margin-top: 25px; box-shadow: var(--shadow);">
+    <i class="fab fa-airbnb" style="font-size: 1.3rem;"></i> <span data-i18n="btn_airbnb">Vedi l'annuncio su Airbnb</span>
+  </a>
+
   </div></div>
 
 <script>
@@ -988,6 +530,7 @@ var T = {
     lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> (Consigliata)", lin_d1_d:"Da <strong>Loreto</strong> prendi la M1 (Rossa) fino a <strong>San Babila</strong>, cambia con M4 (Blu) direzione <strong>Linate</strong> fino al capolinea.",
     lin_d2_t:"<span class='badge badge-bus'>Bus 92</span> + <span class='badge badge-m4'>M4</span> (Alternativa)", lin_d2_d:"Da <strong>Piazza Caiazzo</strong> prendi il Bus 92 fino a <strong>Dateo</strong>, cambia con la M4 (Blu) fino a <strong>Linate</strong>.",
     lin_d3_t:"<i class='fas fa-bus'></i> Bus Shuttle (Via Centrale)", lin_d3_d:"Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.",
+    
     btn_take_me_home: "Riportami all'Appartamento (da dove sono ora)",
     btn_nav_apt: "Naviga verso l'Appartamento", btn_nav_air: "Naviga verso l'Aeroporto",
 
@@ -1611,7 +1154,6 @@ var T = {
     tip4:"<strong>BikeMi</strong>: bicicletas y e-bikes compartidas por toda la ciudad. Ideal para Sempione, Navigli y Brera."
   }
 };
-
 
 // UI & Menu Logic
 function toggleCard(id) {

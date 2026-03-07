@@ -108,7 +108,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .btn-copy:hover{background:var(--gold);color:var(--navy)}
 .btn-copy.copied{background:#25D366;border-color:#25D366;color:white}
 
-/* REGOLE DELLA CASA */
+/* REGOLE E COSA TROVERAI */
 .rules-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
 .rules-group { margin-bottom: 20px; }
 .rules-group:last-child { margin-bottom: 0; }
@@ -128,7 +128,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .section-toggle{width:30px;height:30px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);transition:transform .35s ease,background .2s,color .2s;flex-shrink:0}
 .section-card.open .section-toggle{transform:rotate(180deg);background:var(--navy);color:var(--gold)}
 .section-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94)}
-.section-card.open .section-body{max-height:3000px}
+.section-card.open .section-body{max-height:4000px}
 .section-body-inner{padding:0 18px 20px;border-top:1px solid var(--cream-dark)}
 
 /* TRANSFER TOGGLE */
@@ -254,7 +254,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   <div class="container">
     
     <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.747990710645!2d9.21045761555776!3d45.48512107910129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6c5b9f71bfd%3A0x8e84a22b3b72ea9b!2sVia%20Giovanni%20Battista%20Pergolesi%2C%203%2C%2020124%20Milano%20MI!5e0!3m2!1sit!2sit!4v1699999999999!5m2!1sit!2sit" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.834460777595!2d9.210452315557713!3d45.48512197910113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6b4d32a4e21%3A0xc3f562450505d9be!2sVia%20Giovanni%20Battista%20Pergolesi%2C%203%2C%2020124%20Milano%20MI!5e0!3m2!1sit!2sit!4v1689714804363!5m2!1sit!2sit" width="100%" height="250px" frameborder="0" style="border:0;" allowfullscreen></iframe>
     </div>
 
     <div class="desc-block">
@@ -355,6 +355,107 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
       </div></div>
     </div>
 
+    <div class="section-card" id="card-amenities">
+      <div class="section-header" onclick="toggleCard('card-amenities')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#9C27B0,#1565C0)"><i class="fas fa-list-ul"></i></div>
+        <div class="section-meta">
+          <div class="section-title" data-i18n="am_title">Cosa troverai</div>
+          <div class="section-subtitle" data-i18n="am_sub">I servizi a tua disposizione</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_views">Viste panoramiche</div>
+          <div class="rule-item"><i class="fas fa-tree"></i> <div><span data-i18n="am_v_yard">Vista sul cortile e sul giardino</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_bath">Bagno</div>
+          <div class="rule-item"><i class="fas fa-wind"></i> <div><span data-i18n="am_b_hair">Asciugacapelli e Acqua calda</span></div></div>
+          <div class="rule-item"><i class="fas fa-spray-can"></i> <div><span data-i18n="am_b_clean">Prodotti per la pulizia</span></div></div>
+          <div class="rule-item"><i class="fas fa-pump-soap"></i> <div><span data-i18n="am_b_soap">Shampoo, balsamo, bagnoschiuma e sapone</span></div></div>
+          <div class="rule-item"><i class="fas fa-toilet"></i> <div><span data-i18n="am_b_bidet">Bidè</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_bed">Camera e Lavanderia</div>
+          <div class="rule-item"><i class="fas fa-tshirt"></i> <div><span data-i18n="am_bed_wash">Lavatrice gratuita (nell'alloggio)</span></div></div>
+          <div class="rule-item"><i class="fas fa-bed"></i> <div><span data-i18n="am_bed_ess">Asciugamani, lenzuola, sapone e carta igienica</span></div></div>
+          <div class="rule-item"><i class="fas fa-blanket"></i> <div><span data-i18n="am_bed_linens">Biancheria in cotone, coperte e cuscini extra</span></div></div>
+          <div class="rule-item"><i class="fas fa-box-open"></i> <div><span data-i18n="am_bed_store">Armadio, grucce, stendibiancheria</span></div></div>
+          <div class="rule-item"><i class="fas fa-bolt"></i> <div><span data-i18n="am_bed_iron">Ferro da stiro</span></div></div>
+          <div class="rule-item"><i class="fas fa-moon"></i> <div><span data-i18n="am_bed_dark">Tende oscuranti</span></div></div>
+          <div class="rule-item"><i class="fas fa-lock"></i> <div><span data-i18n="am_bed_safe">Cassaforte</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_ent">Intrattenimento e Famiglia</div>
+          <div class="rule-item"><i class="fas fa-tv"></i> <div><span data-i18n="am_ent_tv">HDTV 50" (Via cavo, Prime Video, Netflix)</span></div></div>
+          <div class="rule-item"><i class="fas fa-music"></i> <div><span data-i18n="am_ent_audio">Sistema audio Sony AUX</span></div></div>
+          <div class="rule-item"><i class="fas fa-book"></i> <div><span data-i18n="am_ent_books">Libri e materiale di lettura</span></div></div>
+          <div class="rule-item"><i class="fas fa-child"></i> <div><span data-i18n="am_ent_fam">Protezioni angoli tavoli</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_heat">Riscaldamento e Sicurezza</div>
+          <div class="rule-item"><i class="fas fa-snowflake"></i> <div><span data-i18n="am_heat_ac">Aria condizionata e ventilatore</span></div></div>
+          <div class="rule-item"><i class="fas fa-fire"></i> <div><span data-i18n="am_heat_heat">Riscaldamento</span></div></div>
+          <div class="rule-item"><i class="fas fa-smog"></i> <div><span data-i18n="am_heat_safe">Allarme antincendio e monossido</span></div></div>
+          <div class="rule-item"><i class="fas fa-medkit"></i> <div><span data-i18n="am_heat_ext">Estintore e Kit di primo soccorso</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_net">Internet e Ufficio</div>
+          <div class="rule-item"><i class="fas fa-wifi"></i> <div><span data-i18n="am_net_wifi">Wi-Fi veloce (885 Mbps)</span></div></div>
+          <div class="rule-item"><i class="fas fa-laptop-house"></i> <div><span data-i18n="am_net_work">Spazio di lavoro dedicato</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_kitch">Cucina e Zona pranzo</div>
+          <div class="rule-item"><i class="fas fa-utensils"></i> <div><span data-i18n="am_kit_cook">Cucina completa per cucinare</span></div></div>
+          <div class="rule-item"><i class="fas fa-icicles"></i> <div><span data-i18n="am_kit_fridge">Frigorifero Smeg e Congelatore</span></div></div>
+          <div class="rule-item"><i class="fas fa-pizza-slice"></i> <div><span data-i18n="am_kit_oven">Forno e Microonde</span></div></div>
+          <div class="rule-item"><i class="fas fa-fire-burner"></i> <div><span data-i18n="am_kit_stove">Piano cottura a gas e Lavastoviglie</span></div></div>
+          <div class="rule-item"><i class="fas fa-coffee"></i> <div><span data-i18n="am_kit_coffee">Macchina caffè, bollitore, tostapane, frullatore</span></div></div>
+          <div class="rule-item"><i class="fas fa-wine-glass"></i> <div><span data-i18n="am_kit_dish">Piatti, posate, pentole e calici da vino</span></div></div>
+          <div class="rule-item"><i class="fas fa-trash-restore"></i> <div><span data-i18n="am_kit_bbq">Utensili barbecue e compattatore</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_out">Caratteristiche e All'aperto</div>
+          <div class="rule-item"><i class="fas fa-door-open"></i> <div><span data-i18n="am_out_priv">Ingresso privato</span></div></div>
+          <div class="rule-item"><i class="fas fa-sun"></i> <div><span data-i18n="am_out_balc">Patio o balcone privato</span></div></div>
+          <div class="rule-item"><i class="fas fa-leaf"></i> <div><span data-i18n="am_out_gard">Giardino condiviso recintato</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_park">Parcheggio e Strutture</div>
+          <div class="rule-item"><i class="fas fa-elevator"></i> <div><span data-i18n="am_park_elev">Ascensore</span></div></div>
+          <div class="rule-item"><i class="fas fa-charging-station"></i> <div><span data-i18n="am_park_ev">Ricarica per veicoli elettrici</span></div></div>
+          <div class="rule-item"><i class="fas fa-parking"></i> <div><span data-i18n="am_park_gar">Garage a pagamento (1 in loco, e non)</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_serv">Servizi</div>
+          <div class="rule-item"><i class="fas fa-calendar-check"></i> <div><span data-i18n="am_serv_long">Soggiorni a lungo termine permessi</span></div></div>
+          <div class="rule-item"><i class="fas fa-key"></i> <div><span data-i18n="am_serv_check">Self check-in con cassetta chiavi</span></div></div>
+        </div>
+
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="am_g_not" style="color: #D93025;">Non incluso</div>
+          <div class="rule-item"><i class="fas fa-video-slash" style="color: #D93025;"></i> <div><span data-i18n="am_not_cam">Non ci sono telecamere di sorveglianza</span></div></div>
+          <div class="rule-item"><i class="fas fa-ban" style="color: #D93025;"></i> <div><span data-i18n="am_not_dry">Asciugatrice non disponibile</span></div></div>
+        </div>
+
+        <a href="https://www.airbnb.it/rooms/40902873?source_impression_id=p3_1772628103_P3NPyZZGw-HYWXFn" target="_blank" class="btn-map" style="background:linear-gradient(135deg, #FF5A5F, #E61E4D); color: white; margin-top: 25px;">
+          <i class="fab fa-airbnb" style="font-size: 1.3rem;"></i> <span data-i18n="btn_airbnb">Vedi l'annuncio su Airbnb</span>
+        </a>
+
+      </div></div>
+    </div>
+
   </div>
 </div>
 
@@ -412,7 +513,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_a3_d">Linate Shuttle fino a <strong>Stazione Centrale</strong>. Da lì cammina 10 min o prendi la M2 (Verde) per 2 fermate fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+di+Milano+Linate&destination=Via+G.B.+Pergolesi,+3,+Milano&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Linate+Airport&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -429,7 +530,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_a2_d">Bus (Malpensa Shuttle/Terravision) fino a <strong>Stazione Centrale</strong>. Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+Milano+Malpensa&destination=Via+G.B.+Pergolesi,+3,+Milano&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Malpensa+Airport&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-arrival"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -439,7 +540,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_a1_d">Orio Shuttle o Terravision fino a <strong>Stazione Centrale</strong> (60 min). Da lì 10 min a piedi o M2 (Verde) fino a <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Aeroporto+Bergamo+Orio+al+Serio&destination=Via+G.B.+Pergolesi,+3,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Orio+al+Serio+Airport&destination=Via+G.B.+Pergolesi,+3,+Milano" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_apt">Naviga verso l'Appartamento</span></a>
       </div>
 
       <div id="content-departure" style="display:none;">
@@ -466,7 +567,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="lin_d3_d">Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+di+Milano+Linate&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Linate+Airport" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="mxp">Malpensa (MXP)</span></div>
         <div class="transport-step">
@@ -483,7 +584,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="mxp_d2_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Biglietti a bordo.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+Milano+Malpensa&travelmode=transit" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Malpensa+Airport" class="btn-map" target="_blank" style="margin-bottom: 30px;"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
 
         <div class="airport-title"><i class="fas fa-plane-departure"></i> <span data-i18n="bgy">Bergamo Orio al Serio (BGY)</span></div>
         <div class="transport-step">
@@ -493,7 +594,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
             <div class="step-desc" data-i18n="bgy_d1_d">Bus in partenza da <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi o con la M2 da <strong>Loreto</strong>.</div>
           </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Aeroporto+Bergamo+Orio+al+Serio&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Orio+al+Serio+Airport" class="btn-map" target="_blank"><i class="fas fa-location-arrow"></i> <span data-i18n="btn_nav_air">Naviga verso l'Aeroporto</span></a>
       </div>
 
     </div></div>
@@ -557,7 +658,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="d_h3_label">Galleria V.E. II</strong><span data-i18n="d_h3">Aperta 24h, caffe storici</span></div>
         <div class="highlight-item"><strong data-i18n="d_h4_label">Cenacolo Vinciano</strong><span data-i18n="d_h4">Prenotare con mesi di anticipo!</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Piazza+del+Duomo,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
+      <a href="https://goo.gl/maps/DUOMO_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="d_btn">Portami al Duomo</span></a>
     </div></div>
   </div>
 
@@ -619,7 +720,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="g_h3_l">Corso Como</strong><span data-i18n="g_h3">Shopping alternativo e design</span></div>
         <div class="highlight-item"><strong data-i18n="g_h4_l">Brera</strong><span data-i18n="g_h4">Pinacoteca di Brera, arte rinascimentale</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Piazza+Gae+Aulenti,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
+      <a href="https://goo.gl/maps/GAE_AULENTI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="g_btn">Portami a Gae Aulenti</span></a>
     </div></div>
   </div>
 
@@ -688,7 +789,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="c_h3_l">Parco Sempione</strong><span data-i18n="c_h3">Picnic e relax, aperto sempre</span></div>
         <div class="highlight-item"><strong data-i18n="c_h4_l">Arco della Pace</strong><span data-i18n="c_h4">Foto migliori all'alba o tramonto</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Via+Paolo+Sarpi,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
+      <a href="https://goo.gl/maps/PAOLO_SARPI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="c_btn">Portami a Sarpi / Cenisio</span></a>
     </div></div>
   </div>
 
@@ -750,7 +851,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
         <div class="highlight-item"><strong data-i18n="n_h3_l">Mercatino</strong><span data-i18n="n_h3">Ultima domenica del mese: antiquariato</span></div>
         <div class="highlight-item"><strong data-i18n="n_h4_l">Notte tardi</strong><span data-i18n="n_h4">Tram notturno per il rientro</span></div>
       </div>
-      <a href="https://www.google.com/maps/dir/?api=1&origin=Via+G.B.+Pergolesi,+3,+Milano&destination=Naviglio+Grande,+Milano&travelmode=transit" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
+      <a href="https://goo.gl/maps/NAVIGLI_MILANO" class="btn-map" target="_blank"><i class="fas fa-route"></i> <span data-i18n="n_btn">Portami ai Navigli</span></a>
     </div></div>
   </div>
 
@@ -811,6 +912,60 @@ var T = {
     rule_trash: "Buttare la spazzatura",
     rule_power: "Spegnere tutto",
 
+    am_title: "Cosa troverai",
+    am_sub: "Tutti i comfort dell'alloggio",
+    am_g_views: "Viste panoramiche",
+    am_v_yard: "Vista sul cortile e sul giardino",
+    am_g_bath: "Bagno",
+    am_b_hair: "Asciugacapelli e Acqua calda",
+    am_b_clean: "Prodotti per la pulizia",
+    am_b_soap: "Shampoo, balsamo, bagnoschiuma e sapone",
+    am_b_bidet: "Bidè",
+    am_g_bed: "Camera e Lavanderia",
+    am_bed_wash: "Lavatrice gratuita (nell'alloggio)",
+    am_bed_ess: "Asciugamani, lenzuola, sapone e carta igienica",
+    am_bed_linens: "Biancheria in cotone, coperte e cuscini extra",
+    am_bed_store: "Armadio, grucce, stendibiancheria",
+    am_bed_iron: "Ferro da stiro",
+    am_bed_dark: "Tende oscuranti",
+    am_bed_safe: "Cassaforte",
+    am_g_ent: "Intrattenimento e Famiglia",
+    am_ent_tv: "HDTV 50\" (Via cavo, Prime Video, Netflix)",
+    am_ent_audio: "Sistema audio Sony AUX",
+    am_ent_books: "Libri e materiale di lettura",
+    am_ent_fam: "Protezioni angoli tavoli",
+    am_g_heat: "Riscaldamento e Sicurezza",
+    am_heat_ac: "Aria condizionata e ventilatore",
+    am_heat_heat: "Riscaldamento",
+    am_heat_safe: "Allarme antincendio e monossido",
+    am_heat_ext: "Estintore e Kit di primo soccorso",
+    am_g_net: "Internet e Ufficio",
+    am_net_wifi: "Wi-Fi veloce (885 Mbps)",
+    am_net_work: "Spazio di lavoro dedicato",
+    am_g_kitch: "Cucina e Zona pranzo",
+    am_kit_cook: "Cucina completa per cucinare",
+    am_kit_fridge: "Frigorifero Smeg e Congelatore",
+    am_kit_oven: "Forno e Microonde",
+    am_kit_stove: "Piano cottura a gas e Lavastoviglie",
+    am_kit_coffee: "Macchina caffè, bollitore, tostapane, frullatore",
+    am_kit_dish: "Piatti, posate, pentole e calici da vino",
+    am_kit_bbq: "Utensili barbecue e compattatore",
+    am_g_out: "Caratteristiche e All'aperto",
+    am_out_priv: "Ingresso privato",
+    am_out_balc: "Patio o balcone privato",
+    am_out_gard: "Giardino condiviso recintato",
+    am_g_park: "Parcheggio e Strutture",
+    am_park_elev: "Ascensore",
+    am_park_ev: "Ricarica per veicoli elettrici",
+    am_park_gar: "Garage a pagamento (1 in loco, e non)",
+    am_g_serv: "Servizi",
+    am_serv_long: "Soggiorni a lungo termine permessi",
+    am_serv_check: "Self check-in con cassetta chiavi",
+    am_g_not: "Non incluso",
+    am_not_cam: "Non ci sono telecamere di sorveglianza",
+    am_not_dry: "Asciugatrice non disponibile",
+    btn_airbnb: "Vedi l'annuncio su Airbnb",
+
     phones_title:"Numeri Utili",
     phone_taxi_short:"Taxi: 02 8585",
     phone_pharma_short:"Farmacia: 02 29400 513",
@@ -833,7 +988,6 @@ var T = {
     lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> (Consigliata)", lin_d1_d:"Da <strong>Loreto</strong> prendi la M1 (Rossa) fino a <strong>San Babila</strong>, cambia con M4 (Blu) direzione <strong>Linate</strong> fino al capolinea.",
     lin_d2_t:"<span class='badge badge-bus'>Bus 92</span> + <span class='badge badge-m4'>M4</span> (Alternativa)", lin_d2_d:"Da <strong>Piazza Caiazzo</strong> prendi il Bus 92 fino a <strong>Dateo</strong>, cambia con la M4 (Blu) fino a <strong>Linate</strong>.",
     lin_d3_t:"<i class='fas fa-bus'></i> Bus Shuttle (Via Centrale)", lin_d3_d:"Bus in partenza dal lato est di <strong>Stazione Centrale</strong> (Piazza Luigi di Savoia). Raggiungibile a piedi in 10 min o M2.",
-    
     btn_take_me_home: "Riportami all'Appartamento (da dove sono ora)",
     btn_nav_apt: "Naviga verso l'Appartamento", btn_nav_air: "Naviga verso l'Aeroporto",
 
@@ -939,6 +1093,60 @@ var T = {
     rule_towels: "Gather used towels",
     rule_trash: "Take out the trash",
     rule_power: "Turn everything off",
+
+    am_title: "Amenities",
+    am_sub: "Everything you'll find here",
+    am_g_views: "Scenic Views",
+    am_v_yard: "Courtyard and garden view",
+    am_g_bath: "Bathroom",
+    am_b_hair: "Hair dryer & Hot water",
+    am_b_clean: "Cleaning products",
+    am_b_soap: "Shampoo, conditioner, body soap & shower gel",
+    am_b_bidet: "Bidet",
+    am_g_bed: "Bedroom & Laundry",
+    am_bed_wash: "Free washing machine (in unit)",
+    am_bed_ess: "Towels, bed sheets, soap, and toilet paper",
+    am_bed_linens: "Cotton linens, extra pillows and blankets",
+    am_bed_store: "Closet, hangers, clothing storage",
+    am_bed_iron: "Iron",
+    am_bed_dark: "Room-darkening shades",
+    am_bed_safe: "Safe",
+    am_g_ent: "Entertainment & Family",
+    am_ent_tv: "50\" HDTV (Cable, Prime Video, Netflix)",
+    am_ent_audio: "Sony AUX sound system",
+    am_ent_books: "Books and reading material",
+    am_ent_fam: "Table corner guards",
+    am_g_heat: "Heating, Cooling & Safety",
+    am_heat_ac: "Air conditioning & portable fan",
+    am_heat_heat: "Heating",
+    am_heat_safe: "Smoke and carbon monoxide alarms",
+    am_heat_ext: "Fire extinguisher & First aid kit",
+    am_g_net: "Internet & Office",
+    am_net_wifi: "Fast Wi-Fi (885 Mbps)",
+    am_net_work: "Dedicated workspace",
+    am_g_kitch: "Kitchen & Dining",
+    am_kit_cook: "Fully equipped kitchen",
+    am_kit_fridge: "Smeg Refrigerator & Freezer",
+    am_kit_oven: "Oven & Microwave",
+    am_kit_stove: "Gas stove & Dishwasher",
+    am_kit_coffee: "Coffee maker, kettle, toaster, blender",
+    am_kit_dish: "Dishes, silverware, pots and wine glasses",
+    am_kit_bbq: "BBQ utensils & trash compactor",
+    am_g_out: "Location Features & Outdoor",
+    am_out_priv: "Private entrance",
+    am_out_balc: "Private patio or balcony",
+    am_out_gard: "Shared fenced garden",
+    am_g_park: "Parking & Facilities",
+    am_park_elev: "Elevator",
+    am_park_ev: "EV charging station",
+    am_park_gar: "Paid parking (on and off premises)",
+    am_g_serv: "Services",
+    am_serv_long: "Long-term stays allowed",
+    am_serv_check: "Self check-in with lockbox",
+    am_g_not: "Not included",
+    am_not_cam: "No security cameras on property",
+    am_not_dry: "No dryer available",
+    btn_airbnb: "View on Airbnb",
 
     phones_title:"Useful Numbers",
     phone_taxi_short:"Taxi: 02 8585",
@@ -1069,6 +1277,60 @@ var T = {
     rule_trash: "扔掉垃圾",
     rule_power: "关闭所有电源",
 
+    am_title: "设施与服务",
+    am_sub: "您将在这里找到的一切",
+    am_g_views: "景观",
+    am_v_yard: "庭院和花园景观",
+    am_g_bath: "浴室",
+    am_b_hair: "吹风机与热水",
+    am_b_clean: "清洁用品",
+    am_b_soap: "洗发水、护发素、沐浴露和香皂",
+    am_b_bidet: "坐浴盆",
+    am_g_bed: "卧室与洗衣",
+    am_bed_wash: "免费洗衣机 (房源内)",
+    am_bed_ess: "毛巾、床单、香皂和卫生纸",
+    am_bed_linens: "棉质床品，备用枕头和毯子",
+    am_bed_store: "衣柜、衣架、晾衣架",
+    am_bed_iron: "熨斗",
+    am_bed_dark: "遮光窗帘",
+    am_bed_safe: "保险箱",
+    am_g_ent: "娱乐与家庭",
+    am_ent_tv: "50英寸高清电视 (有线、Prime、Netflix)",
+    am_ent_audio: "索尼 AUX 音响系统",
+    am_ent_books: "书籍和阅读材料",
+    am_ent_fam: "桌角防护罩",
+    am_g_heat: "冷暖气与安全",
+    am_heat_ac: "空调与便携式风扇",
+    am_heat_heat: "暖气",
+    am_heat_safe: "烟雾与一氧化碳警报器",
+    am_heat_ext: "灭火器与急救包",
+    am_g_net: "网络与办公",
+    am_net_wifi: "高速无线网络 (885 Mbps)",
+    am_net_work: "专属办公空间",
+    am_g_kitch: "厨房与餐饮",
+    am_kit_cook: "设施齐全的厨房",
+    am_kit_fridge: "Smeg 冰箱与冰柜",
+    am_kit_oven: "烤箱与微波炉",
+    am_kit_stove: "燃气灶与洗碗机",
+    am_kit_coffee: "咖啡机、水壶、烤面包机、搅拌机",
+    am_kit_dish: "餐具、银器、锅具和高脚酒杯",
+    am_kit_bbq: "烧烤用具与垃圾压缩机",
+    am_g_out: "房源特色与户外",
+    am_out_priv: "独立入口",
+    am_out_balc: "私人庭院或阳台",
+    am_out_gard: "带围栏的共享花园",
+    am_g_park: "停车与设施",
+    am_park_elev: "电梯",
+    am_park_ev: "电动汽车充电桩",
+    am_park_gar: "付费停车 (场内1个及场外)",
+    am_g_serv: "服务",
+    am_serv_long: "允许长期住宿",
+    am_serv_check: "密码盒自助入住",
+    am_g_not: "未包含",
+    am_not_cam: "房源内无安全摄像头",
+    am_not_dry: "无烘干机",
+    btn_airbnb: "在 Airbnb 上查看",
+
     phones_title:"实用电话",
     phone_taxi_short:"出租车: 02 8585",
     phone_pharma_short:"药房: 02 29400 513",
@@ -1198,6 +1460,60 @@ var T = {
     rule_trash: "Tirar la basura",
     rule_power: "Apagar todo",
 
+    am_title: "Qué encontrarás",
+    am_sub: "Servicios e instalaciones",
+    am_g_views: "Vistas panorámicas",
+    am_v_yard: "Vistas al patio y al jardín",
+    am_g_bath: "Baño",
+    am_b_hair: "Secador de pelo y agua caliente",
+    am_b_clean: "Productos de limpieza",
+    am_b_soap: "Champú, acondicionador, gel y jabón",
+    am_b_bidet: "Bidé",
+    am_g_bed: "Dormitorio y lavandería",
+    am_bed_wash: "Lavadora gratuita (en el alojamiento)",
+    am_bed_ess: "Toallas, sábanas, jabón y papel higiénico",
+    am_bed_linens: "Ropa de cama de algodón, almohadas y mantas extra",
+    am_bed_store: "Armario, perchas, tendedero",
+    am_bed_iron: "Plancha",
+    am_bed_dark: "Cortinas opacas",
+    am_bed_safe: "Caja fuerte",
+    am_g_ent: "Entretenimiento y familia",
+    am_ent_tv: "Televisión HDTV 50\" (Cable, Prime, Netflix)",
+    am_ent_audio: "Sistema de sonido Sony AUX",
+    am_ent_books: "Libros y material de lectura",
+    am_ent_fam: "Protectores de esquinas para mesas",
+    am_g_heat: "Climatización y seguridad",
+    am_heat_ac: "Aire acondicionado y ventilador",
+    am_heat_heat: "Calefacción",
+    am_heat_safe: "Detector de humo y monóxido de carbono",
+    am_heat_ext: "Extintor y botiquín de primeros auxilios",
+    am_g_net: "Internet y oficina",
+    am_net_wifi: "Wifi rápido (885 Mbps)",
+    am_net_work: "Espacio de trabajo dedicado",
+    am_g_kitch: "Cocina y comedor",
+    am_kit_cook: "Cocina totalmente equipada",
+    am_kit_fridge: "Refrigerador Smeg y congelador",
+    am_kit_oven: "Horno y microondas",
+    am_kit_stove: "Estufa de gas y lavavajillas",
+    am_kit_coffee: "Cafetera, hervidor, tostadora, licuadora",
+    am_kit_dish: "Platos, cubiertos, ollas y copas de vino",
+    am_kit_bbq: "Utensilios de barbacoa y compactador de basura",
+    am_g_out: "Características de la ubicación y exteriores",
+    am_out_priv: "Entrada independiente",
+    am_out_balc: "Patio o balcón privado",
+    am_out_gard: "Jardín compartido vallado",
+    am_g_park: "Aparcamiento e instalaciones",
+    am_park_elev: "Ascensor",
+    am_park_ev: "Carga de vehículos eléctricos",
+    am_park_gar: "Aparcamiento de pago (1 plaza e independiente)",
+    am_g_serv: "Servicios",
+    am_serv_long: "Se permiten estancias largas",
+    am_serv_check: "Llegada autónoma con caja de seguridad",
+    am_g_not: "No incluido",
+    am_not_cam: "No hay cámaras de seguridad",
+    am_not_dry: "Secadora no disponible",
+    btn_airbnb: "Ver anuncio en Airbnb",
+
     phones_title:"Números Útiles",
     phone_taxi_short:"Taxi: 02 8585",
     phone_pharma_short:"Farmacia: 02 29400 513",
@@ -1275,7 +1591,7 @@ var T = {
     c_btn:"Llévame a Sarpi / Cenisio",
     n_title:"Navigli", n_sub:"Darsena · Vida nocturna · Bares junto al canal",
     n_m2_label:"— Opción directa",
-    n_m2_desc:"Desde <strong>Loreto</strong> toma la M2 (Verde) hacia <strong>Abbiategrasso/Assago</strong> y baja en <strong>Porta Genova FS</strong> (8 paradas, ~17 mins). Exit onto the Navigli.",
+    n_m2_desc:"Desde <strong>Loreto</strong> toma la M2 (Verde) hacia <strong>Abbiategrasso/Assago</strong> y baja en <strong>Porta Genova FS</strong> (8 paradas, ~17 min).",
     n_tram_label:"— Regreso nocturno",
     n_tram_desc:"Después de ~1:30, el Tranvía nocturno 3 desde <strong>Porta Genova</strong> va hacia Centrale. Perfecto para volver tras una noche de fiesta.",
     n_s1_title:"Porta Genova → Naviglio Grande",
@@ -1295,6 +1611,7 @@ var T = {
     tip4:"<strong>BikeMi</strong>: bicicletas y e-bikes compartidas por toda la ciudad. Ideal para Sempione, Navigli y Brera."
   }
 };
+
 
 // UI & Menu Logic
 function toggleCard(id) {

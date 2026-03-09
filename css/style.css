@@ -1,1 +1,14 @@
+/* css/style.css */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:#9A7A35;
+  --navy:#1E2B3A;--navy-mid:#2C3E52;
+  --cream:#F5F0E8;--cream-dark:#EDE6D6;
+  --white:#FFFFFF;--muted:#8A8070;
+  --border:rgba(201,168,76,0.18);--radius:18px;
+  --shadow:0 4px 24px rgba(30,43,58,0.13);
+  --green-pharma: #28a745;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
+/* ... Incolla qui tutto il resto dello stile riga per riga ... */

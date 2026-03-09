@@ -68,8 +68,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .emerg-fab:hover{background:var(--navy-mid);transform:scale(1.08)}
 .emerg-drawer{position:fixed;bottom:78px;left:18px;background:var(--navy);border:1px solid #D93025;border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:180px}
 .emerg-drawer.open{opacity:1;transform:none;pointer-events:all}
-.emerg-drawer-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#D93025;padding:2px 10px 4px;border-bottom:1px solid rgba(217,48,37,0.15);margin-bottom:2px}
-
+.emerg-drawer-label {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold-dim); /* <--- SOSTITUISCI #D93025 CON QUESTO */
+  padding: 2px 10px 4px;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  margin-bottom: 2px;
+}
 .host-action-btn{display:flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.8);padding:9px 14px;border-radius:10px;font-size:.83rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap;text-decoration:none;width:100%}
 .host-action-btn i{font-size:1rem;width:16px;text-align:center}
 .host-action-btn.wa{border-color:rgba(37,211,102,0.4);color:#4ee58a}

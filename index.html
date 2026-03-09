@@ -60,12 +60,138 @@
 
 <div id="page-info" class="page-section active">
   <div class="container">
+    <div class="media-row">
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.773539744883!2d9.2104112!3d45.4844391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6c9b32cddcd%3A0xc33f4a47edce21ff!2sVia%20Giovanni%20Battista%20Pergolesi%2C%203%2C%2020124%20Milano%20MI!5e0!3m2!1sit!2sit!4v1699999999999!5m2!1sit!2sit" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
       </div>
+      <div class="slider-container" id="apt-slider">
+        <img src="foto1.avif" alt="Appartamento" class="slider-img">
+        <img src="foto2.avif" alt="Appartamento" class="slider-img">
+        <img src="foto3.avif" alt="Appartamento" class="slider-img">
+        <img src="foto4.avif" alt="Appartamento" class="slider-img">
+        <img src="foto5.avif" alt="Appartamento" class="slider-img">
+        <img src="foto6.avif" alt="Appartamento" class="slider-img">
+        <img src="foto7.avif" alt="Appartamento" class="slider-img">
+        <img src="foto8.avif" alt="Appartamento" class="slider-img">
+      </div>
+    </div>
+
+    <div class="desc-block">
+      <div class="desc-text" data-i18n="desc_p1"></div>
+      <div class="desc-title"><i class="fas fa-door-open"></i> <span data-i18n="desc_t1"></span></div>
+      <div class="desc-text" data-i18n="desc_p2"></div>
+      <div class="desc-title"><i class="fas fa-key"></i> <span data-i18n="desc_t2"></span></div>
+      <div class="desc-text" data-i18n="desc_p3"></div>
+    </div>
+
+    <div class="section-card" id="card-wifi">
+      <div class="section-header" onclick="toggleCard('card-wifi')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#2196F3,#0d47a1)"><i class="fas fa-wifi"></i></div>
+        <div class="section-meta">
+          <div class="section-title" data-i18n="wifi_title"></div>
+          <div class="section-subtitle" data-i18n="wifi_sub"></div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:10px;">
+        <div class="wifi-box">
+          <div class="wifi-row">
+            <div><div class="wifi-label">Rete (SSID)</div><div class="wifi-value">NOME_WIFI_QUI</div></div>
+          </div>
+          <div class="wifi-row">
+            <div><div class="wifi-label">Password</div><div class="wifi-value" id="wifi-pass">PASSWORD_QUI</div></div>
+            <button class="btn-copy" id="btn-copy-wifi" onclick="copyWifi()">
+              <i class="fas fa-copy"></i> <span data-i18n="btn_copy"></span>
+            </button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-rules">
+      <div class="section-header" onclick="toggleCard('card-rules')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#FF5A5F,#D93025)"><i class="fas fa-book-open"></i></div>
+        <div class="section-meta">
+          <div class="section-title" data-i18n="rules_title"></div>
+          <div class="section-subtitle" data-i18n="rules_sub"></div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="rules-intro" data-i18n="rules_intro"></div>
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g1"></div>
+          <div class="rule-item"><i class="far fa-clock"></i> <div><span data-i18n="rule_checkin"></span></div></div>
+          <div class="rule-item"><i class="fas fa-sign-out-alt"></i> <div><span data-i18n="rule_checkout"></span></div></div>
+          <div class="rule-item"><i class="fas fa-key"></i> <div><span data-i18n="rule_selfin"></span></div></div>
+        </div>
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g2"></div>
+          <div class="rule-item"><i class="fas fa-user-friends"></i> <div><span data-i18n="rule_guests"></span></div></div>
+          <div class="rule-item"><i class="fas fa-paw"></i> <div><span data-i18n="rule_pets"></span></div></div>
+          <div class="rule-item"><i class="fas fa-glass-cheers"></i> <div><span data-i18n="rule_parties"></span></div></div>
+          <div class="rule-item"><i class="fas fa-smoking-ban"></i> <div><span data-i18n="rule_smoke"></span></div></div>
+        </div>
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g3"></div>
+          <div class="rule-item"><i class="fas fa-elevator"></i> <div><span data-i18n="rule_elev"></span></div></div>
+          <div class="rule-item"><i class="fas fa-couch"></i> <div><span data-i18n="rule_5th"></span></div></div>
+        </div>
+        <div class="rules-group">
+          <div class="rules-group-title" data-i18n="rules_g4"></div>
+          <div class="rule-item"><i class="fas fa-shower"></i> <div><span data-i18n="rule_towels"></span></div></div>
+          <div class="rule-item">
+            <i class="fas fa-trash-alt"></i> 
+            <div>
+              <span data-i18n="rule_trash"></span>
+              <img src="cestino.jpeg" alt="Regole Spazzatura" class="trash-img">
+            </div>
+          </div>
+          <div class="rule-item"><i class="fas fa-power-off"></i> <div><span data-i18n="rule_power"></span></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-amenities">
+        <div class="section-header" onclick="toggleCard('card-amenities')">
+          <div class="section-icon" style="background:linear-gradient(135deg,#9C27B0,#1565C0)"><i class="fas fa-list-ul"></i></div>
+          <div class="section-meta">
+            <div class="section-title" data-i18n="am_title"></div>
+            <div class="section-subtitle" data-i18n="am_sub"></div>
+          </div>
+          <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+          <div class="rules-group">
+            <div class="rules-group-title" data-i18n="am_g_views"></div>
+            <div class="rule-item"><i class="fas fa-tree"></i> <div><span data-i18n="am_v_yard"></span></div></div>
+          </div>
+          <div class="rules-group">
+            <div class="rules-group-title" data-i18n="am_g_bath"></div>
+            <div class="rule-item"><i class="fas fa-wind"></i> <div><span data-i18n="am_b_hair"></span></div></div>
+            <div class="rule-item"><i class="fas fa-spray-can"></i> <div><span data-i18n="am_b_clean"></span></div></div>
+            <div class="rule-item"><i class="fas fa-pump-soap"></i> <div><span data-i18n="am_b_soap"></span></div></div>
+            <div class="rule-item"><i class="fas fa-toilet"></i> <div><span data-i18n="am_b_bidet"></span></div></div>
+          </div>
+          </div></div>
+    </div>
+
+    <a href="https://www.airbnb.it/rooms/40902873" target="_blank" class="btn-map" style="background:linear-gradient(135deg, #FF5A5F, #E61E4D); color: white; margin-top: 25px;">
+      <i class="fab fa-airbnb"></i> <span data-i18n="btn_airbnb"></span>
+    </a>
+  </div>
 </div>
 
 <div id="page-transport" class="page-section">
+  <div class="intro-strip">
+    <i class="fas fa-map-signs"></i>
+    <span data-i18n="intro"></span>
+  </div>
   <div class="container">
-      </div>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Giovanni+Battista+Pergolesi,+3,+20124+Milano+MI" class="btn-map btn-home-nav" target="_blank">
+      <i class="fas fa-location-arrow"></i> <span data-i18n="btn_take_me_home"></span>
+    </a>
+    </div>
 </div>
 
 <script src="js/translations.js"></script>

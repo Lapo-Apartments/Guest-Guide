@@ -1,14 +1,38 @@
-/* css/style.css */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:#9A7A35;
-  --navy:#1E2B3A;--navy-mid:#2C3E52;
-  --cream:#F5F0E8;--cream-dark:#EDE6D6;
-  --white:#FFFFFF;--muted:#8A8070;
-  --border:rgba(201,168,76,0.18);--radius:18px;
-  --shadow:0 4px 24px rgba(30,43,58,0.13);
+:root {
+  --gold: #C9A84C; --gold-light: #E8C97A; --gold-dim: #9A7A35;
+  --navy: #1E2B3A; --navy-mid: #2C3E52;
+  --cream: #F5F0E8; --cream-dark: #EDE6D6;
+  --white: #FFFFFF; --muted: #8A8070;
+  --border: rgba(201,168,76,0.18); --radius: 18px;
+  --shadow: 0 4px 24px rgba(30,43,58,0.13);
   --green-pharma: #28a745;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
-/* ... Incolla qui tutto il resto dello stile riga per riga ... */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); min-height: 100vh; overflow-x: hidden; }
+
+/* FABS */
+.top-fab { position: absolute; top: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(30,43,58,0.7); backdrop-filter: blur(8px); border: 1px solid rgba(201,168,76,0.4); color: var(--gold-light); display: flex; align-items: center; justify-content: center; z-index: 200; cursor: pointer; transition: all .2s; }
+.fab-left { left: 18px; } .fab-right { right: 18px; }
+
+/* SIDEBAR */
+.sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; background: var(--navy); z-index: 300; transform: translateX(-100%); transition: transform 0.3s; padding: 30px 20px; display: flex; flex-direction: column; }
+.sidebar.open { transform: translateX(0); }
+.sidebar-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 299; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.sidebar-overlay.open { opacity: 1; pointer-events: all; }
+
+/* HEADER */
+.header { background: var(--navy); padding: 32px 20px 28px; text-align: center; position: relative; background-image: url('../header.jpg'); background-size: cover; background-position: center 40%; }
+.header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.95) 100%); }
+.header > * { position: relative; z-index: 1; }
+
+/* CARDS & CONTAINERS */
+.container { max-width: 680px; margin: 0 auto; padding: 20px 14px 80px; }
+.section-card { background: var(--white); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.page-section { display: none; animation: fadeIn 0.4s ease; }
+.page-section.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* Incolla qui il resto degli stili specifici per slider, wifi-box, rules, ecc. dal tuo file originale */

@@ -20,6 +20,8 @@
   --border:rgba(201,168,76,0.18);--radius:18px;
   --shadow:0 4px 24px rgba(30,43,58,0.13);
   --green-pharma: #28a745;
+  /* Variabile che cambia in tempo reale (da 0 a 1) in base a quanto scorri */
+  --scroll: 0;
 }
 body{
   font-family:'DM Sans',sans-serif;
@@ -27,19 +29,21 @@ body{
   color:var(--navy);
   min-height:100vh;
   overflow-x:hidden;
+  /* Diamo spazio al sito per stare sotto all'header fisso */
+  padding-top: 360px; 
 }
 
 /* FABS TOP (Menu & Lang) - SOLO ICONE TRASPARENTI */
 .top-fab {
   position: fixed;
-  top: 18px; /* Perfettamente centrate nell'header rimpicciolito */
+  /* Si alzano leggermente quando l'header si restringe */
+  top: calc(24px - (var(--scroll) * 12px)); 
   width: 44px; height: 44px;
   background: transparent; border: none; box-shadow: none;
   color: var(--gold-light); font-size: 1.5rem;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.8); /* Ombra per farle risaltare */
+  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; z-index: 200;
-  transition: transform 0.2s, color 0.2s;
 }
 .top-fab:hover { color: var(--white); transform: scale(1.15); }
 .fab-left { left: 18px; }
@@ -48,7 +52,7 @@ body{
 /* LANG DRAWER */
 .lang-drawer{
   position:fixed;
-  top: 68px; /* Appena sotto il pulsante della lingua */
+  top: calc(76px - (var(--scroll) * 12px));
   right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;
   transition: opacity .22s ease, transform .22s ease;
 }
@@ -68,69 +72,79 @@ body{
 .menu-link:hover, .menu-link.active{background:rgba(201,168,76,0.1);color:var(--white)}
 .menu-link.active i{color:var(--gold)}
 
-/* --- HEADER STICKY NATIVO (SENZA SCATTI E SPAZI VUOTI) --- */
+/* --- HEADER ANIMATO (SI MODIFICA IN BASE ALLO SCROLL) --- */
 .header {
-  position: -webkit-sticky;
-  position: sticky;
-  top: -240px; /* Nasconde la parte in alto man mano che scorri, fino a bloccarsi a questo punto */
-  height: 320px; /* L'altezza totale (240px testo + 80px logo) */
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 150;
-  box-shadow: 0 0 0 rgba(0,0,0,0);
-  transition: box-shadow 0.4s ease;
-}
-.header.scrolled {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  background: var(--navy);
+  text-align: center;
+  overflow: hidden;
+  /* Il padding si riduce progressivamente */
+  padding-top: calc(32px - (var(--scroll) * 22px));
+  padding-bottom: calc(28px - (var(--scroll) * 18px));
+  box-shadow: 0 4px calc(var(--scroll) * 16px) rgba(0,0,0,calc(var(--scroll) * 0.6));
 }
 
+/* L'immagine di sfondo */
 .header-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background-image: url('header.jpg');
   background-size: cover;
   background-position: center 40%;
-  z-index: 0;
-}
-.header-gradient {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, rgba(30,43,58,0.5) 0%, rgba(30,43,58,0.85) 75%, var(--navy) 100%);
-  z-index: 1;
-}
-.header-darken {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: var(--navy);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 2;
-}
-.header.scrolled .header-darken {
-  opacity: 0.98; /* Si scurisce dolcemente quando l'header è collassato */
+  z-index: -3;
 }
 
-/* Contenitori interni dell'Header */
+/* Il gradiente originale */
+.header-bg::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.82) 60%, rgba(30,43,58,0.95) 100%);
+}
+
+/* Il velo blu scuro che oscura l'immagine scendendo */
+.header-dark-overlay {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--navy);
+  opacity: calc(var(--scroll) * 0.98); /* Da 0 a quasi solido */
+  z-index: -2;
+  pointer-events: none;
+}
+
 .header-content {
-  position: relative; z-index: 3;
-  height: 100%;
-  display: flex; flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
-.header-text-wrap {
-  height: 240px; /* La parte che scompare in alto */
-  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-  padding-bottom: 25px;
+
+/* IL LOGO: Parte da 180px e scende a 50px */
+.logo-wrap {
+  display: flex; justify-content: center;
+  margin-bottom: calc(14px - (var(--scroll) * 14px)); 
 }
+.logo-img {
+  width: auto; object-fit: contain;
+  height: calc(180px - (var(--scroll) * 130px)); 
+}
+
+/* IL TESTO: Scompare collassando */
+.text-wrap {
+  overflow: hidden;
+  /* L'altezza scende da 200px a 0 */
+  max-height: calc(200px - (var(--scroll) * 200px));
+  /* L'opacità svanisce velocemente */
+  opacity: calc(1 - (var(--scroll) * 2));
+  transform: scale(calc(1 - (var(--scroll) * 0.2)));
+  transform-origin: top center;
+}
+
 .header h1 {
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(1.9rem,6vw,2.6rem);
   font-weight:700;color:#FFFFFF;line-height:1.1;
-  margin-bottom:6px; text-align: center;
+  margin-bottom:6px;
   text-shadow:0 2px 8px rgba(0,0,0,0.9),0 0 30px rgba(0,0,0,0.8);
 }
 .header-address{font-size:.8rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:.06em;}
 .gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0;}
-
-.header-logo-wrap {
-  height: 80px; /* La barra sottile che rimarrà visibile in cima (320 - 240) */
-  display: flex; justify-content: center; align-items: center;
-}
-.logo-img { height: 50px; width: auto; object-fit: contain; }
 
 
 /* FABS BOTTOM (Host & Emerg) */
@@ -163,6 +177,7 @@ body{
 .page-section.active{display:block}
 @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 .container{max-width:680px;margin:0 auto;padding:20px 14px 80px}
+
 .media-row { display: flex; gap: 10px; margin-bottom: 20px; height: 230px; }
 .map-container { flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); }
 .slider-container { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 12px; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -298,21 +313,19 @@ body{
 
 <header class="header" id="main-header">
   <div class="header-bg"></div>
-  <div class="header-gradient"></div>
-  <div class="header-darken"></div>
+  <div class="header-dark-overlay"></div>
+  
   <div class="header-content">
+    <div class="logo-wrap">
+      <img class="logo-img" src="logo.png" alt="LAPO Apartments">
+    </div>
     
-    <div class="header-text-wrap">
+    <div class="text-wrap">
       <div class="header-eyebrow" data-i18n="eyebrow"> </div>
       <h1 id="main-title" data-i18n="headline_info">Informazioni<br>Appartamento</h1>
       <div class="header-address">Via G.B. Pergolesi, 3 · Milano</div>
       <div class="gold-line"></div>
     </div>
-    
-    <div class="header-logo-wrap">
-      <img class="logo-img" src="logo.png" alt="LAPO Apartments">
-    </div>
-    
   </div>
 </header>
 
@@ -1713,7 +1726,6 @@ function setDirection(dir) {
   }
 }
 
-// Sidebar logic
 function openMenu() {
   document.getElementById('sidebar').classList.add('open');
   document.getElementById('sidebar-overlay').classList.add('open');
@@ -1747,7 +1759,6 @@ function switchPage(pageId) {
   window.scrollTo(0,0);
 }
 
-// Floating Action Buttons (Drawers)
 function closeAllDrawers() {
   document.getElementById('lang-drawer').classList.remove('open');
   document.getElementById('host-drawer').classList.remove('open');
@@ -1847,15 +1858,21 @@ function initSlider() {
   slider.addEventListener('mousedown', function() { clearInterval(slideTimer); });
 }
 
-// LOGICA PER ATTIVARE LE OMBRE QUANDO SI SCENDE
+// --- IL MOTORE DELL'ANIMAZIONE FLUIDA (SCROLL INTERPOLATION) ---
 window.addEventListener('scroll', function() {
-  var header = document.getElementById('main-header');
-  // Quando l'header si è quasi tutto nascosto (cioè l'utente è sceso di 200px) si aggiungono le ombre
-  if (window.scrollY > 200) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
+  // L'animazione si completa dopo aver scorso 180 pixel
+  var maxScroll = 180; 
+  var scrollY = window.scrollY;
+  
+  // Calcola la percentuale di scorrimento (da 0 a 1)
+  var progress = scrollY / maxScroll;
+  
+  // Blocca il valore tra 0 e 1
+  if (progress > 1) progress = 1;
+  if (progress < 0) progress = 0;
+  
+  // Invia in tempo reale la percentuale esatta al CSS
+  document.documentElement.style.setProperty('--scroll', progress);
 }, { passive: true });
 
 document.addEventListener("DOMContentLoaded", function() {

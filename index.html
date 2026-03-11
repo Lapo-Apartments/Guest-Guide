@@ -20,32 +20,27 @@
   --border:rgba(201,168,76,0.18);--radius:18px;
   --shadow:0 4px 24px rgba(30,43,58,0.13);
   --green-pharma: #28a745;
-  
-  /* Questa è la variabile magica che cambierà da 0 a 1 mentre scorri */
-  --scroll-progress: 0;
 }
+/* Rimosso il padding-top dal body. L'header torna ad essere un elemento normale del flusso */
 body{
   font-family:'DM Sans',sans-serif;
   background:var(--cream);
   color:var(--navy);
   min-height:100vh;
   overflow-x:hidden;
-  /* Spazio iniziale per non far finire il sito sotto all'header */
-  padding-top:350px; 
 }
 
-/* FABS TOP (Menu & Lang) - SOLO ICONA TRASPARENTE CHE SEGUE LO SCROLL */
+/* FABS TOP (Menu & Lang) - SOLO ICONA TRASPARENTE */
+/* Rimangono FIXED, ma li teniamo in alto fermi */
 .top-fab {
   position: fixed;
-  /* La posizione si alza dolcemente calcolando il progresso */
-  top: calc(24px - (var(--scroll-progress) * 14px));
+  top: 15px; /* Alzati leggermente per allinearsi al logo quando l'header è piccolo */
   width: 44px; height: 44px;
   background: transparent; border: none; box-shadow: none;
   color: var(--gold-light); font-size: 1.5rem;
   text-shadow: 0 2px 4px rgba(0,0,0,0.6);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; z-index: 200;
-  /* Niente transizione su 'top', segue direttamente il dito! */
   transition: transform 0.2s, color 0.2s;
 }
 .top-fab:hover { color: var(--white); transform: scale(1.15); }
@@ -55,7 +50,7 @@ body{
 /* LANG DRAWER */
 .lang-drawer{
   position:fixed;
-  top: calc(76px - (var(--scroll-progress) * 14px));
+  top: 65px;
   right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;
   transition: opacity .22s ease, transform .22s ease;
 }
@@ -75,61 +70,36 @@ body{
 .menu-link:hover, .menu-link.active{background:rgba(201,168,76,0.1);color:var(--white)}
 .menu-link.active i{color:var(--gold)}
 
-/* --- HEADER DINAMICO LEGATO ALLO SCORRIMENTO --- */
+/* --- L'HEADER DIVENTA STICKY --- */
+/* Invece di usare animazioni JS complesse, usiamo la potenza nativa del browser (position: sticky)
+   L'header scorre con la pagina, ma si blocca quando il suo fondo (il logo piccolo) tocca la cima dello schermo. */
 .header {
-  position: fixed; 
-  top: 0; left: 0; width: 100%;
+  position: sticky;
+  /* Top negativo = fa scorrere l'header fuori dallo schermo verso l'alto, lasciando visibile solo l'ultima parte (90px) */
+  top: calc(-100% + 90px); 
   z-index: 150;
   background: var(--navy);
-  text-align: center;
   background-image: url('header.jpg');
   background-size: cover;
   background-position: center 40%;
-  /* Il padding si riduce mentre scorri */
-  padding-top: calc(32px - (var(--scroll-progress) * 22px));
-  padding-bottom: calc(28px - (var(--scroll-progress) * 18px));
-  /* L'ombra appare progressivamente */
-  box-shadow: 0 4px calc(var(--scroll-progress) * 16px) rgba(0,0,0,calc(var(--scroll-progress) * 0.5));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Allinea gli elementi verso il basso (verso il bordo che rimarrà visibile) */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
 
-/* Gradiente immagine (fisso) */
+/* Oscuramento fisso dell'immagine */
 .header::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.82) 60%, rgba(30,43,58,0.95) 100%);
+  background: linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.92) 80%, rgba(30,43,58,0.98) 100%);
   pointer-events: none; z-index: 0;
 }
 
-/* Velo blu scuro che appare in dissolvenza legata allo scroll */
-.header::after {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(30,43,58,0.98); 
-  opacity: var(--scroll-progress); 
-  pointer-events: none; z-index: 0;
-}
+.header > * { position: relative; z-index: 1; text-align: center; }
 
-.header > * { position: relative; z-index: 1; }
-
-.logo-wrap { 
-  display: flex; justify-content: center; 
-  /* Il margine sparisce millimetro dopo millimetro */
-  margin-bottom: calc(14px - (var(--scroll-progress) * 14px)); 
-}
-
-.logo-img { 
-  width: auto; object-fit: contain; 
-  /* L'altezza scende da 180px a 40px perfettamente a ritmo col dito */
-  height: calc(180px - (var(--scroll-progress) * 140px)); 
-}
-
+/* Contenitore del testo (sta SOPRA il logo) */
 .header-text-content {
-  overflow: hidden;
-  /* L'opacità scende a 0 molto in fretta (x2) così non si sovrappone */
-  opacity: calc(1 - (var(--scroll-progress) * 2));
-  /* L'altezza del testo collassa da 200px a 0 seguendo lo scroll */
-  max-height: calc(200px - (var(--scroll-progress) * 200px));
-  /* Effetto di leggero allontanamento in prospettiva */
-  transform: scale(calc(1 - (var(--scroll-progress) * 0.1)));
-  transform-origin: top center;
+  padding: 80px 20px 20px; /* Diamo spazio in alto per spingere giù il contenuto e mostrare l'immagine */
 }
 
 .header h1 {
@@ -142,8 +112,19 @@ body{
 .header-address{font-size:.8rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:.06em;}
 .gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0;}
 
+/* Contenitore del logo (sta SOTTO il testo, è la parte che "rimane" visibile in alto) */
+.logo-wrap { 
+  height: 90px; /* L'altezza esatta della barra che rimane fissa in alto */
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+.logo-img { 
+  height: 50px; /* Logo rimpicciolito, perfetto per la barra */
+  width: auto; object-fit: contain; 
+}
 
-/* FABS BOTTOM (Host & Emerg) */
+/* FABS BOTTOM E IL RESTO... */
 .host-fab{position:fixed;bottom:20px;right:18px;width:48px;height:48px;border-radius:50%;background:#25D366;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,0.5);transition:background .2s,transform .2s}
 .host-fab:hover{background:#1eae57;transform:scale(1.08)}
 .host-drawer{position:fixed;bottom:78px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:160px}
@@ -166,15 +147,12 @@ body{
 .host-action-btn.emerg{border-color:rgba(217,48,37,0.4);color:#D93025}
 .host-action-btn.emerg:hover{background:rgba(217,48,37,0.12);border-color:#D93025}
 
-/* INTRO E PAGES RESTANO UGUALI */
 .intro-strip{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;gap:10px;font-size:.83rem;color:rgba(255,255,255,0.55)}
 .intro-strip i{color:var(--gold);font-size:.9rem;flex-shrink:0}
 .page-section{display:none; animation:fadeIn 0.4s ease}
 .page-section.active{display:block}
 @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 .container{max-width:680px;margin:0 auto;padding:20px 14px 80px}
-
-/* TUTTO IL RESTO DEL TUO CSS ... */
 .media-row { display: flex; gap: 10px; margin-bottom: 20px; height: 230px; }
 .map-container { flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); }
 .slider-container { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 12px; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -252,7 +230,6 @@ body{
   <link rel="icon" type="image/avif" href="LogoAppLAPO.avif">
 </head>
 <body>
-
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMenu()"></div>
 
 <div class="sidebar" id="sidebar">

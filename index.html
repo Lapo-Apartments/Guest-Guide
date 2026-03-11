@@ -29,8 +29,7 @@ body{
   color:var(--navy);
   min-height:100vh;
   overflow-x:hidden;
-  /* Diamo spazio al sito per stare sotto all'header fisso */
-  padding-top: 360px; 
+  /* IL PADDING NON E' PIU' FISSO, VIENE AGGIUNTO DAL JAVASCRIPT AUTOMATICAMENTE */
 }
 
 /* FABS TOP (Menu & Lang) - SOLO ICONE TRASPARENTI */
@@ -72,7 +71,7 @@ body{
 .menu-link:hover, .menu-link.active{background:rgba(201,168,76,0.1);color:var(--white)}
 .menu-link.active i{color:var(--gold)}
 
-/* --- HEADER ANIMATO (SI MODIFICA IN BASE ALLO SCROLL) --- */
+/* --- HEADER ANIMATO FLUIDO --- */
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -86,7 +85,6 @@ body{
   box-shadow: 0 4px calc(var(--scroll) * 16px) rgba(0,0,0,calc(var(--scroll) * 0.6));
 }
 
-/* L'immagine di sfondo */
 .header-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background-image: url('header.jpg');
@@ -95,17 +93,15 @@ body{
   z-index: -3;
 }
 
-/* Il gradiente originale */
 .header-bg::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.82) 60%, rgba(30,43,58,0.95) 100%);
 }
 
-/* Il velo blu scuro che oscura l'immagine scendendo */
 .header-dark-overlay {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background: var(--navy);
-  opacity: calc(var(--scroll) * 0.98); /* Da 0 a quasi solido */
+  opacity: calc(var(--scroll) * 0.98); 
   z-index: -2;
   pointer-events: none;
 }
@@ -115,7 +111,7 @@ body{
   z-index: 1;
 }
 
-/* IL LOGO: Parte da 180px e scende a 50px */
+/* IL LOGO: Parte da 180px e scende a 50px in base allo scroll */
 .logo-wrap {
   display: flex; justify-content: center;
   margin-bottom: calc(14px - (var(--scroll) * 14px)); 
@@ -128,9 +124,7 @@ body{
 /* IL TESTO: Scompare collassando */
 .text-wrap {
   overflow: hidden;
-  /* L'altezza scende da 200px a 0 */
   max-height: calc(200px - (var(--scroll) * 200px));
-  /* L'opacità svanisce velocemente */
   opacity: calc(1 - (var(--scroll) * 2));
   transform: scale(calc(1 - (var(--scroll) * 0.2)));
   transform-origin: top center;
@@ -170,9 +164,10 @@ body{
 .host-action-btn.emerg{border-color:rgba(217,48,37,0.4);color:#D93025}
 .host-action-btn.emerg:hover{background:rgba(217,48,37,0.12);border-color:#D93025}
 
-/* INTRO E PAGES RESTANO UGUALI */
+/* STRISCIA TRASPORTI CON ESTENSIONE BLU ANTI-BUCO BIANCO */
 .intro-strip {
   position: relative;
+  z-index: 10;
   background: var(--navy-mid);
   border-bottom: 1px solid var(--border);
   padding: 13px 20px;
@@ -182,29 +177,22 @@ body{
   font-size: .83rem;
   color: rgba(255,255,255,0.55);
 }
-
-/* Il trucco magico: proietta il colore blu verso l'alto per riempire il buco bianco */
 .intro-strip::before {
   content: '';
   position: absolute;
-  bottom: 100%; /* Parte dal bordo superiore della striscia */
-  left: 0;
-  right: 0;
-  height: 600px; /* Crea un blocco blu altissimo che si nasconde dietro l'header */
+  bottom: 100%; /* L'estensione parte in alto dal bordo superiore e copre gli spazi vuoti causati dallo scorrimento eccessivo */
+  left: 0; right: 0; height: 600px;
   background: var(--navy-mid);
+  z-index: -1; /* Assicura che stia assolutamente dietro al testo per non sovrapporsi! */
   pointer-events: none;
 }
+.intro-strip i{color:var(--gold);font-size:.9rem;flex-shrink:0}
 
-.intro-strip i {
-  color: var(--gold);
-  font-size: .9rem;
-  flex-shrink: 0;
-}
+/* PAGES E CONTENUTO GENERALE */
 .page-section{display:none; animation:fadeIn 0.4s ease}
 .page-section.active{display:block}
 @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 .container{max-width:680px;margin:0 auto;padding:20px 14px 80px}
-
 .media-row { display: flex; gap: 10px; margin-bottom: 20px; height: 230px; }
 .map-container { flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); }
 .slider-container { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 12px; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -1856,6 +1844,8 @@ function applyTranslations(lang) {
     var key = els[j].getAttribute('data-i18n');
     if (t[key] !== undefined) { els[j].innerHTML = t[key]; }
   }
+  // DOPO CHE IL TESTO È CAMBIATO, RICALCOLA LO SPAZIO DELL'HEADER!
+  initHeaderPadding();
 }
 
 document.getElementById('lang-drawer').addEventListener('click', function(e) {
@@ -1885,26 +1875,42 @@ function initSlider() {
   slider.addEventListener('mousedown', function() { clearInterval(slideTimer); });
 }
 
-// --- IL MOTORE DELL'ANIMAZIONE FLUIDA (SCROLL INTERPOLATION) ---
-window.addEventListener('scroll', function() {
-  // L'animazione si completa dopo aver scorso 180 pixel
-  var maxScroll = 180; 
+/* ========================================================
+   IL MOTORE DELL'ANIMAZIONE E DELLA MISURAZIONE DELLO SPAZIO 
+   ======================================================== */
+
+// 1. Misura l'header e spinge giù il sito in automatico
+function initHeaderPadding() {
+  // Salva temporaneamente il livello di scroll per poter misurare l'header al suo massimo
+  var currentScroll = document.documentElement.style.getPropertyValue('--scroll');
+  document.documentElement.style.setProperty('--scroll', '0');
+  
+  var headerHeight = document.getElementById('main-header').offsetHeight;
+  document.body.style.paddingTop = headerHeight + 'px';
+  
+  // Ripristina lo scroll al suo stato reale
+  if(currentScroll !== '') { document.documentElement.style.setProperty('--scroll', currentScroll); }
+  handleScroll();
+}
+
+// 2. Anima l'header mentre scorri
+var maxScroll = 180; 
+function handleScroll() {
   var scrollY = window.scrollY;
-  
-  // Calcola la percentuale di scorrimento (da 0 a 1)
   var progress = scrollY / maxScroll;
-  
-  // Blocca il valore tra 0 e 1
   if (progress > 1) progress = 1;
   if (progress < 0) progress = 0;
-  
-  // Invia in tempo reale la percentuale esatta al CSS
   document.documentElement.style.setProperty('--scroll', progress);
-}, { passive: true });
+}
+
+// 3. Attiva i motori
+window.addEventListener('scroll', handleScroll, { passive: true });
+window.addEventListener('resize', initHeaderPadding);
 
 document.addEventListener("DOMContentLoaded", function() {
   applyTranslations('it');
   initSlider();
+  setTimeout(initHeaderPadding, 50); // Attende un millisecondo per la corretta lettura dei font
 });
 
 </script>

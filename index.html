@@ -23,13 +23,34 @@
 }
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
-/* FABS TOP (Menu & Lang) */
-.top-fab{position:fixed;top:24px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:top 0.35s ease-in-out, background .2s, transform .2s}
+/* FABS TOP (Menu & Lang) - SOLO ICONA TRASPARENTE */
+.top-fab {
+  position: fixed;
+  top: 24px;
+  width: 44px;
+  height: 44px;
+  background: transparent; /* Sfondo rimosso */
+  border: none; /* Bordo rimosso */
+  box-shadow: none; /* Ombra rimossa */
+  color: var(--gold-light);
+  font-size: 1.5rem; /* Icona leggermente più grande */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 200;
+  transition: top 0.35s ease-in-out, transform 0.2s, color 0.2s;
+}
 /* Centrato perfettamente nel nuovo header sottile: */
-.top-fab.scrolled{top:6px;} 
-.top-fab:hover{background:var(--navy);transform:scale(1.05)}
-.fab-left{left:18px;}
-.fab-right{right:18px;}
+.top-fab.scrolled { top: 6px; } 
+/* Effetto al passaggio del mouse: si illumina e si ingrandisce leggermente */
+.top-fab:hover { 
+  background: transparent; 
+  color: var(--white); 
+  transform: scale(1.15); 
+}
+.fab-left { left: 18px; }
+.fab-right { right: 18px; }
 
 /* LANG DRAWER */
 .lang-drawer{position:fixed;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:top 0.35s ease-in-out, opacity .22s ease, transform .22s ease}

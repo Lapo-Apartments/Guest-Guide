@@ -21,7 +21,6 @@
   --shadow:0 4px 24px rgba(30,43,58,0.13);
   --green-pharma: #28a745;
 }
-/* Rimosso il padding-top dal body. L'header torna ad essere un elemento normale del flusso */
 body{
   font-family:'DM Sans',sans-serif;
   background:var(--cream);
@@ -30,15 +29,14 @@ body{
   overflow-x:hidden;
 }
 
-/* FABS TOP (Menu & Lang) - SOLO ICONA TRASPARENTE */
-/* Rimangono FIXED, ma li teniamo in alto fermi */
+/* FABS TOP (Menu & Lang) - SOLO ICONE TRASPARENTI */
 .top-fab {
   position: fixed;
-  top: 15px; /* Alzati leggermente per allinearsi al logo quando l'header è piccolo */
+  top: 18px; /* Perfettamente centrate nell'header rimpicciolito */
   width: 44px; height: 44px;
   background: transparent; border: none; box-shadow: none;
   color: var(--gold-light); font-size: 1.5rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.8); /* Ombra per farle risaltare */
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; z-index: 200;
   transition: transform 0.2s, color 0.2s;
@@ -50,7 +48,7 @@ body{
 /* LANG DRAWER */
 .lang-drawer{
   position:fixed;
-  top: 65px;
+  top: 68px; /* Appena sotto il pulsante della lingua */
   right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;
   transition: opacity .22s ease, transform .22s ease;
 }
@@ -70,61 +68,72 @@ body{
 .menu-link:hover, .menu-link.active{background:rgba(201,168,76,0.1);color:var(--white)}
 .menu-link.active i{color:var(--gold)}
 
-/* --- L'HEADER DIVENTA STICKY --- */
-/* Invece di usare animazioni JS complesse, usiamo la potenza nativa del browser (position: sticky)
-   L'header scorre con la pagina, ma si blocca quando il suo fondo (il logo piccolo) tocca la cima dello schermo. */
+/* --- HEADER STICKY NATIVO (SENZA SCATTI E SPAZI VUOTI) --- */
 .header {
+  position: -webkit-sticky;
   position: sticky;
-  /* Top negativo = fa scorrere l'header fuori dallo schermo verso l'alto, lasciando visibile solo l'ultima parte (90px) */
-  top: calc(-100% + 90px); 
+  top: -240px; /* Nasconde la parte in alto man mano che scorri, fino a bloccarsi a questo punto */
+  height: 320px; /* L'altezza totale (240px testo + 80px logo) */
   z-index: 150;
-  background: var(--navy);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: box-shadow 0.4s ease;
+}
+.header.scrolled {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+
+.header-bg {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background-image: url('header.jpg');
   background-size: cover;
   background-position: center 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Allinea gli elementi verso il basso (verso il bordo che rimarrà visibile) */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  z-index: 0;
+}
+.header-gradient {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(30,43,58,0.5) 0%, rgba(30,43,58,0.85) 75%, var(--navy) 100%);
+  z-index: 1;
+}
+.header-darken {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--navy);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+.header.scrolled .header-darken {
+  opacity: 0.98; /* Si scurisce dolcemente quando l'header è collassato */
 }
 
-/* Oscuramento fisso dell'immagine */
-.header::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.92) 80%, rgba(30,43,58,0.98) 100%);
-  pointer-events: none; z-index: 0;
+/* Contenitori interni dell'Header */
+.header-content {
+  position: relative; z-index: 3;
+  height: 100%;
+  display: flex; flex-direction: column;
 }
-
-.header > * { position: relative; z-index: 1; text-align: center; }
-
-/* Contenitore del testo (sta SOPRA il logo) */
-.header-text-content {
-  padding: 80px 20px 20px; /* Diamo spazio in alto per spingere giù il contenuto e mostrare l'immagine */
+.header-text-wrap {
+  height: 240px; /* La parte che scompare in alto */
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+  padding-bottom: 25px;
 }
-
 .header h1 {
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(1.9rem,6vw,2.6rem);
   font-weight:700;color:#FFFFFF;line-height:1.1;
-  margin-bottom:6px;
+  margin-bottom:6px; text-align: center;
   text-shadow:0 2px 8px rgba(0,0,0,0.9),0 0 30px rgba(0,0,0,0.8);
 }
 .header-address{font-size:.8rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:.06em;}
 .gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0;}
 
-/* Contenitore del logo (sta SOTTO il testo, è la parte che "rimane" visibile in alto) */
-.logo-wrap { 
-  height: 90px; /* L'altezza esatta della barra che rimane fissa in alto */
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+.header-logo-wrap {
+  height: 80px; /* La barra sottile che rimarrà visibile in cima (320 - 240) */
+  display: flex; justify-content: center; align-items: center;
 }
-.logo-img { 
-  height: 50px; /* Logo rimpicciolito, perfetto per la barra */
-  width: auto; object-fit: contain; 
-}
+.logo-img { height: 50px; width: auto; object-fit: contain; }
 
-/* FABS BOTTOM E IL RESTO... */
+
+/* FABS BOTTOM (Host & Emerg) */
 .host-fab{position:fixed;bottom:20px;right:18px;width:48px;height:48px;border-radius:50%;background:#25D366;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,0.5);transition:background .2s,transform .2s}
 .host-fab:hover{background:#1eae57;transform:scale(1.08)}
 .host-drawer{position:fixed;bottom:78px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:160px}
@@ -147,6 +156,7 @@ body{
 .host-action-btn.emerg{border-color:rgba(217,48,37,0.4);color:#D93025}
 .host-action-btn.emerg:hover{background:rgba(217,48,37,0.12);border-color:#D93025}
 
+/* INTRO E PAGES RESTANO UGUALI */
 .intro-strip{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;gap:10px;font-size:.83rem;color:rgba(255,255,255,0.55)}
 .intro-strip i{color:var(--gold);font-size:.9rem;flex-shrink:0}
 .page-section{display:none; animation:fadeIn 0.4s ease}
@@ -227,9 +237,9 @@ body{
 .tip-icon i{color:var(--gold);font-size:.75rem}
 .tip-item strong{color:var(--gold-light)}
 </style>
-  <link rel="icon" type="image/avif" href="LogoAppLAPO.avif">
 </head>
 <body>
+
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMenu()"></div>
 
 <div class="sidebar" id="sidebar">
@@ -287,15 +297,22 @@ body{
 </div>
 
 <header class="header" id="main-header">
-  <div class="header-text-content">
-    <div class="header-eyebrow" data-i18n="eyebrow"> </div>
-    <h1 id="main-title" data-i18n="headline_info">Informazioni<br>Appartamento</h1>
-    <div class="header-address">Via G.B. Pergolesi, 3 · Milano</div>
-    <div class="gold-line"></div>
-  </div>
-  
-  <div class="logo-wrap">
-    <img class="logo-img" src="logo.png" alt="LAPO Apartments">
+  <div class="header-bg"></div>
+  <div class="header-gradient"></div>
+  <div class="header-darken"></div>
+  <div class="header-content">
+    
+    <div class="header-text-wrap">
+      <div class="header-eyebrow" data-i18n="eyebrow"> </div>
+      <h1 id="main-title" data-i18n="headline_info">Informazioni<br>Appartamento</h1>
+      <div class="header-address">Via G.B. Pergolesi, 3 · Milano</div>
+      <div class="gold-line"></div>
+    </div>
+    
+    <div class="header-logo-wrap">
+      <img class="logo-img" src="logo.png" alt="LAPO Apartments">
+    </div>
+    
   </div>
 </header>
 
@@ -936,7 +953,8 @@ body{
   </div>
 
   </div></div>
-  <script>
+
+<script>
 var T = {
   it: {
     eyebrow:"", headline_info:"Informazioni<br>Appartamento", headline_transp:"Benvenuti<br>a Milano",
@@ -1708,19 +1726,14 @@ function closeMenu() {
 }
 
 function switchPage(pageId) {
-  // Update nav buttons
   document.getElementById('nav-info').classList.remove('active');
   document.getElementById('nav-transport').classList.remove('active');
   document.getElementById('nav-' + pageId).classList.add('active');
   
-  // Hide all pages
   var pages = document.querySelectorAll('.page-section');
   for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
-  
-  // Show selected page
   document.getElementById('page-' + pageId).classList.add('active');
   
-  // Update header title based on page
   var titleEl = document.getElementById('main-title');
   if(pageId === 'info') {
     titleEl.setAttribute('data-i18n', 'headline_info');
@@ -1728,11 +1741,8 @@ function switchPage(pageId) {
     titleEl.setAttribute('data-i18n', 'headline_transp');
   }
   
-  // Re-run translation to update the header
   var currentLang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
   applyTranslations(currentLang);
-
-  // Close sidebar
   closeMenu();
   window.scrollTo(0,0);
 }
@@ -1765,7 +1775,6 @@ function toggleEmergDrawer() {
   if(!isOpen) d.classList.add('open');
 }
 
-// Chiudi drawer cliccando fuori
 document.addEventListener('click', function(e) {
   var langDrawer = document.getElementById('lang-drawer');
   var langFab = document.getElementById('lang-fab');
@@ -1785,7 +1794,6 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Copy Wifi Password Function
 function copyWifi() {
   var passwordText = document.getElementById("wifi-pass").innerText;
   navigator.clipboard.writeText(passwordText).then(function() {
@@ -1802,7 +1810,6 @@ function copyWifi() {
   });
 }
 
-// Language Logic
 function applyTranslations(lang) {
   var t = T[lang];
   if (!t) return;
@@ -1818,40 +1825,39 @@ document.getElementById('lang-drawer').addEventListener('click', function(e) {
   if (!btn) return;
   var lang = btn.getAttribute('data-lang');
   
-  // Update active state
   var btns = document.querySelectorAll('.lang-btn');
   for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('active'); }
   btn.classList.add('active');
   
-  // Close drawer & apply translation
   document.getElementById('lang-drawer').classList.remove('open');
   applyTranslations(lang);
 });
 
-// Auto-slider logic
 function initSlider() {
   var slider = document.querySelector('.slider-container');
   if(!slider) return;
   var slideTimer = setInterval(function(){
       var maxScrollLeft = slider.scrollWidth - slider.clientWidth;
       var nextScroll = slider.scrollLeft + slider.clientWidth;
-      
-      // Se siamo alla fine, torna all'inizio
-      if(slider.scrollLeft >= maxScrollLeft - 5) {
-          nextScroll = 0;
-      }
-      
+      if(slider.scrollLeft >= maxScrollLeft - 5) { nextScroll = 0; }
       slider.scrollTo({ top: 0, left: nextScroll, behavior: 'smooth' });
-  }, 3500); // Cambia immagine ogni 3.5 secondi
+  }, 3500); 
 
-  // Se l'utente tocca lo slider, l'autoscroll si ferma per non dargli fastidio
   slider.addEventListener('touchstart', function() { clearInterval(slideTimer); }, {passive: true});
   slider.addEventListener('mousedown', function() { clearInterval(slideTimer); });
 }
 
+// LOGICA PER ATTIVARE LE OMBRE QUANDO SI SCENDE
+window.addEventListener('scroll', function() {
+  var header = document.getElementById('main-header');
+  // Quando l'header si è quasi tutto nascosto (cioè l'utente è sceso di 200px) si aggiungono le ombre
+  if (window.scrollY > 200) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+}, { passive: true });
 
-
-// Applica lingua iniziale e attiva lo slider al caricamento
 document.addEventListener("DOMContentLoaded", function() {
   applyTranslations('it');
   initSlider();

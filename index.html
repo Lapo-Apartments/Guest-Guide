@@ -1862,11 +1862,14 @@ window.addEventListener('scroll', function() {
   var topFabs = document.querySelectorAll('.top-fab');
   var langDrawer = document.getElementById('lang-drawer');
   
-  if (window.scrollY > 80) {
+  // Limite SUPERIORE: Se scendi oltre i 250 pixel, rimpicciolisci tutto
+  if (window.scrollY > 250) {
     header.classList.add('scrolled');
     langDrawer.classList.add('scrolled');
     topFabs.forEach(function(fab) { fab.classList.add('scrolled'); });
-  } else {
+  } 
+  // Limite INFERIORE: Se torni su e superi i 50 pixel, ingrandisci di nuovo
+  else if (window.scrollY < 50) {
     header.classList.remove('scrolled');
     langDrawer.classList.remove('scrolled');
     topFabs.forEach(function(fab) { fab.classList.remove('scrolled'); });

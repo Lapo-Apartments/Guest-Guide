@@ -23,18 +23,36 @@
 }
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
-/* FABS TOP (Menu & Lang) */
-.top-fab{position:absolute;top:24px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:background .2s,transform .2s}
+/* FABS TOP (Menu & Lang) - ORA FIXED PER SCORRERE */
+.top-fab{position:fixed;top:24px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:background .2s,transform .2s}
 .top-fab:hover{background:var(--navy);transform:scale(1.05)}
 .fab-left{left:18px;}
 .fab-right{right:18px;}
 
-/* LANG DRAWER */
-.lang-drawer{position:absolute;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+/* LANG DRAWER - ORA FIXED PER SCORRERE */
+.lang-drawer{position:fixed;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
 .lang-drawer.open{opacity:1;transform:none;pointer-events:all}
 .lang-btn{background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.7);padding:7px 16px;border-radius:20px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap}
 .lang-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
 .lang-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+
+/* NUOVO STICKY HEADER A SCOMPARSA */
+#sticky-header {
+  position: fixed;
+  top: -90px;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+#sticky-header.visible { top: 0; }
+.sticky-logo { height: 55px; width: auto; object-fit: contain; }
 
 /* SIDEBAR MENU */
 .sidebar-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:299;opacity:0;pointer-events:none;transition:opacity 0.3s}
@@ -68,16 +86,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .emerg-fab:hover{background:var(--navy-mid);transform:scale(1.08)}
 .emerg-drawer{position:fixed;bottom:78px;left:18px;background:var(--navy);border:1px solid #D93025;border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:180px}
 .emerg-drawer.open{opacity:1;transform:none;pointer-events:all}
-.emerg-drawer-label {
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--gold-dim); /* <--- SOSTITUISCI #D93025 CON QUESTO */
-  padding: 2px 10px 4px;
-  border-bottom: 1px solid rgba(201,168,76,0.15);
-  margin-bottom: 2px;
-}
+.emerg-drawer-label {font-size: .7rem;font-weight: 600;letter-spacing: .1em;text-transform: uppercase;color: var(--gold-dim);padding: 2px 10px 4px;border-bottom: 1px solid rgba(201,168,76,0.15);margin-bottom: 2px;}
 .host-action-btn{display:flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.8);padding:9px 14px;border-radius:10px;font-size:.83rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap;text-decoration:none;width:100%}
 .host-action-btn i{font-size:1rem;width:16px;text-align:center}
 .host-action-btn.wa{border-color:rgba(37,211,102,0.4);color:#4ee58a}
@@ -199,6 +208,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   <link rel="icon" type="image/avif" href="LogoAppLAPO.avif">
 </head>
 <body>
+
+<div id="sticky-header">
+  <img src="logo.png" alt="LAPO Apartments" class="sticky-logo">
+</div>
 
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMenu()"></div>
 
@@ -901,8 +914,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
   </div>
 
   </div></div>
-
-<script>
+  <script>
 var T = {
   it: {
     eyebrow:"", headline_info:"Informazioni<br>Appartamento", headline_transp:"Benvenuti<br>a Milano",
@@ -1814,6 +1826,16 @@ function initSlider() {
   slider.addEventListener('touchstart', function() { clearInterval(slideTimer); }, {passive: true});
   slider.addEventListener('mousedown', function() { clearInterval(slideTimer); });
 }
+
+// --- LOGICA STICKY HEADER ---
+window.addEventListener('scroll', function() {
+  var stickyHeader = document.getElementById('sticky-header');
+  if (window.scrollY > 250) {
+    stickyHeader.classList.add('visible');
+  } else {
+    stickyHeader.classList.remove('visible');
+  }
+});
 
 // Applica lingua iniziale e attiva lo slider al caricamento
 document.addEventListener("DOMContentLoaded", function() {

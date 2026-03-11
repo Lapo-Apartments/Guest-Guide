@@ -24,15 +24,16 @@
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
 /* FABS TOP (Menu & Lang) */
-.top-fab{position:fixed;top:24px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:top 0.4s ease, background .2s, transform .2s}
-.top-fab.scrolled{top:18px;} 
+.top-fab{position:fixed;top:24px;width:44px;height:44px;border-radius:50%;background:rgba(30,43,58,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:top 0.35s ease-in-out, background .2s, transform .2s}
+/* Centrato perfettamente nel nuovo header sottile: */
+.top-fab.scrolled{top:6px;} 
 .top-fab:hover{background:var(--navy);transform:scale(1.05)}
 .fab-left{left:18px;}
 .fab-right{right:18px;}
 
 /* LANG DRAWER */
-.lang-drawer{position:fixed;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:top 0.4s ease, opacity .22s ease, transform .22s ease}
-.lang-drawer.scrolled{top:70px;}
+.lang-drawer{position:fixed;top:76px;right:18px;background:rgba(30,43,58,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.4);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(-10px) scale(0.95);pointer-events:none;transition:top 0.35s ease-in-out, opacity .22s ease, transform .22s ease}
+.lang-drawer.scrolled{top:58px;}
 .lang-drawer.open{opacity:1;transform:none;pointer-events:all}
 .lang-btn{background:transparent;border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.7);padding:7px 16px;border-radius:20px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;font-weight:500;text-align:left;white-space:nowrap}
 .lang-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
@@ -49,71 +50,53 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .menu-link:hover, .menu-link.active{background:rgba(201,168,76,0.1);color:var(--white)}
 .menu-link.active i{color:var(--gold)}
 
-/* --- NUOVO HEADER ANIMATO FLUIDO --- */
+/* --- NUOVO HEADER ANIMATO FLUIDO ED EXTRA SOTTILE --- */
 .header {
   position: sticky;
   top: 0;
   z-index: 150;
   background: var(--navy);
-  padding: 32px 20px 28px;
+  padding: 30px 20px 25px; 
   text-align: center;
   background-image: url('header.jpg');
   background-size: cover;
   background-position: center 40%;
-  /* Anima la riduzione dell'altezza */
-  transition: padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
+  transition: padding 0.35s ease-in-out, box-shadow 0.35s ease-in-out;
 }
 
-/* 1. Il tuo gradiente scuro originale (NON SI TOCCA E NON SI ANIMA PIÙ) */
 .header::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(to bottom, rgba(30,43,58,0.72) 0%, rgba(30,43,58,0.82) 60%, rgba(30,43,58,0.95) 100%);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
-/* 2. Il nuovo overlay solido che compare in dissolvenza per scurire il tutto morbido */
 .header::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(30,43,58,0.98); /* Il tuo blu scuro */
-  opacity: 0; /* Inizialmente invisibile */
-  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  pointer-events: none;
-  z-index: 0;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30,43,58,0.98); 
+  opacity: 0; 
+  transition: opacity 0.35s ease-in-out;
+  pointer-events: none; z-index: 0;
 }
 
 .header > * { position: relative; z-index: 1; }
 
-/* Wrapper del logo */
+/* Invece di far calcolare al browser le proporzioni, diamo un'altezza rigida da animare */
 .logo-wrap { 
-  display: flex; 
-  justify-content: center; 
-  margin-bottom: 14px; 
-  transition: margin 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  display: flex; justify-content: center; 
+  margin-bottom: 12px; 
+  height: 150px; /* Altezza di partenza */
+  transition: height 0.35s ease-in-out, margin 0.35s ease-in-out; 
 }
-
-/* Transizione morbida delle dimensioni del logo */
 .logo-img { 
-  width: 180px; 
-  height: 180px; 
-  object-fit: contain; 
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  width: auto; height: 100%; object-fit: contain; 
 }
 
-/* Griglia per annullare l'altezza del testo in modo fluido */
+/* Usiamo max-height per collassare morbidamente le scritte */
 .header-text-content {
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+  max-height: 200px;
   opacity: 1;
-}
-
-.header-text-inner {
   overflow: hidden;
+  transition: max-height 0.35s ease-in-out, opacity 0.25s ease-in-out;
 }
 
 .header h1 {
@@ -126,26 +109,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .header-address{font-size:.8rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:.06em;}
 .gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0;}
 
-/* --- STATO SCROLLED (QUANDO SI SCENDE) --- */
+/* --- STATO SCROLLED (HEADER EXTRA SOTTILE) --- */
 .header.scrolled {
-  padding: 10px 20px; 
+  padding: 8px 20px; /* Margini ridottissimi sopra e sotto */
   box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
 
-/* Qui attiviamo la dissolvenza del colore scuro sull'immagine! */
 .header.scrolled::after {
   opacity: 1; 
 }
 
 .header.scrolled .logo-wrap { 
+  height: 40px; /* Logo schiacciato fino a 40 pixel */
   margin-bottom: 0; 
 }
-.header.scrolled .logo-img { 
-  width: 60px; 
-  height: 60px; 
-}
+
 .header.scrolled .header-text-content {
-  grid-template-rows: 0fr; 
+  max-height: 0; 
   opacity: 0;
 }
 
@@ -173,7 +153,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 .host-action-btn.emerg{border-color:rgba(217,48,37,0.4);color:#D93025}
 .host-action-btn.emerg:hover{background:rgba(217,48,37,0.12);border-color:#D93025}
 
-/* INTRO E PAGES */
+/* INTRO E PAGES RESTANO UGUALI */
 .intro-strip{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;gap:10px;font-size:.83rem;color:rgba(255,255,255,0.55)}
 .intro-strip i{color:var(--gold);font-size:.9rem;flex-shrink:0}
 .page-section{display:none; animation:fadeIn 0.4s ease}
@@ -181,7 +161,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 .container{max-width:680px;margin:0 auto;padding:20px 14px 80px}
 
-/* MEDIA ROW, TEXT CONTENT E TUTTO IL RESTO */
+/* TUTTO IL RESTO DEL TUO CSS ... */
 .media-row { display: flex; gap: 10px; margin-bottom: 20px; height: 230px; }
 .map-container { flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); }
 .slider-container { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 12px; border: 1px solid var(--cream-dark); box-shadow: var(--shadow); -webkit-overflow-scrolling: touch; scrollbar-width: none; }

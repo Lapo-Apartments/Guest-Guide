@@ -1849,23 +1849,7 @@ function initSlider() {
   slider.addEventListener('mousedown', function() { clearInterval(slideTimer); });
 }
 
-// --- IL MOTORE DELL'ANIMAZIONE LEGATA ALLO SCROLL ---
-window.addEventListener('scroll', function() {
-  // Impostiamo la distanza in pixel su cui si svolgerà l'animazione. 
-  // 200px significa che dopo 200px di scorrimento l'header sarà al minimo.
-  var maxScroll = 200; 
-  var scrollY = window.scrollY;
-  
-  // Calcola una percentuale da 0 a 1 in base a quanto sei sceso
-  var progress = scrollY / maxScroll;
-  
-  // Assicuriamoci che non superi mai 1 o scenda sotto 0
-  if (progress > 1) progress = 1;
-  if (progress < 0) progress = 0;
-  
-  // Invia in tempo reale la percentuale esatta al CSS!
-  document.documentElement.style.setProperty('--scroll-progress', progress);
-}, { passive: true }); // passive: true lo rende ultra-performante su mobile
+
 
 // Applica lingua iniziale e attiva lo slider al caricamento
 document.addEventListener("DOMContentLoaded", function() {

@@ -281,6 +281,9 @@ body{
   <a class="menu-link" id="nav-transport" onclick="switchPage('transport')">
     <i class="fas fa-subway"></i> <span data-i18n="nav_transport">Trasporti & Attrazioni</span>
   </a>
+  <a class="menu-link" id="nav-food" onclick="switchPage('food')">
+    <i class="fas fa-utensils"></i> <span data-i18n="nav_food">Dove Mangiare</span>
+  </a>
 </div>
 
 <button class="top-fab fab-left" id="menu-fab" onclick="openMenu()" title="Menu">
@@ -981,6 +984,144 @@ body{
   </div>
 
   </div></div>
+  <div id="page-food" class="page-section">
+  <div class="intro-strip">
+    <i class="fas fa-exclamation-triangle" style="color: var(--gold-light);"></i>
+    <span data-i18n="food_disc">Questi ristoranti sono suggerimenti basati sui nostri gusti personali. Non ci assumiamo responsabilità per prezzi o variazioni di servizio. Consigliamo di prenotare!</span>
+  </div>
+
+  <div class="container">
+    
+    <div class="section-card" id="card-kisen">
+      <div class="section-header" onclick="toggleCard('card-kisen')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#000000,#434343)"><i class="fas fa-fish"></i></div>
+        <div class="section-meta">
+          <div class="section-title">Kisen Milano</div>
+          <div class="section-subtitle">Sushi & Japanese Cuisine</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="kisen_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="kisen_dir"></span></div></div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-hostaria">
+      <div class="section-header" onclick="toggleCard('card-hostaria')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#0072CE,#0052cc)"><i class="fas fa-water"></i></div>
+        <div class="section-meta">
+          <div class="section-title">Hostaria Mediterraneum</div>
+          <div class="section-subtitle">Pesce e Tradizione</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="hostaria_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="hostaria_dir"></span></div></div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-mammarosa">
+      <div class="section-header" onclick="toggleCard('card-mammarosa')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#D93025,#9B1515)"><i class="fas fa-wine-glass-alt"></i></div>
+        <div class="section-meta">
+          <div class="section-title">Osteria Mamma Rosa</div>
+          <div class="section-subtitle">Cucina Milanese & Italiana</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="mamma_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="mamma_dir"></span></div></div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-mu">
+      <div class="section-header" onclick="toggleCard('card-mu')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#F5C400,#D4A000); color:#1a1a1a"><i class="fas fa-leaf"></i></div>
+        <div class="section-meta">
+          <div class="section-title">MU Dimsum</div>
+          <div class="section-subtitle">Alta Cucina Cinese</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="mu_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="mu_dir"></span></div></div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-miscusi">
+      <div class="section-header" onclick="toggleCard('card-miscusi')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#00A651,#007A3D)"><i class="fas fa-utensils"></i></div>
+        <div class="section-meta">
+          <div class="section-title">Miscusi</div>
+          <div class="section-subtitle">Pasta Fresca</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="miscusi_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="miscusi_dir"></span></div></div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-gallia">
+      <div class="section-header" onclick="toggleCard('card-gallia')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#9B8EC4,#6A5BA0)"><i class="fas fa-glass-cheers"></i></div>
+        <div class="section-meta">
+          <div class="section-title">Terrazza Gallia</div>
+          <div class="section-subtitle">Rooftop Bar & Restaurant</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="gallia_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="gallia_dir"></span></div></div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-terra">
+      <div class="section-header" onclick="toggleCard('card-terra')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#E47128,#C85A17)"><i class="fas fa-ice-cream"></i></div>
+        <div class="section-meta">
+          <div class="section-title">Terra Gelato</div>
+          <div class="section-subtitle">Gelateria Artigianale</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="terra_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="terra_dir"></span></div></div>
+      </div></div>
+    </div>
+
+    <div class="section-card" id="card-sibilla">
+      <div class="section-header" onclick="toggleCard('card-sibilla')">
+        <div class="section-icon" style="background:linear-gradient(135deg,#D93025,#E61E4D)"><i class="fas fa-pizza-slice"></i></div>
+        <div class="section-meta">
+          <div class="section-title">L'Antro della Sibilla</div>
+          <div class="section-subtitle">Vera Pizza Napoletana</div>
+        </div>
+        <div class="section-toggle"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="section-body"><div class="section-body-inner" style="padding-top:15px;">
+        <div class="desc-text" data-i18n="sibilla_desc"></div>
+        <div class="transport-block"><div class="block-label" data-i18n="how_to_reach">Come arrivare</div>
+        <div class="step-desc"><i class="fas fa-walking" style="color:var(--gold)"></i> <span data-i18n="sibilla_dir"></span></div></div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
 
 <script>
 var T = {

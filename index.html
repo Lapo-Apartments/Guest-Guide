@@ -1963,13 +1963,6 @@ function switchPage(pageId) {
   closeMenu();
   window.scrollTo(0,0);
 }
-  
-  var currentLang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
-  applyTranslations(currentLang);
-  closeMenu();
-  window.scrollTo(0,0);
-}
-
 function closeAllDrawers() {
   document.getElementById('lang-drawer').classList.remove('open');
   document.getElementById('host-drawer').classList.remove('open');

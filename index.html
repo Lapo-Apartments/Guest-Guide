@@ -144,6 +144,9 @@ body{
 
 /* FABS BOTTOM (Host & Emerg) */
 .host-fab{position:fixed;bottom:20px;right:18px;width:48px;height:48px;border-radius:50%;background:#25D366;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,0.5);transition:background .2s,transform .2s}
+.nav-fab{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);height:48px;padding:0 18px;border-radius:24px;background:var(--gold);color:var(--navy);border:1.5px solid rgba(255,255,255,0.35);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(30,43,58,0.35);transition:background .18s,transform .18s}
+.nav-fab i{font-size:1rem}
+.nav-fab:hover{background:var(--gold-light);transform:translateX(-50%) scale(1.05)}
 .host-fab:hover{background:#1eae57;transform:scale(1.08)}
 .host-drawer{position:fixed;bottom:78px;right:18px;background:var(--navy);border:1px solid var(--gold-dim);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;gap:6px;z-index:199;box-shadow:0 8px 32px rgba(0,0,0,0.4);opacity:0;transform:translateY(10px) scale(0.95);pointer-events:none;transition:opacity .22s ease,transform .22s ease;min-width:160px}
 .host-drawer.open{opacity:1;transform:none;pointer-events:all}
@@ -299,7 +302,12 @@ body{
   <button class="lang-btn" data-lang="en">🇬🇧 English</button>
   <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
   <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
+  <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
 </div>
+
+<a class="nav-fab" id="nav-fab" href="https://www.google.com/maps/dir/?api=1&destination=Via+Giovanni+Battista+Pergolesi,+3,+20124+Milano+MI" target="_blank" rel="noopener" data-i18n-title="fab_nav" data-i18n-aria="fab_nav" title="Portami all'appartamento" aria-label="Portami all'appartamento">
+  <i class="fas fa-location-arrow"></i> <span data-i18n="fab_nav_short">Indicazioni</span>
+</a>
 
 <button class="host-fab" id="host-fab" onclick="toggleHostDrawer()" title="Contatta l'Host">
   <i class="fab fa-whatsapp"></i>
@@ -1317,7 +1325,8 @@ var T = {
     miscusi_desc: "Il paradiso della pasta fresca. Scegli il formato, il sugo e goditi un pasto gustoso in un ambiente giovane e conviviale.", miscusi_dir: "In zona Centrale (Piazza San Camillo de Lellis), raggiungibile a piedi.",
     gallia_desc: "Per un aperitivo o una cena esclusiva con una bellissima vista panoramica dalla terrazza dell'Excelsior Hotel Gallia.", gallia_dir: "Esattamente di fronte alla Stazione Centrale (Piazza Duca d'Aosta).",
     terra_desc: "Una delle migliori gelaterie artigianali della zona, perfetta per una pausa dolce e rinfrescante.", terra_dir: "In Via Vitruvio, a circa 5 minuti a piedi dall'appartamento.",
-    sibilla_desc: "La vera pizza napoletana e specialità campane in un locale verace e sempre molto vivace.", sibilla_dir: "In Via San Gregorio, a circa 10 minuti a piedi."
+    sibilla_desc: "La vera pizza napoletana e specialità campane in un locale verace e sempre molto vivace.", sibilla_dir: "In Via San Gregorio, a circa 10 minuti a piedi.",
+    fab_nav: "Portami all'appartamento", fab_nav_short: "Indicazioni"
   },
   en: {
     eyebrow:"", headline_info:"Apartment<br>Information", headline_transp:"Welcome<br>to Milan",
@@ -1510,7 +1519,8 @@ var T = {
     miscusi_desc: "Fresh pasta paradise. Choose your pasta shape, your sauce, and enjoy a tasty meal in a vibrant environment.", miscusi_dir: "In the Centrale area (Piazza San Camillo de Lellis), reachable on foot.",
     gallia_desc: "For an exclusive aperitivo or dinner with a beautiful panoramic view from the terrace of the Excelsior Hotel Gallia.", gallia_dir: "Exactly opposite the Central Station (Piazza Duca d'Aosta).",
     terra_desc: "One of the best artisanal gelaterias in the area, perfect for a sweet and refreshing break.", terra_dir: "On Via Vitruvio, about a 5-minute walk from the apartment.",
-    sibilla_desc: "Authentic Neapolitan pizza and Campanian specialties in a lively and genuine local spot.", sibilla_dir: "On Via San Gregorio, about a 10-minute walk."
+    sibilla_desc: "Authentic Neapolitan pizza and Campanian specialties in a lively and genuine local spot.", sibilla_dir: "On Via San Gregorio, about a 10-minute walk.",
+    fab_nav: "Directions to the apartment", fab_nav_short: "Directions"
   },
   zh: {
     eyebrow:"", headline_info:"公寓信息", headline_transp:"欢迎来到<br>米兰",
@@ -1703,7 +1713,8 @@ var T = {
     miscusi_desc: "新鲜意大利面的天堂。自己选择面条形状和酱汁，在充满活力的环境中享受美食。", miscusi_dir: "位于中央车站区域，步行即可到达。",
     gallia_desc: "在 Excelsior Hotel Gallia 的露台上享用独特的开胃酒或晚餐，欣赏美丽的城市全景。", gallia_dir: "就在中央车站的正对面（Piazza Duca d'Aosta）。",
     terra_desc: "该地区最好的手工冰淇淋店之一，非常适合来一份清爽的甜点。", terra_dir: "位于 Via Vitruvio，距离公寓约 5 分钟步行路程。",
-    sibilla_desc: "正宗的那不勒斯披萨和坎帕尼亚特色菜，环境正宗且热闹。", sibilla_dir: "位于 Via San Gregorio，步行约 10 分钟。"
+    sibilla_desc: "正宗的那不勒斯披萨和坎帕尼亚特色菜，环境正宗且热闹。", sibilla_dir: "位于 Via San Gregorio，步行约 10 分钟。",
+    fab_nav: "前往公寓的路线", fab_nav_short: "导航"
   },
   es: {
     eyebrow:"", headline_info:"Información<br>Apartamento", headline_transp:"Bienvenidos<br>a Milán",
@@ -1895,7 +1906,202 @@ var T = {
     miscusi_desc: "El paraíso de la pasta fresca. Elige tu tipo de pasta, tu salsa y disfruta de una comida sabrosa en un ambiente joven.", miscusi_dir: "En la zona Centrale (Piazza San Camillo de Lellis), accesible a pie.",
     gallia_desc: "Para un aperitivo o cena exclusiva con una hermosa vista panorámica desde la terraza del Excelsior Hotel Gallia.", gallia_dir: "Exactamente enfrente de la Estación Central (Piazza Duca d'Aosta).",
     terra_desc: "Una de las mejores heladerías artesanales de la zona, perfecta para una pausa dulce y refrescante.", terra_dir: "En Via Vitruvio, a unos 5 minutos a pie del apartamento.",
-    sibilla_desc: "La verdadera pizza napolitana y especialidades de Campania en un local auténtico y siempre animado.", sibilla_dir: "En Via San Gregorio, a unos 10 minutos a pie."
+    sibilla_desc: "La verdadera pizza napolitana y especialidades de Campania en un local auténtico y siempre animado.", sibilla_dir: "En Via San Gregorio, a unos 10 minutos a pie.",
+    fab_nav: "Cómo llegar al apartamento", fab_nav_short: "Cómo llegar"
+  },
+  fr: {
+    eyebrow:"", headline_info:"Informations<br>sur l'appartement", headline_transp:"Bienvenue<br>à Milan",
+    nav_info:"Infos appartement", nav_transport:"Transports & Attractions",
+    hostLabel:"Votre hôte", callHost:"Appeler",
+    intro:"Les principales attractions et comment s'y rendre en transports en commun. Touchez une section pour la déplier.",
+    how_arrive:"Comment s'y rendre", how_move:"Se déplacer dans le quartier",
+    tip:"À ne pas manquer", advice:"Conseil", tips_title:"Conseils pratiques",
+
+    wifi_title:"Wi-Fi & Internet", wifi_sub:"Connexion rapide gratuite", btn_copy:"Copier", btn_copied:"Copié !",
+    desc_t1:"Le logement", desc_t2:"Accès des voyageurs",
+    desc_p1:"Élégant appartement au cœur de Milan, idéalement situé à quelques pas de trois lignes de métro. Il se trouve à 10 minutes de la gare centrale et à 30 mètres du Corso Buenos Aires, d'où partent aussi les bus directs pour tous les aéroports. Le logement dispose de deux chambres, d'un Wi-Fi rapide, d'un ascenseur et de tout le confort. Une oasis de calme et d'élégance, parfaite pour découvrir la ville avec confort et style. Une consigne à bagages avec boîte à clés est également disponible pour récupérer et déposer vos affaires en toute autonomie. Excellentes liaisons avec les gares et les aéroports, notamment via le bus 92 et les navettes dédiées.",    desc_p2:"L'appartement, très bien équipé et desservi par un ascenseur, est situé au troisième étage et dispose d'un balcon intérieur tranquille. Il peut accueillir jusqu'à 4 personnes, avec deux chambres équipées de lits doubles.<br><br>",
+    desc_p3:"L'appartement est à l'usage exclusif des voyageurs : un espace entièrement privatif et doté de tout le nécessaire. Le choix idéal pour allier intimité et détente au cœur de Milan.",
+
+    rules_title: "Règlement intérieur", rules_sub: "Informations pour un séjour parfait",
+    rules_intro: "Vous séjournerez dans le logement de quelqu'un d'autre, merci donc de le traiter avec soin et respect.",
+    rules_g1: "Arrivée et départ",
+    rule_checkin: "Arrivée : 14h00 - 01h00",
+    rule_checkout: "Départ avant 10h00",
+    rule_selfin: "Arrivée autonome avec boîte à clés",
+    rules_g2: "Pendant le séjour",
+    rule_guests: "5 voyageurs maximum",
+    rule_pets: "Animaux non admis",
+    rule_parties: "Fêtes et événements interdits",
+    rule_smoke: "Interdit de fumer",
+    rules_g3: "Règles supplémentaires",
+    rule_elev: "Il est important de toujours bien fermer les portes intérieures de l'ascenseur afin d'éviter qu'il ne se bloque. Merci de votre collaboration.",
+    rule_5th: "Sur demande préalable, il est possible d'accueillir une cinquième personne moyennant un supplément de 40 euros par nuit, à régler via le centre de résolution Airbnb. Dans ce cas, le canapé-lit du salon sera disponible.",
+    rules_g4: "Avant le départ",
+    rule_towels: "Rassembler les serviettes utilisées",
+    rule_trash: "Jeter les ordures",
+    rule_power: "Tout éteindre",
+
+    am_title: "Ce que vous trouverez",
+    am_sub: "Tout le confort du logement",
+    am_g_views: "Vues panoramiques",
+    am_v_yard: "Vue sur la cour et le jardin",
+    am_g_bath: "Salle de bain",
+    am_b_hair: "Sèche-cheveux et eau chaude",
+    am_b_clean: "Produits de nettoyage",
+    am_b_soap: "Shampooing, après-shampooing, gel douche et savon",
+    am_b_bidet: "Bidet",
+    am_g_bed: "Chambre et buanderie",
+    am_bed_wash: "Lave-linge gratuit (dans le logement)",
+    am_bed_ess: "Serviettes, draps, savon et papier toilette",
+    am_bed_linens: "Linge en coton, couvertures et oreillers supplémentaires",
+    am_bed_store: "Armoire, cintres, séchoir à linge",
+    am_bed_iron: "Fer à repasser",
+    am_bed_dark: "Rideaux occultants",
+    am_bed_safe: "Coffre-fort",
+    am_g_ent: "Divertissement et famille",
+    am_ent_tv: "TV HD 50\" (câble, Prime Video, Netflix)",
+    am_ent_audio: "Système audio Sony AUX",
+    am_ent_books: "Livres et matériel de lecture",
+    am_ent_fam: "Protections d'angles de table",
+    am_g_heat: "Chauffage et sécurité",
+    am_heat_ac: "Climatisation et ventilateur",
+    am_heat_heat: "Chauffage",
+    am_heat_safe: "Détecteur de fumée et de monoxyde de carbone",
+    am_heat_ext: "Extincteur et trousse de premiers secours",
+    am_g_net: "Internet et espace de travail",
+    am_net_wifi: "Wi-Fi rapide (885 Mbit/s)",
+    am_net_work: "Espace de travail dédié",
+    am_g_kitch: "Cuisine et salle à manger",
+    am_kit_cook: "Cuisine entièrement équipée",
+    am_kit_fridge: "Réfrigérateur Smeg et congélateur",
+    am_kit_oven: "Four et micro-ondes",
+    am_kit_stove: "Plaque de cuisson au gaz et lave-vaisselle",
+    am_kit_coffee: "Machine à café, bouilloire, grille-pain, mixeur",
+    am_kit_dish: "Assiettes, couverts, casseroles et verres à vin",
+    am_kit_bbq: "Ustensiles de barbecue et compacteur",
+    am_g_out: "Caractéristiques et extérieur",
+    am_out_priv: "Entrée privée",
+    am_out_balc: "Patio ou balcon privé",
+    am_out_gard: "Jardin commun clôturé",
+    am_g_park: "Parking et installations",
+    am_park_elev: "Ascenseur",
+    am_park_ev: "Recharge pour véhicules électriques",
+    am_park_gar: "Garage payant (1 sur place, et hors site)",
+    am_g_serv: "Services",
+    am_serv_long: "Séjours de longue durée autorisés",
+    am_serv_check: "Arrivée autonome avec boîte à clés",
+    am_g_not: "Non inclus",
+    am_not_cam: "Pas de caméras de surveillance",
+    am_not_dry: "Sèche-linge non disponible",
+
+    btn_take_me_home: "Ramenez-moi à l'appartement (depuis ma position)",
+    btn_discount: "Profitez de 15 % de réduction sur votre réservation",
+
+    phones_title:"Numéros utiles",
+    phone_taxi_short:"Taxi : 02 8585",
+    phone_pharma_short:"Pharmacie : 02 29400 513",
+    phone_emerg_short:"Urgences : 112",
+
+    air_title:"Aéroports & Transferts", air_sub:"Malpensa · Bergame Orio · Linate",
+    dir_arr:"Arrivée (vers l'appartement)", dir_dep:"Départ (vers l'aéroport)",
+    mxp:"Malpensa (MXP)",
+    mxp_a1_t:"<span class='badge badge-train'><i class='fas fa-train'></i> Malpensa Express</span> (Train)", mxp_a1_d:"Train direct pour <strong>Milano Centrale</strong> (50 min). De là, 10 min à pied ou M2 (verte) sur 2 arrêts jusqu'à <strong>Loreto</strong>.",
+    mxp_a2_t:"<i class='fas fa-bus'></i> Navette bus (par l'autoroute)", mxp_a2_d:"Bus (Malpensa Shuttle/Terravision) jusqu'à la <strong>gare centrale</strong>. De là, 10 min à pied ou M2 (verte) jusqu'à <strong>Loreto</strong>.",
+    mxp_d1_t:"<span class='badge badge-train'><i class='fas fa-train'></i> Malpensa Express</span> (Train)", mxp_d1_d:"Train au départ de <strong>Milano Centrale</strong>. Accessible à pied (10 min) ou en M2 (verte) depuis <strong>Loreto</strong> (2 arrêts).",
+    mxp_d2_t:"<i class='fas fa-bus'></i> Navette bus (par l'autoroute)", mxp_d2_d:"Bus au départ de la <strong>gare centrale</strong> (Piazza Luigi di Savoia). Billets à bord.",
+    bgy:"Bergame Orio al Serio (BGY)",
+    bgy_a1_t:"<i class='fas fa-bus'></i> Navette bus (directe)", bgy_a1_d:"Orio Shuttle ou Terravision jusqu'à la <strong>gare centrale</strong> (60 min). De là, 10 min à pied ou M2 (verte) jusqu'à <strong>Loreto</strong>.",
+    bgy_d1_t:"<i class='fas fa-bus'></i> Navette bus (directe)", bgy_d1_d:"Bus au départ de la <strong>gare centrale</strong> (Piazza Luigi di Savoia). Accessible à pied ou en M2 depuis <strong>Loreto</strong>.",
+    lin:"Linate (LIN)",
+    lin_a1_t:"<span class='badge badge-m4'>M4</span> + <span class='badge badge-m1'>M1</span> (Recommandé)", lin_a1_d:"Prenez la M4 jusqu'à <strong>San Babila</strong>, changez pour la M1 (rouge) dir. Sesto FS et descendez à <strong>Loreto</strong>. 2 min à pied. (~25 min)",
+    lin_a2_t:"<span class='badge badge-m4'>M4</span> + <span class='badge badge-bus'>Bus 92</span> (Alternative)", lin_a2_d:"Prenez la M4 jusqu'à <strong>Dateo</strong>, changez pour le bus 92 (dir. Bovisa) et descendez à <strong>Piazza Caiazzo</strong>. 3 min à pied. (~30 min)",
+    lin_a3_t:"<i class='fas fa-bus'></i> Navette bus (via la gare centrale)", lin_a3_d:"Linate Shuttle jusqu'à la <strong>gare centrale</strong>. De là, marchez 10 min ou prenez la M2 (verte) sur 2 arrêts jusqu'à <strong>Loreto</strong>.",
+    lin_d1_t:"<span class='badge badge-m1'>M1</span> + <span class='badge badge-m4'>M4</span> (Recommandé)", lin_d1_d:"Depuis <strong>Loreto</strong>, prenez la M1 (rouge) jusqu'à <strong>San Babila</strong>, changez pour la M4 (bleue) direction <strong>Linate</strong> jusqu'au terminus.",
+    lin_d2_t:"<span class='badge badge-bus'>Bus 92</span> + <span class='badge badge-m4'>M4</span> (Alternative)", lin_d2_d:"Depuis <strong>Piazza Caiazzo</strong>, prenez le bus 92 jusqu'à <strong>Dateo</strong>, puis la M4 (bleue) jusqu'à <strong>Linate</strong>.",
+    lin_d3_t:"<i class='fas fa-bus'></i> Navette bus (via la gare centrale)", lin_d3_d:"Bus au départ du côté est de la <strong>gare centrale</strong> (Piazza Luigi di Savoia). Accessible à pied en 10 min ou en M2.",
+    btn_nav_apt: "Naviguer vers l'appartement", btn_nav_air: "Naviguer vers l'aéroport",
+
+    d_title:"Duomo & Centre historique", d_sub:"Piazza Duomo · Château des Sforza · Teatro alla Scala",
+    d_m1_label:"— Option recommandée",
+    d_m1_desc:"Depuis l'arrêt <strong>Loreto</strong>, prenez la M1 (rouge) dir. <strong>Bisceglie/Rho Fiera</strong> et descendez à <strong>Duomo</strong> (5 arrêts, ~10 min). Sortie directe sur la Piazza Duomo.",
+    d_m3_label:"— Alternative via la gare centrale",
+    d_m3_desc:"Depuis <strong>Loreto</strong>, prenez la M2 (verte) sur 2 arrêts jusqu'à <strong>Centrale FS</strong>, changez pour la M3 (jaune) dir. <strong>San Donato</strong> et descendez à <strong>Duomo</strong>.",
+    d_s1_title:"Duomo → Château des Sforza",
+    d_s1_desc:"À pied par la Via Dante (15 min) ou <span class='badge badge-m1'>M1</span> sur un arrêt jusqu'à <strong>Cairoli</strong>. Parc en accès libre, musées payants.",
+    d_s2_title:"Duomo → Piazza della Scala",
+    d_s2_desc:"5 minutes à pied en traversant la <strong>Galleria Vittorio Emanuele II</strong>. Tradition milanaise : tourner le talon sur la mosaïque du taureau pour porter chance.",
+    d_s3_title:"Shopping : le Quadrilatero della Moda",
+    d_s3_desc:"<span class='badge badge-m3'>M3</span> arrêt <strong>Montenapoleone</strong> (1 arrêt depuis Duomo). Via Montenapoleone, Via della Spiga : les grandes maisons internationales.",
+    d_h1:"Terrasse du Duomo au coucher du soleil", d_h2:"Réservation en ligne conseillée",
+    d_h3_label:"Galleria V.E. II", d_h3:"Ouverte 24h/24, cafés historiques",
+    d_h4_label:"La Cène de Léonard", d_h4:"À réserver des mois à l'avance !",
+    d_btn:"Emmenez-moi au Duomo",
+    g_title:"Gae Aulenti & Isola", g_sub:"Corso Como · Corso Garibaldi · Bosco Verticale",
+    g_m2_label:"— Option principale",
+    g_m2_desc:"Depuis <strong>Loreto</strong>, prenez la M2 (verte) dir. <strong>Abbiategrasso/Assago</strong> et descendez à <strong>Garibaldi FS</strong> (2 arrêts, ~5 min). Sortie sur la Piazza Gae Aulenti.",
+    g_tram_label:"— Alternative panoramique",
+    g_tram_desc:"Le tram 9 depuis <strong>Loreto</strong> suit le Viale Monza vers la gare centrale, puis <strong>Garibaldi</strong>. Plus lent, mais vous découvrez le quartier en surface.",
+    g_s1_title:"Gae Aulenti → Corso Como",
+    g_s1_desc:"3 minutes à pied. Un concept store emblématique avec restaurant et galerie d'art dans la cour — l'adresse la plus tendance de Milan.",
+    g_s2_title:"Garibaldi → Corso Garibaldi",
+    g_s2_desc:"5 min à pied vers le sud. Street food, boutiques indépendantes, cafés de spécialité. La rue mène jusqu'à <strong>Brera</strong>, le quartier des artistes.",
+    g_s3_title:"Quartier Isola",
+    g_s3_desc:"Depuis le portique de Gae Aulenti, empruntez la passerelle piétonne vers le nord (10 min). Fresques murales, marchés vintage, apéritifs dans les bars du quartier.",
+    g_h1_l:"Bosco Verticale", g_h1:"Meilleures photos depuis la place, le soir quand tout est illuminé",
+    g_h2_l:"Apéritif", g_h2:"Isola : de nombreux bars pour l'happy hour",
+    g_h3_l:"Corso Como", g_h3:"Shopping alternatif et design",
+    g_h4_l:"Brera", g_h4:"Pinacothèque de Brera, art de la Renaissance",
+    g_btn:"Emmenez-moi à Gae Aulenti",
+    c_title:"Cenisio, Sarpi & Sempione", c_sub:"Chinatown · Cimetière monumental · Arc de la Paix",
+    c_m2_label:"changement M5 à Garibaldi",
+    c_m2_desc:"Depuis <strong>Loreto</strong>, prenez la M2 (verte) dir. <strong>Abbiategrasso</strong> et descendez à <strong>Garibaldi FS</strong>. De là, changez pour la <span class='badge badge-m5'>M5 lilas</span>.",
+    c_m5_label:"— Pour le Monumentale et Cenisio",
+    c_m5_desc:"Prenez la M5 (lilas) dir. <strong>San Siro Stadio</strong> et descendez à <strong>Monumentale</strong> (pour le cimetière) ou <strong>Cenisio</strong> (pour Chinatown).",
+    c_tram_label:"— Pour le Parc Sempione",
+    c_tram_desc:"Depuis <strong>Loreto</strong>, le tram 1 longe le Corso Sempione jusqu'à l'<strong>Arc de la Paix</strong>. Plus lent mais sans changement.",
+    c_s1_title:"Cenisio → Via Paolo Sarpi (Chinatown)",
+    c_s1_desc:"5 minutes à pied vers l'est. Restaurants de cuisine asiatique authentique, street food, marché historique le samedi matin.",
+    c_s2_title:"M5 Monumentale → Cimetière monumental",
+    c_s2_desc:"3 minutes à pied depuis la sortie. L'un des plus beaux cimetières d'Europe, avec des sculptures Art nouveau. Entrée gratuite (fermé le lundi).",
+    c_s3_title:"Arc de la Paix → Parc Sempione",
+    c_s3_desc:"Depuis <strong>Cenisio</strong> M5, 15 min à pied. Le grand parc de Milan : lac, jogging, face au Château des Sforza.",
+    c_h1_l:"Chinatown", c_h1:"Excellente cuisine asiatique authentique",
+    c_h2_l:"Cimetière", c_h2:"Entrée gratuite, art Art nouveau",
+    c_h3_l:"Parc Sempione", c_h3:"Pique-nique et détente, toujours ouvert",
+    c_h4_l:"Arc de la Paix", c_h4:"Meilleures photos à l'aube ou au coucher du soleil",
+    c_btn:"Emmenez-moi à Sarpi / Cenisio",
+    n_title:"Navigli", n_sub:"Darsena · Vie nocturne · Bars au bord du canal",
+    n_m2_label:"— Option directe",
+    n_m2_desc:"Depuis <strong>Loreto</strong>, prenez la M2 (verte) dir. <strong>Abbiategrasso/Assago</strong> et descendez à <strong>Porta Genova FS</strong> (8 arrêts, ~17 min). Sortie directe sur les Navigli.",
+    n_tram_label:"— Retour en soirée",
+    n_tram_desc:"Quand le métro ferme (~1h30), le tram de nuit 3 depuis <strong>Porta Genova</strong> rejoint la gare centrale. Idéal pour rentrer après la soirée.",
+    n_s1_title:"Porta Genova → Naviglio Grande",
+    n_s1_desc:"3 minutes à pied. Osterie historiques, nombreux bars à apéritif, galeries d'art le long du canal. Pic d'affluence le jeudi et le samedi dès 19h00.",
+    n_s2_title:"Naviglio Grande → Darsena",
+    n_s2_desc:"10 minutes à pied vers le nord le long du canal. Port réaménagé, marché le jeudi matin, location de vélos et de kayaks en été.",
+    n_s3_title:"Vicolo dei Lavandai & Naviglio Pavese",
+    n_s3_desc:"Le Vicolo dei Lavandai est le lavoir médiéval le plus photographié de Milan, à 5 min de Porta Genova. Le Naviglio Pavese, vers le sud, offre des lieux plus tranquilles.",
+    n_h1_l:"Meilleur moment", n_h1:"Jeudi et samedi, à partir de 19h00",
+    n_h2_l:"Apéritif", n_h2:"De nombreux établissements historiques au bord du canal",
+    n_h3_l:"Marché", n_h3:"Dernier dimanche du mois : antiquités",
+    n_h4_l:"Tard le soir", n_h4:"Tram de nuit pour rentrer",
+    n_btn:"Emmenez-moi aux Navigli",
+    tip1:"Ticket simple ATM : <strong>2,20 €</strong> · valable 90 min. Application officielle ATM ou carte sans contact aux tourniquets.",
+    tip2:"Arrêt le plus proche : <strong>Loreto M1+M2</strong> à 2 min à pied (sortie Piazza Loreto). Ligne M1 rouge et M2 verte.",
+    tip3:"Le métro ferme vers <strong>1h30</strong> (ven-sam à 2h30). Ensuite : trams de nuit ou applications de taxi.",
+    tip4:"<strong>BikeMi</strong> : vélos et vélos électriques en libre-service dans toute la ville. Idéal pour Sempione, les Navigli et Brera.",
+    nav_food: "Où manger", headline_food: "Où<br>manger",
+    food_disc: "Ces restaurants sont des suggestions basées uniquement sur nos goûts personnels. Nous déclinons toute responsabilité concernant les prix, la qualité ou les changements de service. Nous vous conseillons de réserver à l'avance !",
+    how_to_reach: "Comment s'y rendre",
+    kisen_desc: "Excellent choix pour les amateurs de sushi et de cuisine japonaise, avec des plats très soignés et une atmosphère élégante.", kisen_dir: "Facilement accessible à pied depuis l'appartement.",
+    hostaria_desc: "Restaurant chaleureux proposant d'excellentes spécialités de poisson et des plats typiques de la cuisine méditerranéenne.", hostaria_dir: "À quelques pas de l'appartement, dans le quartier de la gare centrale.",
+    mamma_desc: "Une osteria traditionnelle pour savourer les vrais plats de la cuisine milanaise et italienne dans un cadre rustique et convivial.", mamma_dir: "Situé Piazza Cincinnato, à environ 5-10 minutes à pied.",
+    mu_desc: "Considéré comme l'un des meilleurs restaurants chinois de Milan, spécialisé dans les dim sum et la cuisine cantonaise de grande qualité.", mu_dir: "Tout près de la gare centrale, accessible à pied.",
+    miscusi_desc: "Le paradis des pâtes fraîches. Choisissez votre format, votre sauce et profitez d'un bon repas dans une ambiance jeune et conviviale.", miscusi_dir: "Dans le quartier de la gare centrale (Piazza San Camillo de Lellis), accessible à pied.",
+    gallia_desc: "Pour un apéritif ou un dîner d'exception avec une superbe vue panoramique depuis la terrasse de l'Excelsior Hotel Gallia.", gallia_dir: "Exactement en face de la gare centrale (Piazza Duca d'Aosta).",
+    terra_desc: "L'un des meilleurs glaciers artisanaux du quartier, parfait pour une pause sucrée et rafraîchissante.", terra_dir: "Via Vitruvio, à environ 5 minutes à pied de l'appartement.",
+    sibilla_desc: "La vraie pizza napolitaine et des spécialités de Campanie dans un lieu authentique et toujours très animé.", sibilla_dir: "Via San Gregorio, à environ 10 minutes à pied.",
+    fab_nav: "Itinéraire vers l'appartement", fab_nav_short: "Itinéraire"
   }
 };
 
@@ -2021,6 +2227,16 @@ function copyWifi() {
   });
 }
 
+var LANG_KEY = 'guestGuideLang';
+
+function getSavedLang() {
+  try {
+    var saved = localStorage.getItem(LANG_KEY);
+    if (saved && T[saved]) return saved;
+  } catch (err) {}
+  return 'it';
+}
+
 function applyTranslations(lang) {
   var t = T[lang];
   if (!t) return;
@@ -2029,6 +2245,12 @@ function applyTranslations(lang) {
     var key = els[j].getAttribute('data-i18n');
     if (t[key] !== undefined) { els[j].innerHTML = t[key]; }
   }
+  var tEls = document.querySelectorAll('[data-i18n-title]');
+  for (var k = 0; k < tEls.length; k++) {
+    var tv = t[tEls[k].getAttribute('data-i18n-title')];
+    if (tv !== undefined) { tEls[k].setAttribute('title', tv); tEls[k].setAttribute('aria-label', tv); }
+  }
+  document.documentElement.setAttribute('lang', lang);
   // DOPO CHE IL TESTO È CAMBIATO, RICALCOLA LO SPAZIO DELL'HEADER!
   initHeaderPadding();
 }
@@ -2044,6 +2266,7 @@ document.getElementById('lang-drawer').addEventListener('click', function(e) {
   
   document.getElementById('lang-drawer').classList.remove('open');
   applyTranslations(lang);
+  try { localStorage.setItem(LANG_KEY, lang); } catch (err) {}
 });
 
 function initSlider() {
@@ -2093,7 +2316,12 @@ window.addEventListener('scroll', handleScroll, { passive: true });
 window.addEventListener('resize', initHeaderPadding);
 
 document.addEventListener("DOMContentLoaded", function() {
-  applyTranslations('it');
+  var startLang = getSavedLang();
+  var langBtns = document.querySelectorAll('.lang-btn');
+  for (var b = 0; b < langBtns.length; b++) {
+    langBtns[b].classList.toggle('active', langBtns[b].getAttribute('data-lang') === startLang);
+  }
+  applyTranslations(startLang);
   initSlider();
   setTimeout(initHeaderPadding, 50); // Attende un millisecondo per la corretta lettura dei font
 });
